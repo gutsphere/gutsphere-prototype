@@ -2,1594 +2,223 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Gutsphere — Prototype</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gutsphere — Prototype Directory</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/styles.css">
   <style>
-/* Gutsphere Design System — CSS v2 */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --coral:#EF5350;--coral-glow:rgba(239,83,80,.07);--coral-light:rgba(239,83,80,.14);
-  --white:#FFFFFF;--sand:#F5EEE8;--sand-light:#FAF6F2;--warm-cream:#FFFAF7;
-  --border:#E7E0DA;--border-hover:#D4CCC5;
-  --text-primary:#1C1917;--text-secondary:#57534E;--text-muted:#A8A29E;--text-hint:#C4BBB5;
-  --green:#2E7D32;
-  --font-d:'Inter',-apple-system,'SF Pro Display',sans-serif;
-  --font-b:'DM Sans',-apple-system,sans-serif;
-  --page-px:24px;--safe-bottom:32px;
-  --ease-out:cubic-bezier(.4,0,.2,1);--ease-bounce:cubic-bezier(.34,1.56,.64,1);
-}
-html,body{font-family:var(--font-b);background:var(--sand);color:var(--text-primary);overflow:hidden;height:100dvh;-webkit-font-smoothing:antialiased}
+    /* Override shell defaults for full-width landing page */
+    html, body {
+      overflow: auto;
+      height: auto;
+      min-height: 100dvh;
+      background: var(--sand);
+    }
 
-/* Shell */
-.shell{width:100%;max-width:430px;height:100dvh;margin:0 auto;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--white) 0%,var(--warm-cream) 100%);display:flex;flex-direction:column}
+    .landing {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+    }
 
-/* Header */
-.header{flex-shrink:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);padding:10px var(--page-px) 10px;border-bottom:1px solid var(--border)}
-.header-status{display:flex;align-items:center;justify-content:space-between;font-size:11px;font-weight:600;color:var(--text-primary);margin-bottom:8px;padding:0 2px}
-.header-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.header-title{flex:1;text-align:center;font-family:var(--font-d);font-size:17px;font-weight:600;letter-spacing:-.02em;color:var(--text-primary)}
-.header-icon{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,transform .15s;position:relative;flex-shrink:0;color:var(--text-secondary)}
-.header-icon:active{transform:scale(.92)}
-.header-icon svg{width:18px;height:18px}
-.badge{position:absolute;top:-3px;right:-3px;min-width:16px;height:16px;border-radius:8px;background:var(--coral);color:var(--white);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;border:2px solid var(--white)}
-.header-left{min-width:36px}
-.header-right{display:flex;align-items:center;gap:8px;min-width:36px;justify-content:flex-end}
+    /* Brand */
+    .brand {
+      font-family: var(--font-d);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 32px;
+    }
 
-/* Avatar */
-.avatar-sm{width:36px;height:36px;border-radius:50%;background:var(--coral-glow);border:1.5px solid var(--coral-light);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--coral);cursor:pointer;transition:transform .15s}
-.avatar-sm:active{transform:scale(.92)}
-.avatar-lg{width:52px;height:52px;border-radius:16px;background:var(--coral-glow);border:1.5px solid var(--coral-light);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:var(--coral);flex-shrink:0}
+    /* Hero */
+    .hero-tagline {
+      font-family: var(--font-d);
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -.025em;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
 
-/* Content */
-.content{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:24px}
-.page{padding:var(--page-px)}
-.page-title{font-family:var(--font-d);font-size:26px;font-weight:700;letter-spacing:-.025em;color:var(--text-primary);line-height:1.15}
-.page-subtitle{font-size:14px;color:var(--text-secondary);margin-top:4px;line-height:1.45}
+    .hero-subtitle {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 40px;
+    }
 
-/* Cards */
-.card{background:var(--white);border-radius:16px;padding:16px;margin-bottom:10px;border:1px solid var(--border);transition:border-color .3s,box-shadow .3s,transform .2s}
-.card.interactive{cursor:pointer}
-.card.interactive:hover{border-color:var(--border-hover);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.05)}
-.card.interactive:active{transform:scale(.985)}
-.card.hl{border-color:var(--coral);box-shadow:0 0 0 3px rgba(239,83,80,.12)}
-.card.coral-fill{background:var(--coral);border-color:var(--coral);color:var(--white)}
-.card.dark{background:var(--text-primary);border-color:var(--text-primary);color:var(--white)}
-.card.coral-glow-bg{background:var(--coral-glow);border-color:var(--coral-light)}
-.card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.card-title{font-size:14px;font-weight:700;color:var(--text-primary)}
-.card-subtitle{font-size:13px;color:var(--text-secondary);margin-top:4px;line-height:1.4}
-.card.dark .card-title,.card.coral-fill .card-title{color:var(--white)}
-.card.dark .card-subtitle{color:rgba(255,255,255,.6)}
-.card.coral-fill .card-subtitle{color:rgba(255,255,255,.85)}
+    /* Section labels */
+    .section-label {
+      font-family: var(--font-d);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
 
-/* Chips */
-.chip{display:inline-flex;align-items:center;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;white-space:nowrap}
-.chip.coral{background:var(--coral-glow);color:var(--coral)}
-.chip.amber{background:#FEF3C7;color:#92400E}
-.chip.green{background:#D1FAE5;color:#065F46}
-.chip.sky{background:rgba(56,189,248,.12);color:#0369A1}
+    /* Card grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
 
-/* Rows */
-.row{display:flex;align-items:center;gap:12px;padding:10px 4px;border-radius:12px;cursor:pointer;transition:background .12s}
-.row:hover{background:var(--sand-light)}
-.row:active{background:var(--sand)}
-.row-icon{width:40px;height:40px;border-radius:12px;background:var(--sand-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--text-secondary)}
-.row-icon svg{width:18px;height:18px}
-.row-icon.coral-bg{background:var(--coral-glow);color:var(--coral)}
-.row-icon.green-bg{background:#D1FAE5;color:var(--green)}
-.row-icon.amber-bg{background:#FEF3C7;color:#92400E}
-.row-icon.sky-bg{background:rgba(56,189,248,.12);color:#0369A1}
-.row-body{flex:1;min-width:0}
-.row-title{font-size:14px;font-weight:500;color:var(--text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.row-subtitle{font-size:12px;color:var(--text-muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.row-chevron{color:var(--text-hint);flex-shrink:0}
-.row-chevron svg{width:16px;height:16px}
-.row-meta{font-size:11px;color:var(--text-hint);font-weight:500;flex-shrink:0}
+    .condition-card {
+      display: block;
+      text-decoration: none;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 18px;
+      transition: border-color .2s var(--ease-out),
+                  box-shadow .2s var(--ease-out),
+                  transform .15s var(--ease-out);
+      cursor: pointer;
+    }
 
-/* Segments */
-.segments{display:flex;gap:6px;overflow-x:auto;padding:0 0 8px;margin-bottom:8px;scrollbar-width:none;position:relative;-webkit-mask-image:linear-gradient(to right, black 85%, transparent 100%);mask-image:linear-gradient(to right, black 85%, transparent 100%)}
-.segments::-webkit-scrollbar{display:none}
-.segments.scrolled-end{-webkit-mask-image:none;mask-image:none}
-.segments.scrolled-mid{-webkit-mask-image:linear-gradient(to right, transparent 0%, black 5%, black 85%, transparent 100%);mask-image:linear-gradient(to right, transparent 0%, black 5%, black 85%, transparent 100%)}
-.seg{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;transition:background .2s,color .2s;border:none;background:var(--sand-light);color:var(--text-secondary);font-family:var(--font-b)}
-.seg:hover{background:var(--sand)}
-.seg.active{background:var(--coral);color:var(--white);font-weight:600}
+    .condition-card:hover {
+      border-color: var(--coral);
+      box-shadow: 0 4px 16px rgba(239,83,80,.1);
+      transform: translateY(-2px);
+    }
 
-/* Sub-segment pills (nested inside a panel) — subtler than top-level */
-.seg-panel .seg.active{background:var(--coral-glow);color:var(--coral)}
+    .condition-card:active {
+      transform: scale(.98);
+    }
 
-/* Bottom Nav */
-.bottom-nav{flex-shrink:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);padding:4px 6px 8px;border-top:.5px solid rgba(0,0,0,.08)}
-.bottom-nav-inner{display:grid;grid-template-columns:repeat(5,1fr);gap:2px}
-.nav-tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 6px 4px;cursor:pointer;border:none;background:transparent;transition:background .25s,color .2s,transform .15s,box-shadow .25s;color:#78716C;font-family:var(--font-b);border-radius:16px}
-.nav-tab:active{transform:scale(.92)}
-.nav-tab svg{width:22px;height:22px;stroke-width:1.8}
-.nav-tab .nav-label{font-size:10px;font-weight:600}
-.nav-tab.active{background:rgba(245,238,232,.85);color:var(--coral);box-shadow:0 1px 4px rgba(0,0,0,.04),inset 0 1px 0 rgba(255,255,255,.7)}
-.nav-tab.active svg{stroke-width:2.2}
-.nav-tab.active .nav-label{font-weight:700}
+    .condition-card .card-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
 
-/* FAB */
-.fab{position:absolute;bottom:72px;right:20px;z-index:20;width:52px;height:52px;border-radius:50%;background:var(--coral);color:var(--white);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(239,83,80,.35),0 2px 6px rgba(0,0,0,.1);transition:transform .25s var(--ease-bounce)}
-.fab:hover{transform:scale(1.06)}
-.fab:active{transform:scale(.9)}
-.fab svg{width:24px;height:24px;stroke-width:2.2}
+    .condition-card .card-name {
+      font-family: var(--font-d);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -.01em;
+      margin-bottom: 4px;
+    }
 
-/* Sheet */
-.sheet-overlay{position:absolute;inset:0;z-index:30;background:rgba(28,25,23,.3);backdrop-filter:blur(2px);display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .25s ease}
-.sheet-overlay.open{opacity:1;pointer-events:auto}
-.sheet-panel{width:100%;background:var(--white);border-radius:24px 24px 0 0;border-top:1px solid var(--border);padding:12px var(--page-px) var(--safe-bottom);box-shadow:0 -8px 40px rgba(0,0,0,.12);transform:translateY(100%);transition:transform .35s var(--ease-out);max-height:80vh;overflow-y:auto}
-.sheet-overlay.open .sheet-panel{transform:translateY(0)}
-.sheet-handle{width:40px;height:4px;border-radius:2px;background:var(--border);margin:0 auto 16px}
-.sheet-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.sheet-title{font-family:var(--font-d);font-size:18px;font-weight:600;color:var(--text-primary)}
+    .condition-card .card-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
 
-/* Buttons */
-.btn{width:100%;padding:14px;border-radius:16px;background:var(--coral);color:var(--white);font-family:var(--font-b);font-size:15px;font-weight:600;border:none;cursor:pointer;transition:transform .15s;text-align:center}
-.btn:active{transform:scale(.97)}
-.btn-outline{background:var(--white);color:var(--coral);border:1.5px solid var(--coral)}
-.btn-sm{padding:8px 16px;font-size:13px;width:auto;border-radius:20px}
+    /* Full-width card variant for odd last item */
+    .condition-card.full-width {
+      grid-column: 1 / -1;
+    }
 
-/* Group Labels */
-.group-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-hint);margin-bottom:8px;margin-top:16px;padding:0 2px}
-.group-label:first-child{margin-top:0}
+    /* Footer */
+    .landing-footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-hint);
+      padding-top: 8px;
+    }
 
-/* Quick Add Grid */
-.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.quick-item{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 8px;border-radius:16px;border:1px solid var(--border);background:var(--white);cursor:pointer;transition:border-color .2s,transform .15s,background .15s}
-.quick-item:hover{border-color:var(--coral-light);background:var(--coral-glow)}
-.quick-item:active{transform:scale(.95)}
-.quick-item .qi-icon{width:40px;height:40px;border-radius:12px;background:var(--sand-light);display:flex;align-items:center;justify-content:center;color:var(--text-secondary)}
-.quick-item .qi-icon svg{width:20px;height:20px}
-.quick-item .qi-label{font-size:11px;font-weight:500;color:var(--text-secondary);text-align:center}
+    /* Responsive: single column on narrow screens */
+    @media (max-width: 520px) {
+      .landing {
+        padding: 32px 20px 48px;
+      }
 
-/* Guide List (Chat) */
-.guide-row{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;cursor:pointer;transition:background .12s;margin-bottom:2px}
-.guide-row:hover{background:var(--sand-light)}
-.guide-row:active{background:var(--sand)}
-.guide-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.guide-avatar svg{width:20px;height:20px}
-.guide-avatar.neutral{background:var(--sand-light);color:var(--text-secondary)}
-.guide-avatar.coral{background:var(--coral-glow);color:var(--coral)}
-.guide-avatar.green{background:#D1FAE5;color:var(--green)}
-.guide-avatar.sky{background:rgba(56,189,248,.12);color:#0369A1}
-.guide-avatar.amber{background:#FEF3C7;color:#92400E}
-.guide-avatar.purple{background:rgba(139,92,246,.1);color:#7C3AED}
-.guide-avatar.rose{background:rgba(244,63,94,.08);color:#E11D48}
-.guide-body{flex:1;min-width:0}
-.guide-name{font-size:14px;font-weight:600;color:var(--text-primary)}
-.guide-desc{font-size:12px;color:var(--text-muted);margin-top:2px;line-height:1.35}
+      .hero-tagline {
+        font-size: 26px;
+      }
 
-/* Chat thread */
-.prompt-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.prompt-chip{padding:8px 12px;border-radius:20px;font-size:12px;font-weight:500;color:var(--text-secondary);background:var(--sand-light);border:1px solid var(--border);cursor:pointer;transition:background .15s,border-color .15s}
-.prompt-chip:hover{background:var(--coral-glow);border-color:var(--coral-light);color:var(--coral)}
-.chat-bubbles{display:flex;flex-direction:column;gap:10px}
-.bubble{max-width:82%;padding:12px 16px;border-radius:20px;font-size:14px;line-height:1.45}
-.bubble.user{align-self:flex-end;background:var(--coral);color:var(--white);border-bottom-right-radius:6px}
-.bubble.assistant{align-self:flex-start;background:var(--white);color:var(--text-secondary);border:1px solid var(--border);border-bottom-left-radius:6px}
-.chat-input-bar{display:flex;align-items:center;gap:8px;padding:6px 6px 6px 14px;border-radius:24px;border:1px solid var(--border);background:var(--white);margin-top:16px}
-.chat-input-bar input{flex:1;border:none;outline:none;font-family:var(--font-b);font-size:14px;color:var(--text-primary);background:transparent}
-.chat-input-bar input::placeholder{color:var(--text-hint)}
-.chat-send{width:34px;height:34px;border-radius:50%;background:var(--coral);color:var(--white);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s}
-.chat-send:active{transform:scale(.9)}
-.chat-send svg{width:16px;height:16px}
+      .hero-subtitle {
+        font-size: 15px;
+      }
 
-/* Detail grid / info / question */
-.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-.detail-cell{padding:12px;border-radius:12px;background:var(--sand-light)}
-.detail-cell-label{font-size:11px;font-weight:500;color:var(--text-muted)}
-.detail-cell-value{font-size:14px;font-weight:600;color:var(--text-primary);margin-top:4px}
-.info-box{padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.45;margin-top:12px}
-.info-box.amber{background:#FEF3C7;color:#92400E}
-.info-box.coral-soft{background:var(--coral-glow);color:var(--coral)}
-.question-item{padding:12px 14px;border-radius:12px;background:var(--sand-light);font-size:14px;color:var(--text-secondary);line-height:1.4}
-.question-item+.question-item{margin-top:8px}
-.placeholder{padding:20px;border-radius:16px;background:var(--sand-light);color:var(--text-muted);font-size:13px;text-align:center;line-height:1.5}
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
 
-/* Profile */
-.profile-header{display:flex;align-items:center;gap:14px}
-.profile-name{font-family:var(--font-d);font-size:18px;font-weight:600;color:var(--text-primary)}
-.profile-desc{font-size:13px;color:var(--text-muted);margin-top:2px}
-
-/* Today feed cards */
-.feed-card{background:transparent;border-radius:12px;padding:10px 8px;margin-bottom:0;border:none;cursor:pointer;transition:background .12s,transform .15s;display:flex;align-items:center;gap:12px}
-.feed-card:hover{background:var(--sand-light)}
-.feed-card:active{transform:scale(.985)}
-.feed-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--sand-light);color:var(--text-secondary)}
-.feed-icon svg{width:18px;height:18px}
-.feed-body{flex:1;min-width:0}
-.feed-title{font-size:13px;font-weight:600;color:var(--text-primary)}
-.feed-subtitle{font-size:12px;color:var(--text-muted);margin-top:2px}
-
-/* State pills */
-.state-bar{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.state-pill{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:500;background:var(--sand-light);color:var(--text-secondary);border:1px solid var(--border)}
-.state-pill svg{width:12px;height:12px}
-.state-pill.urgent{background:var(--coral-glow);color:var(--coral);border-color:var(--coral-light)}
-
-/* Confidence */
-.confidence-bar{display:flex;align-items:center;gap:8px;margin-top:10px}
-.confidence-track{flex:1;height:4px;border-radius:2px;background:var(--border);overflow:hidden}
-.confidence-fill{height:100%;border-radius:2px;background:var(--coral);transition:width .4s ease}
-.confidence-label{font-size:11px;font-weight:500;color:var(--text-muted);white-space:nowrap}
-
-/* Utils */
-.hidden{display:none!important}
-.flex-between{display:flex;align-items:center;justify-content:space-between}
-.mt-4{margin-top:16px}.mt-3{margin-top:12px}.mt-2{margin-top:8px}.mb-3{margin-bottom:12px}
-.gap-sm{height:8px}.gap-md{height:14px}.gap-lg{height:20px}
-.space-y>*+*{margin-top:4px}
-
-/* Pattern chart placeholder */
-.mini-chart{display:flex;align-items:flex-end;gap:3px;height:48px;padding:8px 0}
-.mini-chart .bar{flex:1;border-radius:3px 3px 0 0;background:var(--coral-light);transition:height .4s ease;min-width:0}
-.mini-chart .bar.active{background:var(--coral)}
-.mini-chart .bar.muted{background:var(--border)}
-
-/* Signal summary row */
-.signal-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:10px;background:var(--sand-light);margin-bottom:6px}
-.signal-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.signal-dot.coral{background:var(--coral)}
-.signal-dot.amber{background:#F59E0B}
-.signal-dot.green{background:var(--green)}
-.signal-dot.muted{background:var(--text-hint)}
-.signal-label{font-size:13px;color:var(--text-secondary);flex:1}
-.signal-value{font-size:13px;font-weight:600;color:var(--text-primary)}
-
-/* Profile care context */
-.care-context-bar{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-.care-tag{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:500;border:1px solid var(--border);background:var(--white);color:var(--text-secondary)}
-.care-tag svg{width:12px;height:12px}
-.care-tag.active-tag{border-color:var(--coral-light);background:var(--coral-glow);color:var(--coral)}
-
-/* Notification items */
-.notif-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:14px;cursor:pointer;transition:background .12s;margin-bottom:2px;position:relative}
-.notif-item:hover{background:var(--sand-light)}
-.notif-item:active{background:var(--sand)}
-.notif-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--sand-light);color:var(--text-secondary)}
-.notif-icon svg{width:18px;height:18px}
-.notif-body{flex:1;min-width:0}
-.notif-title{font-size:14px;font-weight:500;color:var(--text-primary)}
-.notif-sub{font-size:12px;color:var(--text-muted);margin-top:2px;line-height:1.35}
-.notif-time{font-size:11px;color:var(--text-hint);margin-top:4px}
-.notif-unread{position:absolute;top:14px;left:6px;width:6px;height:6px;border-radius:50%;background:var(--coral)}
-.notif-urgent{border-left:3px solid var(--coral);padding-left:9px}
-.time-group{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text-hint);padding:12px 12px 6px;margin-top:4px}
-
-/* Guided exercise preview */
-.guided-card{display:flex;align-items:center;gap:14px;padding:14px;border-radius:14px;border:1px solid var(--border);background:var(--white);cursor:pointer;transition:border-color .2s,transform .15s;margin-bottom:8px}
-.guided-card:hover{border-color:var(--coral-light);transform:translateY(-1px)}
-.guided-card:active{transform:scale(.985)}
-.guided-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--sand-light);color:var(--text-secondary)}
-.guided-icon svg{width:22px;height:22px}
-.guided-body{flex:1;min-width:0}
-.guided-name{font-size:14px;font-weight:600;color:var(--text-primary)}
-.guided-meta{font-size:12px;color:var(--text-muted);margin-top:2px}
-.guided-tag{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:600;background:var(--sand-light);color:var(--text-muted);margin-top:6px}
-
-/* Flare banner */
-.flare-banner{background:linear-gradient(135deg,#FEF2F2 0%,#FFF7ED 100%);border:1.5px solid #FECACA;border-radius:16px;padding:16px;margin-bottom:10px}
-.flare-banner .card-title{color:#DC2626}
-.flare-banner .card-subtitle{color:#92400E}
-
-/* Visit prep progress */
-.prep-progress{display:flex;gap:4px;margin:12px 0 4px}
-.prep-step{flex:1;height:4px;border-radius:2px;background:var(--border)}
-.prep-step.done{background:var(--coral)}
-.prep-step.active{background:var(--coral-light)}
-.prep-label{font-size:11px;color:var(--text-muted);margin-top:4px}
-
-.checklist-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;margin-bottom:6px;cursor:pointer;transition:background .12s}
-.checklist-item:hover{background:var(--sand-light)}
-.check-box{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s,border-color .15s}
-.check-box.checked{background:var(--coral);border-color:var(--coral)}
-.check-box.checked svg{stroke:#fff}
-.check-box svg{width:14px;height:14px;stroke:transparent;stroke-width:2.5}
-.check-label{font-size:13px;color:var(--text-secondary);flex:1}
-.check-label.done{text-decoration:line-through;color:var(--text-hint)}
-
-/* Clinical timeline */
-.timeline-item{display:flex;gap:12px;padding:4px 0;position:relative}
-.timeline-dot-col{display:flex;flex-direction:column;align-items:center;width:20px;flex-shrink:0}
-.timeline-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--border);background:var(--white);z-index:1}
-.timeline-dot.active{border-color:var(--coral);background:var(--coral)}
-.timeline-dot.done{border-color:var(--green);background:var(--green)}
-.timeline-line{width:2px;flex:1;background:var(--border);margin:2px 0}
-.timeline-body{flex:1;padding-bottom:16px}
-.timeline-title{font-size:13px;font-weight:600;color:var(--text-primary)}
-.timeline-sub{font-size:12px;color:var(--text-muted);margin-top:2px}
-
-/* Report card (repeated from patterns for care) */
-.report-card{background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:16px;margin-bottom:10px;cursor:pointer;transition:border-color .2s,transform .15s,box-shadow .15s}
-.report-card:hover{border-color:var(--coral-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.05)}
-.report-card:active{transform:scale(.985)}
-.report-card .report-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
-.report-ready{background:#D1FAE5;color:#065F46}
-.report-draft{background:#FEF3C7;color:#92400E}
-
-/* Contributing factors */
-.factor-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--sand-light);margin-bottom:6px}
-.factor-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.factor-icon svg{width:14px;height:14px}
-.factor-body{flex:1;min-width:0}
-.factor-name{font-size:13px;font-weight:500;color:var(--text-primary)}
-.factor-strength{font-size:11px;color:var(--text-muted);margin-top:1px}
-.factor-bar{width:48px;height:4px;border-radius:2px;background:var(--border);overflow:hidden;flex-shrink:0}
-.factor-bar-fill{height:100%;border-radius:2px}
-
-/* Page transition */
-.screen{transition:opacity .25s ease,transform .25s ease}
-.screen.entering{animation:screenIn .3s ease forwards}
-@keyframes screenIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
-
-/* FAB rotation */
-.fab.open svg{transform:rotate(45deg);transition:transform .25s var(--ease-bounce)}
-.fab svg{transition:transform .25s var(--ease-bounce)}
-
-/* List stagger helper (applied via JS) */
-.stagger-item{opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease}
-.stagger-item.visible{opacity:1;transform:translateY(0)}
-
-/* Scroll reveal */
-.reveal{opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease}
-.reveal.shown{opacity:1;transform:translateY(0)}
-
-/* Card press feedback (enhanced) */
-.feed-card:active,.guided-card:active,.report-card:active,.notif-item:active{transform:scale(.975)!important}
-
-/* Animations */
-@keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.anim{animation:fadeInUp .35s ease forwards}
-.anim-1{animation-delay:.04s;opacity:0}.anim-2{animation-delay:.08s;opacity:0}.anim-3{animation-delay:.12s;opacity:0}
-.anim-4{animation-delay:.16s;opacity:0}.anim-5{animation-delay:.2s;opacity:0}.anim-6{animation-delay:.24s;opacity:0}
-.anim-7{animation-delay:.28s;opacity:0}.anim-8{animation-delay:.32s;opacity:0}
-
-/* ===== PHASE 9: FINAL POLISH ===== */
-
-/* iOS-style status bar */
-.header-status{
-  font-family:var(--font-d);
-  letter-spacing:.01em;
-}
-.header-status .status-time{font-weight:600;font-size:15px}
-.header-status .status-icons{display:flex;align-items:center;gap:4px}
-.header-status .status-icons svg{width:14px;height:14px}
-
-/* Touch target enforcement: min 44px */
-.row{min-height:48px}
-.nav-tab{min-height:44px;min-width:44px}
-.header-icon{min-width:36px;min-height:36px}
-.seg{min-height:36px}
-.quick-item{min-height:72px}
-.guide-row{min-height:56px}
-.checklist-item{min-height:44px}
-.feed-card{min-height:56px}
-.notif-item{min-height:56px}
-.guided-card{min-height:64px}
-
-/* Empty state */
-.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center}
-.empty-state-icon{width:48px;height:48px;border-radius:16px;background:var(--sand-light);display:flex;align-items:center;justify-content:center;margin-bottom:12px;color:var(--text-hint)}
-.empty-state-icon svg{width:24px;height:24px}
-.empty-state-title{font-family:var(--font-d);font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:4px}
-.empty-state-desc{font-size:13px;color:var(--text-muted);line-height:1.45;max-width:260px}
-
-/* Typography audit — tighter section titles in pages */
-.page-title{margin-bottom:0}
-.page-subtitle{margin-bottom:0}
-
-/* Card inner spacing consistency */
-.card .card-title+.card-subtitle{margin-top:3px}
-.card .space-y>*+*{margin-top:2px}
-
-/* Better segment spacing after subtitle */
-.page>.segments:first-of-type{margin-top:0}
-
-/* Bottom safe area: proper home indicator space */
-.bottom-nav{padding-bottom:max(22px,env(safe-area-inset-bottom))}
-
-/* Frosted header — slightly more opaque on scroll */
-.header{transition:background .2s ease}
-
-/* Smooth scrollbar (desktop preview) */
-.content{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
-.content::-webkit-scrollbar{width:4px}
-.content::-webkit-scrollbar-track{background:transparent}
-.content::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-
-/* Row separator: very subtle bottom border for dense lists */
-.card .row+.row{border-top:1px solid rgba(0,0,0,.03)}
-
-/* Feed card left accent bar */
-.feed-card.accent-coral{border-left:3px solid var(--coral);padding-left:13px}
-.feed-card.accent-amber{border-left:3px solid #F59E0B;padding-left:13px}
-.feed-card.accent-green{border-left:3px solid var(--green);padding-left:13px}
-.feed-card.accent-sky{border-left:3px solid #0EA5E9;padding-left:13px}
-
-/* Placeholder image-like area (for future chart/image slots) */
-.chart-placeholder{width:100%;height:120px;border-radius:12px;background:linear-gradient(135deg,var(--sand-light) 0%,var(--sand) 100%);display:flex;align-items:center;justify-content:center;color:var(--text-hint);font-size:12px;margin-top:8px}
-
-/* Print-friendly (for Visit Prep export) */
-@media print{
-  .bottom-nav,.fab,.header,.sheet-overlay{display:none!important}
-  .shell{max-width:100%;height:auto;overflow:visible}
-  .content{overflow:visible;padding-bottom:0}
-  .card{break-inside:avoid;box-shadow:none;border:1px solid #ddd}
-}
-
-
-</style>
+      .condition-card.full-width {
+        grid-column: auto;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="shell" id="app">
 
-  <!-- HEADER -->
-  <div class="header" id="header">
-    <div class="header-row">
-      <div class="header-left" id="header-left"><div class="avatar-sm" onclick="nav('profile')">BM</div></div>
-      <div class="header-title" id="header-title">Today</div>
-      <div class="header-right" id="header-right">
-        <div class="header-icon" onclick="nav('notifications')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
-          <span class="badge">2</span>
-        </div>
-      </div>
-    </div>
+<div class="landing">
+
+  <!-- Brand -->
+  <div class="brand">Gutsphere</div>
+
+  <!-- Hero -->
+  <h1 class="hero-tagline">See how Gutsphere works for your gut issue</h1>
+  <p class="hero-subtitle">Choose a condition or symptom to explore a personalised prototype</p>
+
+  <!-- Symptoms -->
+  <div class="section-label">Symptoms</div>
+  <div class="card-grid">
+
+    <a href="/constipation/" class="condition-card">
+      <div class="card-icon">🧱</div>
+      <div class="card-name">Chronic Constipation</div>
+      <div class="card-desc">Hard stools, straining, or feeling like you didn't fully empty — even when you go.</div>
+    </a>
+
+    <a href="/bloating/" class="condition-card">
+      <div class="card-icon">🎈</div>
+      <div class="card-name">Bloating / Gas</div>
+      <div class="card-desc">Pressure, distension, or "why am I bloated again?" days — even without eating much.</div>
+    </a>
+
+    <a href="/diarrhea/" class="condition-card">
+      <div class="card-icon">💨</div>
+      <div class="card-name">Diarrhea / Urgency</div>
+      <div class="card-desc">Loose stools, sudden urgency, or fear of being far from a bathroom.</div>
+    </a>
+
+    <a href="/general/" class="condition-card">
+      <div class="card-icon">🔍</div>
+      <div class="card-name">General Gut Issues</div>
+      <div class="card-desc">Still figuring it out.</div>
+    </a>
+
   </div>
 
-  <!-- CONTENT -->
-  <div class="content" id="content">
+  <!-- Conditions -->
+  <div class="section-label">Conditions</div>
+  <div class="card-grid">
 
-    <!-- ========== TODAY ========== -->
-    <div class="page screen" id="screen-today">
-      <div class="page-title anim">Good morning, Bimal</div>
-      <div class="page-subtitle anim anim-1">Diagnosis investigation · Here's what matters now.</div>
-      <div class="state-bar anim anim-2">
-        <div class="state-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:12px;height:12px"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg> 2 of 5 signals</div>
-        <div class="state-pill urgent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:12px;height:12px"><path d="M8 2v4M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg> Visit in 3 days</div>
-        <div class="state-pill">Visit prep active</div>
-      </div>
-      <div class="gap-lg"></div>
+    <a href="/ibs/" class="condition-card">
+      <div class="card-icon">🔄</div>
+      <div class="card-name">IBS</div>
+      <div class="card-desc">Symptoms that change often, flare without warning, and don't have a clear "why."</div>
+    </a>
 
-      <!-- Top Priority -->
-      <div class="card coral-fill anim anim-3" style="cursor:pointer" onclick="nav('track');setSegment('track','quick');openSheet('symptom')">
-        <div class="card-header">
-          <div>
-            <div class="card-title" style="color:#fff;font-size:15px">Top priority</div>
-            <div class="card-subtitle" style="color:rgba(255,255,255,.88)">Log symptoms after meals today to reduce uncertainty and strengthen pattern confidence.</div>
-          </div>
-          <div style="font-size:20px;opacity:.8">✦</div>
-        </div>
-        <div class="mt-3"><button class="btn btn-sm" style="background:#fff;color:var(--coral);width:auto">Do this now</button></div>
-      </div>
+    <a href="/ibd/" class="condition-card">
+      <div class="card-icon">🔥</div>
+      <div class="card-name">IBD (Crohn's & UC)</div>
+      <div class="card-desc">Recurring pain, spasms, or discomfort that interrupts your day.</div>
+    </a>
 
-      <!-- Ranked Care Feed -->
-      <div class="card anim anim-4">
-        <div class="card-title" style="font-size:15px">Ranked care feed</div>
-        <div class="mt-3" style="display:flex;flex-direction:column;gap:6px">
-        <div class="feed-card" onclick="nav('track');openSheet('symptom')">
-          <div class="feed-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg></div>
-          <div class="feed-body"><div class="feed-title">Must do today</div><div class="feed-subtitle">Log symptoms to strengthen today's signal</div></div>
-          <div class="feed-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:14px;height:14px"><path d="m9 18 6-6-6-6"/></svg></div>
-        </div>
-        <div class="feed-card" onclick="nav('care');setSegment('care','navigation');navSub('visit')">
-          <div class="feed-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
-          <div class="feed-body"><div class="feed-title">Continue where you left off</div><div class="feed-subtitle">Visit prep and doctor questions partially complete</div></div>
-          <div class="feed-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:14px;height:14px"><path d="m9 18 6-6-6-6"/></svg></div>
-        </div>
-        <div class="feed-card" onclick="nav('patterns');openPattern('compound-sequence')">
-          <div class="feed-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
-          <div class="feed-body"><div class="feed-title">New discovery</div><div class="feed-subtitle">A compound pattern may explain your worst mornings</div></div>
-          <div class="feed-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:14px;height:14px"><path d="m9 18 6-6-6-6"/></svg></div>
-        </div>
-        <div class="feed-card" onclick="nav('care');setSegment('care','self');setSegment('self','habits')">
-          <div class="feed-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2M9.6 4.6A2 2 0 1 1 11 8H2M12.6 19.4A2 2 0 1 0 14 16H2"/></svg></div>
-          <div class="feed-body"><div class="feed-title">Guided support</div><div class="feed-subtitle">Do your 5-minute calming routine</div></div>
-          <div class="feed-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:14px;height:14px"><path d="m9 18 6-6-6-6"/></svg></div>
-        </div>
-        <div class="feed-card" onclick="nav('chat')">
-          <div class="feed-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></div>
-          <div class="feed-body"><div class="feed-title">Chat prompt</div><div class="feed-subtitle">Ask what to track next or how to prepare</div></div>
-          <div class="feed-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:14px;height:14px"><path d="m9 18 6-6-6-6"/></svg></div>
-        </div>
-        <div class="feed-card" onclick="openEntry('bm')">
-          <div class="feed-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <div class="feed-body"><div class="feed-title">Recent activity</div><div class="feed-subtitle">Bowel movement logged at 8:20 AM</div></div>
-          <div class="feed-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:14px;height:14px"><path d="m9 18 6-6-6-6"/></svg></div>
-        </div>
-        </div>
-      </div>
-    </div>
+    <a href="/gerd/" class="condition-card full-width">
+      <div class="card-icon">🫗</div>
+      <div class="card-name">GERD / Acid Reflux</div>
+      <div class="card-desc">Persistent queasiness, early fullness, or a heavy feeling after eating.</div>
+    </a>
 
-    <!-- ========== TRACK ========== -->
-    <div class="page screen hidden" id="screen-track">
-      <div class="page-title">Track</div>
-      <div class="page-subtitle">Fast capture, personalised priority, continuity, and full library.</div>
-      <div class="gap-md"></div>
-      <div class="segments" id="seg-track">
-        <button class="seg active" data-seg="track" data-key="quick">Quick Add</button>
-        <button class="seg" data-seg="track" data-key="main">Main</button>
-        <button class="seg" data-seg="track" data-key="continue">Continue</button>
-        <button class="seg" data-seg="track" data-key="recent">Recent</button>
-        <button class="seg" data-seg="track" data-key="more">More</button>
-      </div>
-      <!-- Quick Add -->
-      <div class="seg-panel" data-seg="track" data-panel="quick"><div class="card"><div class="flex-between mb-3"><div class="card-title">Quick Add</div><span style="font-size:12px;color:var(--text-muted)">Fastest path</span></div><div class="quick-grid" id="quick-grid"></div></div></div>
-      <!-- Main -->
-      <div class="seg-panel hidden" data-seg="track" data-panel="main"><div class="card"><div class="flex-between mb-3"><div class="card-title">Your Main Trackers</div><span style="font-size:12px;color:var(--text-muted)">Personalised</span></div><div class="space-y" id="main-trackers"></div></div></div>
-      <!-- Continue -->
-      <div class="seg-panel hidden" data-seg="track" data-panel="continue"><div class="card"><div class="flex-between mb-3"><div class="card-title">Continue Tracking</div><span style="font-size:12px;color:var(--text-muted)">What's missing</span></div><div class="space-y" id="continue-trackers"></div></div></div>
-      <!-- Recent -->
-      <div class="seg-panel hidden" data-seg="track" data-panel="recent"><div class="card"><div class="flex-between mb-3"><div class="card-title">Recent Entries</div><span style="font-size:12px;color:var(--text-muted)">Today</span></div><div class="space-y" id="recent-entries"></div></div></div>
-      <!-- More -->
-      <div class="seg-panel hidden" data-seg="track" data-panel="more"><div class="card" id="more-trackers"></div></div>
-    </div>
-
-    <!-- ========== ENTRY DETAIL ========== -->
-    <div class="page screen hidden" id="screen-entry">
-      <div class="card" id="entry-card"></div>
-      <div class="card" id="entry-context"></div>
-      <div class="card coral-glow-bg interactive" onclick="nav('chat');openGuide('gutsphere')">
-        <div class="card-header">
-          <div><div class="card-title" style="color:var(--coral)">Ask Gutsphere about this</div><div class="card-subtitle">Turn one log into context and next steps.</div></div>
-          <div style="color:var(--coral)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:20px;height:20px"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ========== PATTERNS ========== -->
-    <div class="page screen hidden" id="screen-patterns">
-      <div class="page-title">Patterns</div>
-      <div class="page-subtitle">Interpretation, relationships, and reportable summaries.</div>
-      <div class="gap-md"></div>
-      <div class="segments"><button class="seg active" data-seg="patterns" data-key="patterns">Patterns</button><button class="seg" data-seg="patterns" data-key="connections">Connections</button><button class="seg" data-seg="patterns" data-key="trends">Trends & Reports</button></div>
-      <!-- Patterns -->
-      <div class="seg-panel" data-seg="patterns" data-panel="patterns">
-        <div class="card hl interactive" style="border-color:var(--green);box-shadow:0 0 0 3px rgba(46,125,50,.1)" onclick="openPattern('compound-sequence')">
-          <div class="card-header"><div><div class="card-title" style="font-size:15px">Late dinner + poor sleep → next-day flare</div><div class="card-subtitle">Neither factor alone is as strong. The combination appears to matter most.</div></div><span class="chip green">Strong evidence</span></div>
-          <div class="mini-chart"><div class="bar" style="height:45%"></div><div class="bar" style="height:55%"></div><div class="bar active" style="height:85%"></div><div class="bar" style="height:50%"></div><div class="bar active" style="height:92%"></div><div class="bar" style="height:48%"></div><div class="bar active" style="height:88%"></div><div class="bar" style="height:55%"></div><div class="bar active" style="height:90%"></div><div class="bar" style="height:52%"></div><div class="bar active" style="height:86%"></div><div class="bar" style="height:60%"></div><div class="bar active" style="height:90%"></div><div class="bar" style="height:55%"></div></div>
-          <div class="confidence-bar"><div class="confidence-track"><div class="confidence-fill" style="width:76%;background:var(--green)"></div></div><div class="confidence-label">76% confidence</div></div>
-        </div>
-        <div class="card"><div class="card-title">Signal summary</div>
-          <div class="mt-3">
-            <div class="signal-row"><div class="signal-dot green"></div><div class="signal-label">Difficult mornings after combo nights</div><div class="signal-value">9 of 11</div></div>
-            <div class="signal-row"><div class="signal-dot muted"></div><div class="signal-label">Late dinner alone → difficult morning</div><div class="signal-value">3 of 8</div></div>
-            <div class="signal-row"><div class="signal-dot muted"></div><div class="signal-label">Short sleep alone → difficult morning</div><div class="signal-value">4 of 9</div></div>
-          </div>
-        </div>
-        <div class="card" id="pattern-feed"></div>
-      </div>
-      <!-- Connections & Experiments -->
-      <div class="seg-panel hidden" data-seg="patterns" data-panel="connections">
-        <div class="card" id="pattern-connections"></div>
-        <div class="card" id="pattern-experiments"></div>
-      </div>
-      <!-- Trends & Reports -->
-      <div class="seg-panel hidden" data-seg="patterns" data-panel="trends">
-        <div class="card"><div class="card-title">Bowel pattern — last 14 days</div>
-          <div class="mini-chart" style="height:56px"><div class="bar" style="height:40%"></div><div class="bar" style="height:55%"></div><div class="bar active" style="height:80%"></div><div class="bar" style="height:65%"></div><div class="bar active" style="height:90%"></div><div class="bar" style="height:50%"></div><div class="bar muted" style="height:20%"></div><div class="bar" style="height:60%"></div><div class="bar active" style="height:75%"></div><div class="bar" style="height:45%"></div><div class="bar active" style="height:85%"></div><div class="bar muted" style="height:25%"></div><div class="bar" style="height:70%"></div><div class="bar active" style="height:95%"></div></div>
-          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-hint);margin-top:4px"><span>14 days ago</span><span>Today</span></div>
-        </div>
-        <div class="card" id="pattern-trends-list"></div>
-        <div class="report-card" onclick="nav('care');setSegment('care','navigation');navSub('visit')">
-          <div class="flex-between mb-3"><div class="card-title">Doctor summary</div><span class="report-badge report-ready">Ready</span></div>
-          <div class="card-subtitle">3 patterns, 14 days of data, visit-ready format.</div>
-          <div class="mt-3"><button class="btn btn-sm" style="width:auto">Preview & export</button></div>
-        </div>
-        <div class="card" id="pattern-reports-list"></div>
-      </div>
-    </div>
-
-    <!-- ========== PATTERN DETAIL ========== -->
-    <div class="page screen hidden" id="screen-pattern-detail">
-      <div id="pattern-detail-content"></div>
-    </div>
-
-    <!-- ========== CARE ========== -->
-    <div class="page screen hidden" id="screen-care">
-      <div class="page-title">Care</div>
-      <div class="page-subtitle">Action, guided support, care navigation, and clinical organisation.</div>
-      <div class="gap-md"></div>
-      <div class="segments"><button class="seg active" data-seg="care" data-key="self">Self Care</button><button class="seg" data-seg="care" data-key="navigation">Navigation</button><button class="seg" data-seg="care" data-key="clinical">Clinical Care</button></div>
-      <!-- Self Care -->
-      <div class="seg-panel" data-seg="care" data-panel="self">
-        <div class="segments" style="margin-top:0"><button class="seg active" data-seg="self" data-key="habits">Daily Habits</button><button class="seg" data-seg="self" data-key="plans">Guided Plans</button><button class="seg" data-seg="self" data-key="flare">Flare Support</button><button class="seg" data-seg="self" data-key="recs">Recommendations</button><button class="seg" data-seg="self" data-key="experiments">Experiments</button></div>
-        <div class="seg-panel" data-seg="self" data-panel="habits"><div class="card" id="care-habits"></div></div>
-        <div class="seg-panel hidden" data-seg="self" data-panel="plans"><div class="card" id="care-plans"></div></div>
-        <div class="seg-panel hidden" data-seg="self" data-panel="flare"><div class="card" id="care-flare"></div></div>
-        <div class="seg-panel hidden" data-seg="self" data-panel="recs"><div class="card" id="care-recs"></div></div>
-        <div class="seg-panel hidden" data-seg="self" data-panel="experiments"><div class="card" id="care-experiments"></div></div>
-      </div>
-      <!-- Navigation -->
-      <div class="seg-panel hidden" data-seg="care" data-panel="navigation">
-        <div class="card coral-glow-bg interactive" onclick="navSub('visit')"><div class="card-header"><div><div class="card-title" style="color:var(--coral);font-size:15px">Visit Prep</div><div class="card-subtitle">Prepare for visits, tests, procedures, and next care steps.</div></div><div style="font-size:20px;opacity:.6">🗓</div></div></div>
-        <div class="card" id="care-nav-items"></div>
-      </div>
-      <!-- Clinical -->
-      <div class="seg-panel hidden" data-seg="care" data-panel="clinical">
-        <div class="card coral-glow-bg"><div class="card-title" style="color:var(--coral)">Clinical Care</div><div class="card-subtitle">Organise clinician-directed treatment, medications, follow-up, and monitoring.</div></div>
-        <div class="card" id="care-clinical"></div>
-      </div>
-    </div>
-
-    <!-- ========== VISIT PREP ========== -->
-    <div class="page screen hidden" id="screen-visit">
-      <div class="card">
-        <div class="card-title" style="font-size:15px">Visit preparation</div>
-        <div class="card-subtitle">GI appointment in 3 days</div>
-        <div class="prep-progress"><div class="prep-step done"></div><div class="prep-step done"></div><div class="prep-step active"></div><div class="prep-step"></div></div>
-        <div class="prep-label">3 of 4 steps complete</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Checklist</div>
-        <div class="mt-3">
-          <div class="checklist-item"><div class="check-box checked"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-label done">Define main concern</div></div>
-          <div class="checklist-item"><div class="check-box checked"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-label done">Write questions to ask</div></div>
-          <div class="checklist-item"><div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-label">Review doctor summary</div></div>
-          <div class="checklist-item"><div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-label">Export or print summary</div></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">Main concern</div>
-        <div class="mt-3"><div class="question-item">Constipation with strong urge, but incomplete evacuation. Worsening over the past 3 weeks.</div></div>
-      </div>
-      <div class="card">
-        <div class="card-title">Questions to ask</div>
-        <div class="mt-3"><div class="question-item">What could cause strong urge with nothing coming out?</div><div class="question-item">Should I be concerned about the straining?</div><div class="question-item">What should I track before my next visit?</div></div>
-      </div>
-      <div class="card coral-glow-bg">
-        <div class="card-title" style="color:var(--coral)">Doctor summary</div>
-        <div class="card-subtitle">Auto-generated from your logs and patterns. 3 patterns, 14 days of data.</div>
-        <div class="mt-3" style="display:flex;gap:8px">
-          <button class="btn btn-sm" style="width:auto">Preview</button>
-          <button class="btn btn-sm btn-outline" style="width:auto">Export</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ========== CHAT ========== -->
-    <div class="page screen hidden" id="screen-chat">
-      <div class="page-title">Chat</div>
-      <div class="page-subtitle">Pick the right guide for the moment.</div>
-      <div class="gap-md"></div>
-      <div class="segments"><button class="seg active" data-seg="chat" data-key="conversations">Conversations</button><button class="seg" data-seg="chat" data-key="your-guides">Your Guides</button><button class="seg" data-seg="chat" data-key="specialists">Specialists</button><button class="seg" data-seg="chat" data-key="group">Group Chats</button></div>
-      <div class="seg-panel" data-seg="chat" data-panel="conversations" id="chat-conversations"></div>
-      <div class="seg-panel hidden" data-seg="chat" data-panel="your-guides" id="chat-your-guides"></div>
-      <div class="seg-panel hidden" data-seg="chat" data-panel="specialists" id="chat-specialists"></div>
-      <div class="seg-panel hidden" data-seg="chat" data-panel="group" id="chat-group"></div>
-    </div>
-
-    <!-- ========== CHAT THREAD ========== -->
-    <div class="page screen hidden" id="screen-chat-thread"><div id="thread-content"></div></div>
-
-    <!-- ========== PROFILE ========== -->
-    <div class="page screen hidden" id="screen-profile">
-      <div class="card">
-        <div class="profile-header"><div class="avatar-lg">BM</div><div><div class="profile-name">Bimal Maharjan</div><div class="profile-desc">Stable personal workspace</div></div></div>
-        <div class="care-context-bar">
-          <div class="care-tag active-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:12px;height:12px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Diagnosis investigation</div>
-          <div class="care-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:12px;height:12px"><path d="M8 2v4M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg> GI visit in 3 days</div>
-          <div class="care-tag">Constipation focus</div>
-        </div>
-      </div>
-      <div id="profile-sections"></div>
-    </div>
-
-    <!-- ========== NOTIFICATIONS ========== -->
-    <div class="page screen hidden" id="screen-notifications">
-      <div class="page-title">Notifications</div>
-      <div class="page-subtitle">High-signal inbox for reminders, updates, and care alerts.</div>
-      <div class="gap-md"></div>
-      <div class="segments"><button class="seg active" data-seg="notifications" data-key="action">Action Needed</button><button class="seg" data-seg="notifications" data-key="updates">Updates</button><button class="seg" data-seg="notifications" data-key="inbox">Inbox</button><button class="seg" data-seg="notifications" data-key="settings">Settings</button></div>
-      <div class="seg-panel" data-seg="notifications" data-panel="action"><div class="card" id="notif-action"></div></div>
-      <div class="seg-panel hidden" data-seg="notifications" data-panel="updates"><div class="card" id="notif-updates"></div></div>
-      <div class="seg-panel hidden" data-seg="notifications" data-panel="inbox"><div class="card" id="notif-inbox"></div></div>
-      <div class="seg-panel hidden" data-seg="notifications" data-panel="settings"><div class="card" id="notif-settings"></div></div>
-    </div>
-
-  </div><!-- /content -->
-
-  <!-- BOTTOM NAV -->
-  <div class="bottom-nav" id="bottom-nav"><div class="bottom-nav-inner">
-    <button class="nav-tab active" data-tab="today" onclick="nav('today')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg><span class="nav-label">Today</span></button>
-    <button class="nav-tab" data-tab="track" onclick="nav('track')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h9M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838.838-2.872a2 2 0 0 1 .506-.855z"/></svg><span class="nav-label">Track</span></button>
-    <button class="nav-tab" data-tab="patterns" onclick="nav('patterns')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16h.01M11 12h.01M15 8h.01M19 12h.01"/></svg><span class="nav-label">Pattern</span></button>
-    <button class="nav-tab" data-tab="care" onclick="nav('care')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg><span class="nav-label">Care</span></button>
-    <button class="nav-tab" data-tab="chat" onclick="nav('chat')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span class="nav-label">Chat</span></button>
-  </div></div>
-
-  <!-- FAB -->
-  <button class="fab" id="fab" onclick="openSheet('quick')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5v14"/></svg></button>
-
-  <!-- SHEET -->
-  <div class="sheet-overlay" id="sheet-overlay" onclick="closeSheetOnOverlay(event)">
-    <div class="sheet-panel" onclick="event.stopPropagation()">
-      <div class="sheet-handle"></div>
-      <div class="sheet-header"><div class="sheet-title" id="sheet-title">Quick Add</div><div class="header-icon" onclick="closeSheet()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px"><path d="M18 6 6 18M6 6l12 12"/></svg></div></div>
-      <div id="sheet-body"></div>
-    </div>
   </div>
+
+  <!-- Footer -->
+  <div class="landing-footer">Gutsphere prototype — for demonstration purposes</div>
 
 </div>
-<script>
-/* Gutsphere Prototype — JS v2 */
 
-// ===== ICON SYSTEM (Lucide-compatible inline SVGs) =====
-const I = {
-  // Nav
-  sun:       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>',
-  penLine:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h9M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838.838-2.872a2 2 0 0 1 .506-.855z"/></svg>',
-  barChart:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16h.01M11 12h.01M15 8h.01M19 12h.01"/></svg>',
-  heart:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>',
-  msgCircle: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>',
-  bell:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>',
-  chevL:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>',
-  chevR:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>',
-  plus:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5v14"/></svg>',
-  x:         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',
-  arrowUp:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m5 12 7-7 7 7M12 19V5"/></svg>',
-  // Trackers
-  poop:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 9c0-1.5.5-2.5 1.5-3.5C12.5 4.5 13 3 12 2c1 1.5.5 3-.5 4.5C10.5 7.5 10 8.5 10 9"/><path d="M15 9c0-1 .5-2 1-3 .5-1 .5-2 0-3 1.5 1 1 3 0 4.5-.5.75-.75 1.5-1 2.5"/><path d="M5 21h14a2 2 0 0 0 1.3-3.5C18.86 15.89 15 13 12 13s-6.86 2.89-8.3 4.5A2 2 0 0 0 5 21Z"/></svg>',
-  utensils:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>',
-  thermom:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>',
-  pill:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>',
-  fileText:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M10 9h4M10 13h4M10 17h4"/></svg>',
-  droplets:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05Z"/><path d="M12.56 14.18c1.44 0 2.58-1.16 2.58-2.64 0-.76-.36-1.47-1.1-2.08-.74-.61-1.28-1.28-1.48-2.16-.2.88-.74 1.55-1.48 2.16C10.36 10.07 10 10.78 10 11.54c0 1.48 1.13 2.64 2.56 2.64Z"/><path d="M17 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S17.29 6.75 17 5.3c-.29 1.45-1.14 2.84-2.29 3.76S13 11.1 13 12.25c0 2.22 1.8 4.05 4 4.05Z"/></svg>',
-  moon:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>',
-  brain:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M12 5v13"/></svg>',
-  activity:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>',
-  flower:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 7.5a4.5 4.5 0 1 1 4.5 4.5M12 7.5A4.5 4.5 0 1 0 7.5 12M12 7.5V9m-4.5 3a4.5 4.5 0 1 0 4.5 4.5M7.5 12H9m3 4.5a4.5 4.5 0 1 0 4.5-4.5M12 16.5V15m4.5-3a4.5 4.5 0 1 0-4.5-4.5M16.5 12H15"/><circle cx="12" cy="12" r="3"/></svg>',
-  shield:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4M12 16h.01"/></svg>',
-  timer:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 2h4M12 14l3-3"/><circle cx="12" cy="14" r="8"/></svg>',
-  heartPulse:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg>',
-  steth:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 2v2M5 2v2"/><path d="M5 4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V6a2 2 0 0 0-2-2"/><path d="M17.5 12a.5.5 0 1 0 1 0 .5.5 0 1 0-1 0Z"/><path d="M18 12a4 4 0 0 1-4 4h-1a2 2 0 0 0-2 2v1"/></svg>',
-  testTube:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.5 2v17.5c0 1.4-1.1 2.5-2.5 2.5s-2.5-1.1-2.5-2.5V2"/><path d="M8.5 2h7M6.4 18h9.2"/></svg>',
-  // General
-  sparkles:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4"/></svg>',
-  database:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5M3 12a9 3 0 0 0 18 0"/></svg>',
-  target:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
-  compass:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>',
-  wind:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2M9.6 4.6A2 2 0 1 1 11 8H2M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>',
-  clipList:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4M12 16h4M8 11h.01M8 16h.01"/></svg>',
-  repeat:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg>',
-  flame:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/></svg>',
-  alertTri:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/></svg>',
-  clock:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
-  refresh:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>',
-  calendar:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 2v4M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>',
-  trendUp:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
-  user:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>',
-  users:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
-  settings:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>',
-  globe:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>',
-  list:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h.01M3 18h.01M3 6h.01M8 12h13M8 18h13M8 6h13"/></svg>',
-  watch:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="6"/><polyline points="12 10 12 12 13 13"/><path d="m16.13 7.66-.81-4.05a2 2 0 0 0-2-1.61h-2.68a2 2 0 0 0-2 1.61l-.78 4.05M7.88 16.36l.8 4a2 2 0 0 0 2 1.61h2.72a2 2 0 0 0 2-1.61l.78-4.05"/></svg>',
-  hospital:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 6v4M14 14h-4M14 18h-4M14 8h-4"/><rect width="16" height="20" x="4" y="2" rx="2"/></svg>',
-  creditCard:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg>',
-  helpCircle:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>',
-  lock:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
-  sliders:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>',
-  sunrise:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v8M4.93 10.93l1.41 1.41M2 18h2M20 18h2M19.07 10.93l-1.41 1.41M22 22H2M8 6l4-4 4 4M16 18a4 4 0 0 0-8 0"/></svg>',
-  hand:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 13"/></svg>',
-  search:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>',
-  yoga:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="4" r="2"/><path d="M6 20a2 2 0 0 0 2-2V8l4 2 4-2v10a2 2 0 0 0 2 2M2 20h4M18 20h4"/></svg>',
-  leaf:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 19 2c1 2 2 4.5 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>',
-};
-
-// ===== STATE =====
-let currentTab = 'today';
-let currentSub = null;
-let currentEntry = 'bm';
-let currentGuide = null;
-let currentPattern = 'late-meals';
-
-const segState = { track:'quick', patterns:'patterns', care:'self', self:'habits', chat:'conversations', notifications:'action' };
-
-const ENTRIES = {
-  bm: { title:'Bowel movement', subtitle:'Strong urge, nothing came out · 8:20 AM', icon:'poop', details:[['Urge','8/10'],['Strain','6/10'],['Pain','3/10'],['Time','5 min']] },
-  food: { title:'Food', subtitle:'Oatmeal, banana, tea · 9:05 AM', icon:'utensils', details:[['Meal','Breakfast'],['Foods','Oatmeal, banana, tea'],['Tags','Light meal, caffeine'],['Time','9:05 AM']] },
-};
-
-const PATTERNS = {
-  'compound-sequence': {
-    title: 'Late dinner + poor sleep sequence',
-    subtitle: 'When both happen on the same day, the next morning tends to be significantly worse.',
-    confidence: 76,
-    chip: 'green', chipLabel: 'Strong evidence',
-    bars: [45,55,85,50,92,48,88,55,90,52,86,60,90,55],
-    summary: 'When late dinner (after 8 PM) and short sleep (under 6 hours) happen on the same night, the following morning shows incomplete evacuation and higher strain in 9 out of 11 instances. Interestingly, neither factor alone produces this effect at the same strength — it appears to be the combination that matters.',
-    factors: [
-      ['utensils','Late dinner + short sleep combo','Strong compound signal','var(--green)','76%','#D1FAE5'],
-      ['utensils','Late dinner alone','Weaker alone','#F59E0B','28%','#FEF3C7'],
-      ['moon','Short sleep alone','Weaker alone','#F59E0B','34%','#FEF3C7'],
-      ['brain','Stress on same day','May amplify','var(--text-hint)','18%','var(--sand-light)'],
-    ],
-    clarify: ['Continue tracking to see if the pattern holds over 6 weeks','Note whether meal size matters alongside timing','Track whether the sequence affects day 2 as well'],
-    trackAction: "nav('track');openSheet('food')",
-    chatGuide: 'gastro',
-  },
-  'late-meals': {
-    title: 'Late meals and symptoms',
-    subtitle: 'Symptoms may be worse on days with later dinners.',
-    confidence: 28,
-    chip: 'amber', chipLabel: 'Low confidence',
-    bars: [20,50,85,40,90,25,75],
-    summary: 'Symptoms appear more often on days with later dinners, but more consistent logging is needed to confirm this.',
-    factors: [
-      ['utensils','Dinner timing','Strong signal','var(--coral)','65%','var(--coral-glow)'],
-      ['droplets','Low hydration days','Moderate signal','#F59E0B','40%','#FEF3C7'],
-      ['moon','Poor sleep nights','Weak signal','var(--text-hint)','20%','var(--sand-light)'],
-      ['brain','High stress days','Uncertain','var(--text-hint)','12%','var(--sand-light)'],
-    ],
-    clarify: ['Log dinner timing for 7 days','Log symptoms after dinner','Track hydration alongside meals'],
-    trackAction: "nav('track');openSheet('food')",
-    chatGuide: 'patterns',
-  },
-  'sleep-gut': {
-    title: 'Poor sleep and morning strain',
-    subtitle: 'Morning bowel difficulty may be worse after poor sleep.',
-    confidence: 42,
-    chip: 'amber', chipLabel: 'Moderate confidence',
-    bars: [30,65,45,80,35,70,90,50,75],
-    summary: 'On nights with fewer than 6 hours of sleep, you report more straining and incomplete evacuation the following morning. The signal is moderate but growing.',
-    factors: [
-      ['moon','Sleep duration','Strong signal','var(--coral)','58%','var(--coral-glow)'],
-      ['brain','Evening stress','Moderate signal','#F59E0B','35%','#FEF3C7'],
-      ['utensils','Late dinner','Contributing','#F59E0B','28%','#FEF3C7'],
-      ['activity','No evening movement','Weak signal','var(--text-hint)','15%','var(--sand-light)'],
-    ],
-    clarify: ['Log sleep duration consistently for 10 days','Rate morning strain after each bowel attempt','Track evening wind-down routine'],
-    trackAction: "nav('track');openSheet('sleep')",
-    chatGuide: 'psychology',
-  },
-  'hydration-bowel': {
-    title: 'Hydration and bowel consistency',
-    subtitle: 'Lower hydration days may precede harder stools.',
-    confidence: 18,
-    chip: 'amber', chipLabel: 'Low confidence',
-    bars: [15,40,25,60,20,45,30],
-    summary: 'On days where you log fewer than 5 glasses of water, the following day\'s bowel movements tend to be harder and less complete. This is a new signal that needs more data.',
-    factors: [
-      ['droplets','Daily water intake','Early signal','#F59E0B','32%','#FEF3C7'],
-      ['utensils','Fibre intake','Uncertain','var(--text-hint)','18%','var(--sand-light)'],
-      ['activity','Movement level','Weak signal','var(--text-hint)','12%','var(--sand-light)'],
-    ],
-    clarify: ['Log hydration daily for 2 weeks','Track stool consistency alongside hydration','Note caffeine vs water ratio'],
-    trackAction: "nav('track');openSheet('hydration')",
-    chatGuide: 'nutrition',
-  },
-  'stress-variability': {
-    title: 'Stress and symptom variability',
-    subtitle: 'High-stress days show more unpredictable symptoms.',
-    confidence: 22,
-    chip: 'amber', chipLabel: 'Low confidence',
-    bars: [35,55,70,25,80,40,65,30],
-    summary: 'On days you rate stress above 6/10, your symptom reports are more variable — bloating, urgency, and incomplete evacuation appear in less predictable combinations. The pattern is early.',
-    factors: [
-      ['brain','Stress rating','Early signal','#F59E0B','38%','#FEF3C7'],
-      ['moon','Sleep quality','Contributing','var(--text-hint)','22%','var(--sand-light)'],
-      ['utensils','Irregular meals','Uncertain','var(--text-hint)','14%','var(--sand-light)'],
-    ],
-    clarify: ['Log stress rating daily for 2 weeks','Note what kind of stress (work, social, physical)','Track symptoms within 4 hours of high-stress events'],
-    trackAction: "nav('track');openSheet('mental')",
-    chatGuide: 'psychology',
-  },
-  'movement-morning': {
-    title: 'Movement and morning outcomes',
-    subtitle: 'Light activity may correlate with better morning bowel function.',
-    confidence: 15,
-    chip: 'amber', chipLabel: 'Very early',
-    bars: [20,35,50,25,45,30,55],
-    summary: 'On days with 15+ minutes of light activity (walking, stretching), the following morning\'s bowel attempt tends to be more complete. Very few data points so far.',
-    factors: [
-      ['activity','Daily movement','Early signal','#F59E0B','25%','#FEF3C7'],
-      ['utensils','Meal timing','Uncertain','var(--text-hint)','15%','var(--sand-light)'],
-    ],
-    clarify: ['Log daily movement for 2 weeks','Track morning bowel outcomes alongside','Note timing of activity (morning vs evening)'],
-    trackAction: "nav('track');openSheet('movement')",
-    chatGuide: 'functional',
-  },
-};
-
-const SHEET_TITLES = { quick:'Quick Add', symptom:'Log symptom', food:'Log food', meds:'Log medication', note:'Add note', hydration:'Log hydration', sleep:'Log sleep', mental:'Log mental health', movement:'Log energy & movement', menstrual:'Log menstrual health', allergy:'Track food sensitivity', fasting:'Track fasting', biometrics:'Update biometrics', treatment:'Track treatment adherence', results:'Add test results' };
-
-const GUIDES = [
-  { group:'Your Guides', items:[
-    { id:'copilot', name:'GI Copilot', desc:'Your main GI copilot for any question', icon:'sparkles', color:'neutral' },
-    { id:'track', name:'Track Guide', desc:'Help with what and how to log', icon:'penLine', color:'neutral' },
-    { id:'patterns', name:'Patterns Guide', desc:'Understand your trends and signals', icon:'barChart', color:'neutral' },
-    { id:'selfcare', name:'Self Care Guide', desc:'Daily habits, plans, and flare support', icon:'heart', color:'neutral' },
-    { id:'clinicalnav', name:'Clinical Navigation Guide', desc:'Visit prep, questions, and next steps', icon:'compass', color:'neutral' },
-    { id:'clinicalcare', name:'Clinical Care Guide', desc:'Treatment, meds, and follow-up', icon:'steth', color:'neutral' },
-  ]},
-  { group:'Specialist Guides', items:[
-    { id:'gastro', name:'Gastroenterology Guide', desc:'Clinically anchored GI perspective', icon:'steth', color:'neutral' },
-    { id:'nutrition', name:'Nutrition Guide', desc:'Diet, triggers, and meal timing', icon:'utensils', color:'neutral' },
-    { id:'pelvic', name:'Pelvic Floor Guide', desc:'Motility, strain, and pelvic floor support', icon:'activity', color:'neutral' },
-    { id:'psychology', name:'GI Psychology Guide', desc:'Gut-brain connection and mental health', icon:'brain', color:'neutral' },
-    { id:'functional', name:'Functional Medicine Guide', desc:'Root-cause and systems perspective', icon:'leaf', color:'neutral' },
-    { id:'ayurveda', name:'Ayurveda Guide', desc:'Traditional Ayurvedic perspective', icon:'flower', color:'neutral' },
-    { id:'pharmacy', name:'Pharmacy Guide', desc:'Medications, interactions, and adherence', icon:'pill', color:'neutral' },
-  ]},
-  { group:'Group Chats', items:[
-    { id:'multiguide', name:'Multi-Guide Chat', desc:'Bring multiple guides into one conversation', icon:'users', color:'neutral' },
-    { id:'careteam', name:'Care Team Chat', desc:'Coordinate with your care team', icon:'steth', color:'neutral' },
-    { id:'family', name:'Family / Caregiver Chat', desc:'Share context with family and caregivers', icon:'heart', color:'neutral' },
-    { id:'custom', name:'Custom Group Chat', desc:'Create your own group conversation', icon:'msgCircle', color:'neutral' },
-  ]},
-];
-
-// ===== DOM =====
-const $=id=>document.getElementById(id);
-const $$=sel=>document.querySelectorAll(sel);
-
-// ===== NAVIGATION =====
-function nav(tab) {
-  closeSheet();
-  currentSub = null;
-  currentGuide = null;
-  currentTab = tab;
-  render();
-}
-function navSub(sub) { closeSheet(); currentSub = sub; render(); }
-function goBack() {
-  closeSheet();
-  if (currentGuide) { currentGuide = null; render(); return; }
-  if (currentSub) { currentSub = null; render(); return; }
-  if (currentTab === 'profile' || currentTab === 'notifications') { currentTab = 'today'; currentSub = null; render(); }
-}
-
-function render() {
-  // Hide all screens
-  $$('.screen').forEach(s => { s.classList.add('hidden'); s.classList.remove('entering'); });
-  let screenId, title, isDetail = false;
-
-  if (currentSub === 'entry') { screenId='screen-entry'; title='Entry Detail'; isDetail=true; renderEntry(); }
-  else if (currentSub === 'pattern-detail') { screenId='screen-pattern-detail'; title='Pattern Detail'; isDetail=true; renderPatternDetail(); }
-  else if (currentSub === 'visit') { screenId='screen-visit'; title='Prepare for Visit'; isDetail=true; }
-  else if (currentGuide) { screenId='screen-chat-thread'; title=GUIDES.flatMap(g=>g.items).find(g=>g.id===currentGuide)?.name||'Chat'; isDetail=true; renderThread(); }
-  else {
-    screenId = 'screen-'+currentTab;
-    title = {today:'Today',track:'Track',patterns:'Pattern',care:'Care',chat:'Chat',profile:'Profile',notifications:'Notifications'}[currentTab];
-    isDetail = (currentTab==='profile'||currentTab==='notifications');
-  }
-
-  const el = $(screenId);
-  if (el) {
-    el.classList.remove('hidden');
-    // Trigger entering animation
-    requestAnimationFrame(() => el.classList.add('entering'));
-  }
-  $('header-title').textContent = title;
-
-  // Header left
-  const hl = $('header-left');
-  if (isDetail || currentGuide) {
-    hl.innerHTML = `<div class="header-icon" onclick="goBack()">${I.chevL}</div>`;
-  } else {
-    hl.innerHTML = `<div class="avatar-sm" onclick="nav('profile')">BM</div>`;
-  }
-
-  // Bottom nav + FAB visibility
-  const overlay = currentTab==='profile'||currentTab==='notifications';
-  $('bottom-nav').style.display = overlay ? 'none' : '';
-  $('fab').style.display = overlay ? 'none' : '';
-
-  // Nav active
-  $$('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === currentTab));
-
-  $('content').scrollTop = 0;
-
-  // Stagger animate list items in the new screen
-  if (el) {
-    const items = el.querySelectorAll('.feed-card, .row, .guided-card, .notif-item, .card, .report-card');
-    items.forEach((item, i) => {
-      item.style.opacity = '0';
-      item.style.transform = 'translateY(8px)';
-      item.style.transition = 'opacity .3s ease, transform .3s ease';
-      item.style.transitionDelay = (i * 0.03) + 's';
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          item.style.opacity = '1';
-          item.style.transform = 'translateY(0)';
-        });
-      });
-    });
-  }
-}
-
-// ===== ENTRY DETAIL =====
-function openEntry(kind) { currentEntry=kind; currentTab='track'; currentSub='entry'; closeSheet(); render(); }
-function renderEntry() {
-  const d = ENTRIES[currentEntry]; if (!d) return;
-  $('entry-card').innerHTML = `
-    <div class="card-header"><div><div style="font-family:var(--font-d);font-size:16px;font-weight:600">${d.title}</div><div class="card-subtitle">${d.subtitle}</div></div><button class="btn btn-sm btn-outline" style="width:auto">Edit</button></div>
-    <div class="detail-grid">${d.details.map(([k,v])=>`<div class="detail-cell"><div class="detail-cell-label">${k}</div><div class="detail-cell-value">${v}</div></div>`).join('')}</div>`;
-}
-
-// ===== PATTERN DETAIL =====
-function openPattern(id) { currentPattern=id||'late-meals'; currentSub='pattern-detail'; closeSheet(); render(); }
-function renderPatternDetail() {
-  const p = PATTERNS[currentPattern];
-  if (!p) return;
-  const el = $('pattern-detail-content');
-  const barsHtml = p.bars.map(h => {
-    const cls = h > 70 ? 'active' : h < 30 ? 'muted' : '';
-    return `<div class="bar ${cls}" style="height:${h}%"></div>`;
-  }).join('');
-  const factorsHtml = p.factors.map(([ic,name,strength,color,width,bg])=>`
-    <div class="factor-row"><div class="factor-icon" style="background:${bg};color:${color}">${I[ic]}</div><div class="factor-body"><div class="factor-name">${name}</div><div class="factor-strength">${strength}</div></div><div class="factor-bar"><div class="factor-bar-fill" style="width:${width};background:${color}"></div></div></div>
-  `).join('');
-  const clarifyHtml = p.clarify.map(c => `<div class="question-item">${c}</div>`).join('');
-
-  el.innerHTML = `
-    <div class="card">
-      <div class="card-header"><div><div style="font-family:var(--font-d);font-size:18px;font-weight:600">${p.title}</div><div class="card-subtitle">Educational signal, not a diagnosis.</div></div><span class="chip ${p.chip}">${p.chipLabel}</span></div>
-      <div class="mini-chart" style="height:48px">${barsHtml}</div>
-      <div class="confidence-bar"><div class="confidence-track"><div class="confidence-fill" style="width:${p.confidence}%"></div></div><div class="confidence-label">${p.confidence}% confidence</div></div>
-      <div class="info-box amber">${p.summary}</div>
-    </div>
-    <div class="card">
-      <div class="card-title">Contributing factors</div>
-      <div class="mt-3">${factorsHtml}</div>
-    </div>
-    <div class="card">
-      <div class="card-title">What could clarify this</div>
-      <div class="mt-3">${clarifyHtml}</div>
-      <div class="mt-4"><button class="btn" onclick="${p.trackAction}">Track this now</button></div>
-    </div>
-    <div class="card coral-glow-bg interactive" onclick="nav('chat');openGuide('${p.chatGuide}')">
-      <div class="card-header">
-        <div><div class="card-title" style="color:var(--coral)">Ask a guide about this</div><div class="card-subtitle">Explore this pattern in conversation.</div></div>
-        <div style="color:var(--coral)">${I.msgCircle}</div>
-      </div>
-    </div>`;
-}
-
-// ===== CHAT THREAD =====
-function openGuide(id) { currentGuide=id; render(); }
-function renderThread() {
-  const guide = GUIDES.flatMap(g=>g.items).find(g=>g.id===currentGuide);
-  if (!guide) return;
-  const el = $('thread-content');
-
-  // Rich guide data: intro, focus areas, prompts, sample conversation, route-outs
-  const guideData = {
-    copilot: {
-      intro: 'Your main GI copilot. Ask anything about your symptoms, patterns, what to do next, or how to prepare for care.',
-      focuses: ['Symptom interpretation','Next best step','Visit preparation','Pattern clarification','Routing to the right guide'],
-      prompts: ['What should I log next?','Explain this pattern','Help me prepare for my visit','What should I do now?'],
-      userMsg: 'What should I log next?',
-      assistantMsg: 'Based on your recent logs, the most useful thing right now would be to log symptoms after your meals today. You have a late-meal pattern forming but it needs more data points to reach useful confidence. After logging, check Pattern to see if the signal strengthens.',
-      routeOuts: [['Track symptoms',"nav('track');openSheet('symptom')"],['View patterns',"nav('patterns')"]],
-    },
-    track: {
-      intro: 'Helps you figure out what to track, when, and why — so every log moves you toward useful answers.',
-      focuses: ['What to log next','Tracking consistency','Signal gaps','Logging priority','Building evidence'],
-      prompts: ['What should I log right now?','Help me track more consistently','What signals am I missing?','Which logs matter most?'],
-      userMsg: 'What signals am I missing?',
-      assistantMsg: 'You\'ve been consistent with bowel and food logs, which is great. The gap right now is symptom timing — you\'re logging symptoms but not always after meals, which makes it harder to connect food to how you feel. Try logging symptoms within 2 hours of eating for the next few days.',
-      routeOuts: [['Log symptoms',"nav('track');openSheet('symptom')"],['Continue tracking',"nav('track');setSegment('track','continue')"]],
-    },
-    patterns: {
-      intro: 'Helps you understand what your data means — trends, relationships, and what\'s becoming clearer or more uncertain.',
-      focuses: ['Pattern interpretation','Signal strength','What\'s changing','Confidence levels','Data relationships'],
-      prompts: ['What does my recent data show?','Compare this week to last week','Which patterns are strengthening?','What\'s still uncertain?'],
-      userMsg: 'What does my recent data show?',
-      assistantMsg: 'Over the last 14 days, your strongest signal is the late-meal pattern — symptoms appear more often on days you eat dinner after 8 PM. It\'s at 28% confidence and climbing. Your sleep-gut signal is weaker and needs more consistent sleep logging to clarify.',
-      routeOuts: [['View pattern detail',"nav('patterns');navSub('pattern-detail')"],['Track dinner timing',"nav('track');openSheet('food')"]],
-    },
-    selfcare: {
-      intro: 'Supports your daily habits, guided plans, flare management, and practical self-care between appointments.',
-      focuses: ['Daily routines','Guided exercises','Flare support','Habit building','Self-management'],
-      prompts: ['What should I focus on today?','Help me with my routine','What\'s my next best step?','I\'m having a bad day'],
-      userMsg: 'I\'m having a bad day',
-      assistantMsg: 'I\'m sorry you\'re struggling. Let\'s start with what you can do right now. A 5-minute breathing exercise can help calm your nervous system, which directly affects gut motility. After that, log how you\'re feeling so we can track whether these flare days cluster with anything specific.',
-      routeOuts: [['Flare support',"nav('care');setSegment('care','self');setSegment('self','flare')"],['Breathing exercise',"nav('care');setSegment('care','self');setSegment('self','habits')"]],
-    },
-    clinicalnav: {
-      intro: 'Helps you prepare for visits, build questions, organise your data for doctors, and navigate the clinical system.',
-      focuses: ['Visit preparation','Doctor questions','Summary generation','Test preparation','Referral guidance'],
-      prompts: ['Help me prepare for my visit','What questions should I ask?','Turn my patterns into a summary','What should I bring up?'],
-      userMsg: 'Help me prepare for my visit',
-      assistantMsg: 'Your GI visit is in 3 days. Based on your logs, the top things to discuss are: your constipation pattern with incomplete evacuation, the late-meal signal, and whether pelvic floor testing might help. I can generate a doctor-ready summary from your data and help you build a question list.',
-      routeOuts: [['Visit prep',"nav('care');setSegment('care','navigation');navSub('visit')"],['View summary',"nav('patterns');setSegment('patterns','trends')"]],
-    },
-    clinicalcare: {
-      intro: 'Helps you organise treatment plans, track medication adherence, monitor treatment response, and coordinate follow-up.',
-      focuses: ['Treatment tracking','Medication adherence','Response monitoring','Follow-up planning','Care coordination'],
-      prompts: ['Is my treatment helping?','What should I track for follow-up?','Review my medication adherence','What changed since I started treatment?'],
-      userMsg: 'Is my treatment helping?',
-      assistantMsg: 'You\'re on day 10 of 30 for your current treatment. Looking at your logs, bowel frequency has improved slightly (from 2/week to 3/week) but strain levels haven\'t changed yet. It\'s still early — most GI treatments take 4-6 weeks to show full effect. Keep logging so we can give your doctor a clear before-and-after picture.',
-      routeOuts: [['Treatment timeline',"nav('care');setSegment('care','clinical')"],['Log treatment',"nav('track');openSheet('treatment')"]],
-    },
-    gastro: {
-      intro: 'Provides a gastroenterology perspective on your symptoms, patterns, and clinical questions.',
-      focuses: ['GI symptom interpretation','Differential considerations','Test guidance','Red flag assessment','Clinical context'],
-      prompts: ['What could be causing this?','Should I be concerned?','What tests might help?','Is this pattern typical?'],
-      userMsg: 'What could be causing this constipation pattern?',
-      assistantMsg: 'Constipation with strong urge but incomplete evacuation can have several explanations. The most common include pelvic floor dyssynergia (muscles not coordinating properly), slow-transit constipation, or outlet obstruction. Your late-meal timing pattern is interesting — it suggests motility may be part of the picture. A gastroenterologist might consider anorectal manometry testing to check pelvic floor function.',
-      routeOuts: [['View patterns',"nav('patterns')"],['Prepare for visit',"nav('care');setSegment('care','navigation');navSub('visit')"]],
-    },
-    nutrition: {
-      intro: 'Provides guidance on diet, food triggers, meal timing, and how nutrition relates to your GI symptoms.',
-      focuses: ['Food-symptom connections','Meal timing','Dietary strategies','Trigger identification','Nutritional support'],
-      prompts: ['Are there foods I should avoid?','Help me with meal timing','Review my food-symptom patterns','What diet changes might help?'],
-      userMsg: 'Help me with meal timing',
-      assistantMsg: 'Your data shows a clear signal: symptoms are worse on days you eat dinner after 8 PM. This is common — late meals can slow gastric motility and worsen morning constipation. Try moving dinner to before 7 PM for the next week and log the results. Also, eating your largest meal earlier in the day may help your system process food more effectively.',
-      routeOuts: [['Log food',"nav('track');openSheet('food')"],['View food patterns',"nav('patterns');setSegment('patterns','connections')"]],
-    },
-    pelvic: {
-      intro: 'Provides guidance on pelvic floor function, evacuation mechanics, and exercises that support bowel health.',
-      focuses: ['Pelvic floor function','Evacuation support','Straining reduction','Coordination exercises','Motility support'],
-      prompts: ['Help with straining','What pelvic floor exercises help?','Why can\'t I fully evacuate?','Is my posture affecting this?'],
-      userMsg: 'Why can\'t I fully evacuate even with a strong urge?',
-      assistantMsg: 'Strong urge with incomplete evacuation often points to pelvic floor dyssynergia — where your pelvic floor muscles tighten instead of relaxing when you try to go. This is very common and treatable. Diaphragmatic breathing on the toilet, proper positioning (feet elevated, lean forward), and pelvic floor relaxation exercises can all help. If it persists, biofeedback therapy is highly effective.',
-      routeOuts: [['Pelvic floor exercises',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log bowel movement',"openEntry('bm')"]],
-    },
-    psychology: {
-      intro: 'Explores the gut-brain connection — how stress, anxiety, and mental health affect your GI symptoms and what to do about it.',
-      focuses: ['Gut-brain axis','Stress-symptom links','Nervous system regulation','Cognitive patterns','Emotional wellbeing'],
-      prompts: ['How does stress affect my gut?','Help me understand the gut-brain connection','What calming techniques help?','Is anxiety making this worse?'],
-      userMsg: 'How does stress affect my gut?',
-      assistantMsg: 'Stress directly affects gut motility through the gut-brain axis. When you\'re stressed, your nervous system shifts into fight-or-flight mode, which can slow digestion, increase sensitivity to pain, and worsen constipation. Your data shows higher symptom variability on high-stress days. Regular nervous system calming — even 5 minutes of diaphragmatic breathing — can meaningfully improve gut function over time.',
-      routeOuts: [['Breathing exercise',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log stress',"nav('track');openSheet('mental')"]],
-    },
-    functional: {
-      intro: 'Offers a root-cause, systems-level perspective on your GI health — looking at the bigger picture beyond individual symptoms.',
-      focuses: ['Root-cause thinking','Systems perspective','Lifestyle factors','Holistic context','Integrative approach'],
-      prompts: ['What root causes should I explore?','How do my systems connect?','What lifestyle factors matter?','What am I missing?'],
-      userMsg: 'What root causes should I explore?',
-      assistantMsg: 'Looking at your full picture — constipation, late meals, moderate stress, inconsistent sleep — there are several interconnected factors. Sleep quality affects cortisol, which affects motility. Late meals reduce overnight digestive rest. Stress compounds both. A functional approach would focus on stabilising sleep and meal timing first, then assessing whether digestive support (like magnesium or fibre adjustments) helps.',
-      routeOuts: [['View all connections',"nav('patterns');setSegment('patterns','connections')"],['Daily habits',"nav('care');setSegment('care','self');setSegment('self','habits')"]],
-    },
-    ayurveda: {
-      intro: 'Provides a traditional Ayurvedic perspective on digestion, lifestyle balance, and natural approaches to gut health.',
-      focuses: ['Digestive fire (Agni)','Constitutional balance','Lifestyle rhythm','Natural remedies','Seasonal guidance'],
-      prompts: ['What does Ayurveda say about constipation?','How can I improve my digestive fire?','What daily routine helps?'],
-      userMsg: 'What does Ayurveda say about constipation?',
-      assistantMsg: 'In Ayurveda, constipation is typically associated with Vata imbalance — dryness, irregularity, and cold qualities in the digestive system. Key recommendations include warm water first thing in the morning, regular meal timing (your late dinners would be seen as Vata-aggravating), warm cooked foods over raw, and self-massage with warm oil. Consistency in routine is considered one of the most important factors for Vata-type constipation.',
-      routeOuts: [['Morning routine',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log hydration',"nav('track');openSheet('hydration')"]],
-    },
-    pharmacy: {
-      intro: 'Provides guidance on medications, supplements, interactions, and adherence — helping you understand what you\'re taking and why.',
-      focuses: ['Medication review','Side effects','Drug interactions','Supplement guidance','Adherence support'],
-      prompts: ['Could this be a side effect?','Check my interactions','Should I adjust timing?','What supplements might help?'],
-      userMsg: 'Could this be a side effect?',
-      assistantMsg: 'Several common medications can cause or worsen constipation — including certain antacids, iron supplements, and some antidepressants. If you\'ve recently started or changed any medication, that\'s worth flagging with your doctor. Log your medication timing alongside symptoms so we can look for temporal correlations.',
-      routeOuts: [['Log medication',"nav('track');openSheet('meds')"],['Treatment plan',"nav('care');setSegment('care','clinical')"]],
-    },
-  };
-
-  // Fallback for group chat guides
-  const d = guideData[currentGuide] || {
-    intro: guide.desc,
-    focuses: ['Multi-perspective support','Coordinated guidance','Shared context'],
-    prompts: ['How can you help me?','What should I know?','What should I do next?'],
-    userMsg: 'How can you help me?',
-    assistantMsg: 'I\'m here to help. Tell me what\'s on your mind and I\'ll provide guidance based on your context and recent logs.',
-    routeOuts: [],
-  };
-
-  el.innerHTML = `
-    <div class="card coral-glow-bg" style="border-color:var(--coral-light)">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
-        <div class="guide-avatar neutral" style="width:40px;height:40px">${I[guide.icon]||''}</div>
-        <div>
-          <div style="font-family:var(--font-d);font-size:15px;font-weight:600;color:var(--text-primary)">${guide.name}</div>
-          <div style="font-size:12px;color:var(--text-secondary);margin-top:1px">${guide.desc}</div>
-        </div>
-      </div>
-      <div style="font-size:13px;color:var(--text-secondary);line-height:1.45">${d.intro}</div>
-      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:10px">
-        ${d.focuses.map(f => `<span style="padding:3px 8px;border-radius:6px;font-size:11px;font-weight:500;background:var(--sand-light);color:var(--text-muted)">${f}</span>`).join('')}
-      </div>
-    </div>
-    <div class="prompt-chips" style="margin-top:12px">${d.prompts.map(t=>`<div class="prompt-chip">${t}</div>`).join('')}</div>
-    <div class="chat-bubbles">
-      <div class="bubble user">${d.userMsg}</div>
-      <div class="bubble assistant">${d.assistantMsg}</div>
-    </div>
-    ${d.routeOuts.length ? `<div style="display:flex;gap:8px;margin-top:12px">${d.routeOuts.map(([label,fn])=>`<button class="btn btn-sm btn-outline" style="width:auto;font-size:12px" onclick="${fn}">${label}</button>`).join('')}</div>` : ''}
-    <div class="chat-input-bar" style="margin-top:16px"><input type="text" placeholder="Type a question..." readonly><button class="chat-send">${I.arrowUp}</button></div>
-    <div style="margin-top:12px;font-size:12px;color:var(--text-hint);text-align:center">Tip: Use @guide name to bring another perspective into this thread</div>`;
-}
-
-// ===== SEGMENTS =====
-function setSegment(group, key) {
-  segState[group] = key;
-  $$(`[data-seg="${group}"]`).forEach(el => {
-    if (el.classList.contains('seg')) el.classList.toggle('active', el.dataset.key === key);
-  });
-  $$(`[data-seg="${group}"][data-panel]`).forEach(p => {
-    p.classList.toggle('hidden', p.dataset.panel !== key);
-  });
-}
-document.addEventListener('click', e => {
-  const seg = e.target.closest('.seg[data-seg][data-key]');
-  if (seg) setSegment(seg.dataset.seg, seg.dataset.key);
-});
-
-// ===== SHEETS =====
-function openSheet(type) {
-  $('sheet-title').textContent = SHEET_TITLES[type] || 'Add';
-  const body = $('sheet-body');
-  if (type === 'quick') {
-    const items = [['bm','Bowel movement','poop'],['food','Food','utensils'],['symptom','Symptom','thermom'],['meds','Medication','pill'],['note','Note','fileText']];
-    body.innerHTML = items.map(([k,l,ic])=>`<div class="row" onclick="${k==='bm'||k==='food'?`openEntry('${k}')`:`openSheet('${k}')`}"><div class="row-icon">${I[ic]}</div><div class="row-body"><div class="row-title">Log ${l.toLowerCase()}</div></div><div class="row-chevron">${I.chevR}</div></div>`).join('');
-  } else {
-    body.innerHTML = `<div class="placeholder">Detailed logging form for <strong>${(SHEET_TITLES[type]||'').toLowerCase()}</strong> will go here.<br><br>This prototype focuses on navigation architecture validation.</div>`;
-  }
-  requestAnimationFrame(() => $('sheet-overlay').classList.add('open'));
-  // Rotate FAB
-  $('fab').classList.add('open');
-}
-function closeSheet() {
-  $('sheet-overlay').classList.remove('open');
-  $('fab').classList.remove('open');
-}
-function closeSheetOnOverlay(e) { if (e.target === $('sheet-overlay')) closeSheet(); }
-
-// ===== INIT =====
-render();
-
-// ===== SEGMENT SCROLL FADE =====
-function updateSegmentFades() {
-  document.querySelectorAll('.segments').forEach(seg => {
-    const atStart = seg.scrollLeft < 4;
-    const atEnd = seg.scrollLeft + seg.clientWidth >= seg.scrollWidth - 4;
-    seg.classList.remove('scrolled-end', 'scrolled-mid');
-    if (atEnd) seg.classList.add('scrolled-end');
-    else if (!atStart) seg.classList.add('scrolled-mid');
-  });
-}
-document.addEventListener('scroll', e => {
-  if (e.target.classList && e.target.classList.contains('segments')) updateSegmentFades();
-}, true);
-// Run on render and resize
-const _origRender = render;
-render = function() { _origRender(); requestAnimationFrame(updateSegmentFades); };
-window.addEventListener('resize', updateSegmentFades);
-
-// ===== CHECKLIST INTERACTIVITY =====
-document.addEventListener('click', e => {
-  const item = e.target.closest('.checklist-item');
-  if (!item) return;
-  const box = item.querySelector('.check-box');
-  const label = item.querySelector('.check-label');
-  if (box && label) {
-    box.classList.toggle('checked');
-    label.classList.toggle('done');
-    // Update prep progress
-    updatePrepProgress();
-  }
-});
-
-function updatePrepProgress() {
-  const checks = document.querySelectorAll('#screen-visit .check-box');
-  const steps = document.querySelectorAll('#screen-visit .prep-step');
-  const label = document.querySelector('#screen-visit .prep-label');
-  if (!checks.length || !steps.length) return;
-  let done = 0;
-  checks.forEach(c => { if (c.classList.contains('checked')) done++; });
-  steps.forEach((s, i) => {
-    s.classList.remove('done', 'active');
-    if (i < done) s.classList.add('done');
-    else if (i === done) s.classList.add('active');
-  });
-  if (label) label.textContent = done + ' of ' + checks.length + ' steps complete';
-}
-
-// ===== SCROLL REVEAL =====
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('shown');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
-
-function observeReveals() {
-  $$('.reveal').forEach(el => revealObserver.observe(el));
-}
-
-// Re-observe after navigation
-const origRender = render;
-// Mutation observer to catch dynamically added reveal elements
-const mo = new MutationObserver(() => observeReveals());
-mo.observe(document.getElementById('content'), { childList: true, subtree: true });
-observeReveals();
-// Populate dynamic content after icons are available
-function row(icon, title, sub, onclick, iconClass) {
-  return `<div class="row" onclick="${onclick||''}"><div class="row-icon${iconClass?' '+iconClass:''}">${I[icon]||''}</div><div class="row-body"><div class="row-title">${title}</div><div class="row-subtitle">${sub}</div></div><div class="row-chevron">${I.chevR}</div></div>`;
-}
-function guideRow(gi) {
-  return `<div class="guide-row" onclick="openGuide('${gi.id}')"><div class="guide-avatar ${gi.color}">${I[gi.icon]||''}</div><div class="guide-body"><div class="guide-name">${gi.name}</div><div class="guide-desc">${gi.desc}</div></div><div class="guide-chevron">${I.chevR}</div></div>`;
-}
-
-// ===== TRACK =====
-// Quick Add — all 10 items per tree
-$('quick-grid').innerHTML = [
-  ['poop','Bowel',"openEntry('bm')"],['thermom','Symptoms',"openSheet('symptom')"],['utensils','Nutrition',"openEntry('food')"],
-  ['droplets','Hydration',"openSheet('hydration')"],['moon','Sleep',"openSheet('sleep')"],['brain','Stress & Mood',"openSheet('mental')"],
-  ['activity','Movement',"openSheet('movement')"],['pill','Meds & Supps',"openSheet('meds')"],['flower','Period',"openSheet('menstrual')"],
-  ['fileText','Notes',"openSheet('note')"],
-].map(([ic,l,fn])=>`<div class="quick-item" onclick="${fn}"><div class="qi-icon">${I[ic]}</div><div class="qi-label">${l}</div></div>`).join('');
-
-// Main Trackers — just 3 per tree
-$('main-trackers').innerHTML = [
-  ['poop','Bowel Movement','Highest-value signal for your constipation journey',"openEntry('bm')"],
-  ['thermom','Symptoms','Track symptom timing and severity',"openSheet('symptom')"],
-  ['utensils','Nutrition','Track meals, timing, and food-response context',"openEntry('food')"],
-].map(([ic,t,s,fn])=>row(ic,t,s,fn)).join('');
-
-// Continue Tracking — per tree sub-items
-$('continue-trackers').innerHTML = `
-  <div class="group-label">Resume Incomplete</div>
-  ${row('utensils','Finish logging breakfast','You started but didn\'t add details',"openEntry('food')")}
-  <div class="group-label">Suggested Next Log</div>
-  ${row('thermom','Add symptoms after breakfast','Best next signal to separate meal timing from stress',"openSheet('symptom')")}
-  ${row('utensils','Track dinner timing tonight','Strengthen your current late-meal pattern',"openSheet('food')")}
-  <div class="group-label">In-Progress Tracking</div>
-  ${row('steth','Log treatment response','Useful when treatment monitoring is active',"openSheet('treatment')")}`;
-
-// Recent Entries — with time groups per tree
-$('recent-entries').innerHTML = `
-  <div class="group-label">Today</div><div class="space-y">
-  ${row('poop','Bowel movement','Strong urge, nothing came out · 8:20 AM',"openEntry('bm')")}
-  ${row('utensils','Food','Oatmeal, banana, tea · 9:05 AM',"openEntry('food')")}
-  ${row('thermom','Symptoms','Not logged yet today',"openSheet('symptom')")}
-  </div><div class="group-label">Yesterday</div><div class="space-y">
-  ${row('poop','Bowel movement','Incomplete evacuation · 7:45 AM',"openEntry('bm')")}
-  ${row('utensils','Food','Pasta, salad · 7:30 PM',"openEntry('food')")}
-  ${row('thermom','Symptoms','Bloating 5/10 · 8:15 PM',"openSheet('symptom')")}
-  </div><div class="group-label">This Week</div><div class="space-y">
-  ${row('moon','Sleep','6.5 hours average · 3 entries',"openSheet('sleep')")}
-  ${row('brain','Stress & Mood','Moderate stress · 2 entries',"openSheet('mental')")}
-  </div>`;
-
-// More Trackers — unchanged
-$('more-trackers').innerHTML = `
-  <div class="flex-between mb-3"><div class="card-title">More Trackers</div><span style="font-size:12px;color:var(--text-muted)">Browse all</span></div>
-  <div class="group-label">Daily Foundations</div><div class="space-y">
-  ${row('pill','Medication & Supplements','Track adherence and timing',"openSheet('meds')")}
-  ${row('brain','Mental Health','Stress and mood context for gut patterns',"openSheet('mental')")}
-  ${row('activity','Energy & Movement','Movement and energy to support gut health',"openSheet('movement')")}
-  </div><div class="group-label">Specialised Context</div><div class="space-y">
-  ${row('flower','Menstrual / Hormonal','Cycle context that may affect symptoms',"openSheet('menstrual')")}
-  ${row('shield','Food Sensitivity & Allergy','Track reactions and food-response context',"openSheet('allergy')")}
-  ${row('timer','Fasting','Track fasting patterns and metabolic context',"openSheet('fasting')")}
-  ${row('heartPulse','Biometrics & Demographics','Update personal health context',"openSheet('biometrics')")}
-  </div><div class="group-label">Care & Evidence</div><div class="space-y">
-  ${row('steth','Treatment Adherence','Track clinician-directed care',"openSheet('treatment')")}
-  ${row('testTube','Test Results','Add or review tests and reports',"openSheet('results')")}
-  </div>`;
-
-// Entry context
-$('entry-context').innerHTML = `<div class="card-title">Nearby context</div><div class="mt-3 space-y">
-  ${row('utensils','Breakfast logged','45 minutes later',"openEntry('food')")}
-  ${row('thermom','No symptom logged yet','Add symptoms to strengthen the pattern',"openSheet('symptom')")}
-  </div>`;
-
-// ===== PATTERNS =====
-// Pattern Feed (new/active/strengthening/what changed)
-$('pattern-feed').innerHTML = `<div class="card-title">Pattern Feed</div><div class="mt-3 space-y">
-  <div class="group-label">Strongest Patterns</div>
-  ${row('moon','Late dinner + poor sleep sequence','Strong evidence · compound signal',"openPattern('compound-sequence')")}
-  <div class="group-label">Active Patterns</div>
-  ${row('utensils','Late meals → worse symptoms','Low confidence · tracking in progress',"openPattern('late-meals')")}
-  ${row('moon','Poor sleep → morning strain','Moderate confidence · 10 data points',"openPattern('sleep-gut')")}
-  <div class="group-label">New Signals</div>
-  ${row('droplets','Hydration gaps → harder stools','Very early · needs more data',"openPattern('hydration-bowel')")}
-  ${row('brain','Stress → symptom variability','Early signal · 8 data points',"openPattern('stress-variability')")}
-  <div class="group-label">Strengthening</div>
-  ${row('trendUp','Sleep-gut signal growing','Confidence up from 30% to 42%',"openPattern('sleep-gut')")}
-  <div class="group-label">What Changed</div>
-  ${row('refresh','Movement signal weakened','Less consistent tracking this week',"openPattern('movement-morning')")}
-  </div>`;
-
-// Connections & Experiments
-$('pattern-connections').innerHTML = `<div class="card-title">Connections</div><div class="card-subtitle">Explore relationships between what you track and how you feel.</div><div class="mt-3 space-y">
-  ${row('utensils','Food → Symptoms','Late meals cluster with worse symptom days',"openPattern('late-meals')")}
-  ${row('poop','Bowel Movement → Symptoms','Incomplete evacuation linked to afternoon bloating',"openPattern('late-meals')")}
-  ${row('moon','Sleep → Gut','Poor sleep nights precede harder mornings',"openPattern('sleep-gut')")}
-  ${row('brain','Stress / Mood → Gut','High stress days show more symptom variability',"openPattern('stress-variability')")}
-  ${row('activity','Movement → Gut','Light activity correlates with better mornings',"openPattern('movement-morning')")}
-  ${row('pill','Medication → Symptoms','Supplement response still uncertain',"openPattern('late-meals')")}
-  </div>`;
-$('pattern-experiments').innerHTML = `<div class="card-title">Experiments</div><div class="card-subtitle">Test a theory with structured tracking.</div><div class="mt-3 space-y">
-  ${row('utensils','Early dinner experiment','Track dinner before 7 PM for 7 days',"nav('track');setSegment('track','continue')")}
-  ${row('droplets','Hydration experiment','Track 8 glasses daily for 5 days',"nav('track');setSegment('track','continue')")}
-  </div>`;
-
-// Trends & Reports
-$('pattern-trends-list').innerHTML = `<div class="card-title">Trends</div><div class="mt-3 space-y">
-  ${row('thermom','Symptom Trends','Bloating frequency over 30 days')}
-  ${row('poop','Bowel Trends','Completeness and strain over 14 days')}
-  ${row('utensils','Nutrition Trends','Meal timing and composition patterns')}
-  ${row('moon','Daily Foundations Trends','Sleep, hydration, and movement')}
-  </div>`;
-$('pattern-reports-list').innerHTML = `<div class="card-title">Summaries</div><div class="mt-3 space-y">
-  ${row('clipList','Weekly Summary','This week at a glance')}
-  ${row('calendar','Monthly Summary','30-day pattern overview')}
-  ${row('compass','Visit-Ready Summary','Formatted for your doctor',"nav('care');setSegment('care','navigation');navSub('visit')")}
-  ${row('clock','Pattern History','How patterns have evolved over time')}
-  </div>`;
-
-// ===== CARE =====
-// Daily Habits (replaces Guided + Routines)
-$('care-habits').innerHTML = `<div class="card-title">Daily Habits</div><div class="card-subtitle">Lightweight, repeatable habits and guided support.</div><div class="mt-3">
-  <div class="guided-card"><div class="guided-icon">${I.wind}</div><div class="guided-body"><div class="guided-name">Breathing exercise</div><div class="guided-meta">5 min · Nervous system calming</div><div class="guided-tag">${I.clock} Recommended now</div></div></div>
-  <div class="guided-card"><div class="guided-icon">${I.sunrise}</div><div class="guided-body"><div class="guided-name">Morning bowel routine</div><div class="guided-meta">Hydration, walk, and timed attempt</div></div></div>
-  <div class="guided-card"><div class="guided-icon">${I.yoga}</div><div class="guided-body"><div class="guided-name">Pelvic floor relaxation</div><div class="guided-meta">6 min · Strain and evacuation support</div></div></div>
-  <div class="guided-card"><div class="guided-icon">${I.moon}</div><div class="guided-body"><div class="guided-name">Sleep support routine</div><div class="guided-meta">Wind-down guidance and sleep consistency</div></div></div>
-  </div>`;
-
-// Guided Plans
-$('care-plans').innerHTML = `<div class="card-title">Guided Plans</div><div class="card-subtitle">Structured support you can follow over time.</div><div class="mt-3 space-y">
-  ${row('clipList','Constipation plan','Week 2 of 4 · 3 tasks remaining')}
-  ${row('utensils','Food plan','Track tolerance during the current plan')}
-  ${row('droplets','Hydration plan','Build consistent daily hydration')}
-  </div>`;
-
-// Flare Support
-$('care-flare').innerHTML = `
-  <div class="card-title">Flare Support</div>
-  <div class="card-subtitle">Practical, calm steps for bad days. You are not alone.</div>
-  <div class="mt-3">
-  <div class="guided-card"><div class="guided-icon">${I.alertTri}</div><div class="guided-body"><div class="guided-name">What to do now</div><div class="guided-meta">Immediate self-care steps</div></div></div>
-  <div class="guided-card"><div class="guided-icon">${I.wind}</div><div class="guided-body"><div class="guided-name">Calming routine</div><div class="guided-meta">5 min · Guided support you can follow right now</div></div></div>
-  <div class="guided-card"><div class="guided-icon">${I.shield}</div><div class="guided-body"><div class="guided-name">When to escalate</div><div class="guided-meta">Know when self-care is no longer enough</div></div></div>
-  </div>`;
-
-// Recommendations
-$('care-recs').innerHTML = `<div class="card-title">Recommendations</div><div class="card-subtitle">Personalised suggestions based on your patterns.</div><div class="mt-3 space-y">
-  ${row('utensils','Try earlier dinners','Your data suggests late meals may worsen symptoms')}
-  ${row('droplets','Increase hydration','Low hydration days correlate with harder mornings')}
-  ${row('wind','Add daily breathing','Nervous system support may help gut motility')}
-  </div>`;
-
-// Experiments
-$('care-experiments').innerHTML = `<div class="card-title">Experiments</div><div class="card-subtitle">Test a hypothesis with structured tracking.</div><div class="mt-3 space-y">
-  ${row('utensils','Early dinner experiment','Track dinner before 7 PM for 7 days',"nav('track');setSegment('track','continue')")}
-  ${row('droplets','Hydration challenge','Track 8 glasses daily for 5 days',"nav('track');setSegment('track','continue')")}
-  ${row('activity','Morning walk experiment','Walk 15 min before breakfast for 7 days',"nav('track');setSegment('track','continue')")}
-  </div>`;
-
-// Clinical Navigation — expanded per tree
-$('care-nav-items').innerHTML = `<div class="space-y">
-  ${row('clipList','Prepare for Visit','Checklist, summary, and questions',"navSub('visit')")}
-  ${row('helpCircle','Questions for Doctor','Organise your main concerns',"navSub('visit')")}
-  ${row('testTube','Tests & Procedures','Prep, instructions, and reminders')}
-  ${row('compass','Referrals & Specialists','Track referrals and specialist visits')}
-  ${row('fileText','Visit Summaries','Review and export past visit notes')}
-  </div>`;
-
-// Clinical Care — expanded per tree with timeline
-$('care-clinical').innerHTML = `
-  <div class="card-title">Treatment timeline</div>
-  <div class="mt-3">
-    <div class="timeline-item"><div class="timeline-dot-col"><div class="timeline-dot done"></div><div class="timeline-line"></div></div><div class="timeline-body"><div class="timeline-title">Initial consultation</div><div class="timeline-sub">Completed · 2 weeks ago</div></div></div>
-    <div class="timeline-item"><div class="timeline-dot-col"><div class="timeline-dot active"></div><div class="timeline-line"></div></div><div class="timeline-body"><div class="timeline-title">Treatment started</div><div class="timeline-sub">In progress · Day 10 of 30</div></div></div>
-    <div class="timeline-item"><div class="timeline-dot-col"><div class="timeline-dot"></div><div class="timeline-line"></div></div><div class="timeline-body"><div class="timeline-title">Follow-up visit</div><div class="timeline-sub">Scheduled · In 18 days</div></div></div>
-    <div class="timeline-item"><div class="timeline-dot-col"><div class="timeline-dot"></div></div><div class="timeline-body"><div class="timeline-title">Treatment review</div><div class="timeline-sub">Pending · After follow-up</div></div></div>
-  </div>
-  <div class="mt-3 space-y">
-    ${row('clipList','Treatment Plan','Current plan details and goals')}
-    ${row('pill','Medications & Adherence','Track clinician-directed treatment')}
-    ${row('calendar','Follow-Up Plan','Next check-ins and monitoring priorities')}
-    ${row('users','Care Team Coordination','Coordinate across your care team')}
-    ${row('testTube','Results & Interpretation','Lab results, tests, and what they mean')}
-  </div>`;
-
-// ===== CHAT =====
-// Conversations tab (replaces History)
-$('chat-conversations').innerHTML = `
-  <div class="card"><div class="flex-between mb-3"><div class="card-title">Conversations</div>
-    <div style="display:flex;gap:4px">
-      <span class="chip coral" style="cursor:pointer">Recent</span>
-      <span class="chip" style="background:var(--sand-light);color:var(--text-muted);cursor:pointer">Pinned</span>
-      <span class="chip" style="background:var(--sand-light);color:var(--text-muted);cursor:pointer">Unread</span>
-    </div>
-  </div>
-  <div class="space-y">
-    ${row('compass','Visit prep conversation','Continued 2 hours ago')}
-    ${row('trendUp','Pattern clarification','Yesterday')}
-    ${row('pill','Treatment check-in','3 days ago')}
-    ${row('sparkles','General GI questions','Last week')}
-  </div></div>
-  <div class="chat-input-bar" style="margin-top:12px"><input type="text" placeholder="Search conversations..." readonly><button class="chat-send" style="background:var(--sand-light);color:var(--text-muted)">${I.search}</button></div>`;
-
-// Your Guides tab
-$('chat-your-guides').innerHTML = GUIDES.filter(g=>g.group==='Your Guides').map(g =>
-  g.items.map(gi => guideRow(gi)).join('')
-).join('');
-
-// Specialist Guides tab
-$('chat-specialists').innerHTML = GUIDES.filter(g=>g.group==='Specialist Guides').map(g =>
-  g.items.map(gi => guideRow(gi)).join('')
-).join('');
-
-// Group Chats tab
-$('chat-group').innerHTML = GUIDES.filter(g=>g.group==='Group Chats').map(g =>
-  g.items.map(gi => guideRow(gi)).join('')
-).join('');
-
-// ===== PROFILE ===== (restructured per tree)
-const profileSections = [
-  ['My Profile', [['user','Personal Profile','Name, age, and personal info'],['heartPulse','Health Profile','Current health context'],['clipList','Conditions & History','Diagnoses and medical history'],['target','Goals','What you want to achieve'],['sliders','Preferences','App behaviour and defaults']]],
-  ['My Network', [['users','Family & Caregivers','Shared support network'],['steth','Care Team','Doctors and clinicians'],['heart','Support Network','Trusted people in your care'],['globe','Communities','Peer spaces and groups'],['repeat','Sharing & Collaboration','Control what you share']]],
-  ['My Resources', [['fileText','Records & Documents','Medical records and uploads'],['list','Saved Resources','Saved articles, guides, and notes']]],
-  ['My Integrations', [['watch','Apple Health / Wearables','Connected devices and sensors'],['hospital','EHR Connection','Clinical record systems'],['testTube','Labs / Test Imports','Import lab and test data'],['pill','Pharmacy / Medication Data','Connected pharmacy data'],['globe','Connected Apps','Third-party app connections']]],
-  ['My Settings', [['lock','Privacy & Data','Control your data and privacy'],['creditCard','Subscription & Billing','Plan and payment'],['helpCircle','Help & Support','Get help and guidance']]],
-];
-$('profile-sections').innerHTML = profileSections.map(([label, items]) => `
-  <div class="group-label">${label}</div>
-  <div class="card"><div class="space-y">${items.map(([ic,t,s])=>row(ic,t,s)).join('')}</div></div>
-`).join('');
-
-// ===== NOTIFICATIONS ===== (restructured per tree)
-function notif(icon, title, sub, time, onclick, opts={}) {
-  const urgent = opts.urgent ? ' notif-urgent' : '';
-  const unread = opts.unread ? '<div class="notif-unread"></div>' : '';
-  return `<div class="notif-item${urgent}" onclick="${onclick||''}">${unread}<div class="notif-icon">${I[icon]||''}</div><div class="notif-body"><div class="notif-title">${title}</div><div class="notif-sub">${sub}</div><div class="notif-time">${time}</div></div></div>`;
-}
-
-// Action Needed
-$('notif-action').innerHTML = `
-  <div class="group-label">Red Flags</div>
-  ${notif('alertTri','Unusual symptom pattern','New pain location reported — review with your doctor','Today',"",{unread:true,urgent:true,bg:'#FEE2E2',color:'#DC2626'})}
-  <div class="group-label">Pattern Changes</div>
-  ${notif('trendUp','Pattern confidence changed','Late meals signal strengthened to 28%','Today',"nav('patterns');openPattern('late-meals')",{unread:true,bg:'#FEF3C7',color:'#92400E'})}
-  <div class="group-label">Care Tasks Due</div>
-  ${notif('thermom','Log symptoms','Strengthen today\'s signal before dinner','2:30 PM',"nav('track');openSheet('symptom')",{unread:true,bg:'var(--coral-glow)',color:'var(--coral)'})}
-  <div class="group-label">Medication & Supplements</div>
-  ${notif('pill','Evening medication','Take your evening dose','7:00 PM',"openSheet('meds')")}
-  <div class="group-label">Visits & Tests Due</div>
-  ${notif('calendar','GI visit in 3 days','Continue your prep — 3 of 4 steps complete','Today',"nav('care');setSegment('care','navigation');navSub('visit')",{unread:true,urgent:true,bg:'var(--coral-glow)',color:'var(--coral)'})}
-  <div class="group-label">Missing Important Data</div>
-  ${notif('poop','No bowel log yesterday','Filling gaps improves pattern accuracy','Yesterday',"openEntry('bm')")}`;
-
-// Updates
-$('notif-updates').innerHTML = `
-  <div class="group-label">Pattern Updates</div>
-  ${notif('trendUp','Weekly pattern summary','3 patterns tracked, 1 strengthened','Today',"nav('patterns')",{unread:true,bg:'#FEF3C7',color:'#92400E'})}
-  <div class="group-label">Results & Reports</div>
-  ${notif('clipList','Doctor summary ready','Preview your updated report','Today',"nav('care');setSegment('care','navigation');navSub('visit')",{unread:true,bg:'#D1FAE5',color:'var(--green)'})}
-  <div class="group-label">Shared & Network Updates</div>
-  ${notif('users','Care team update','Dr. Singh viewed your summary','2 days ago')}
-  <div class="group-label">Integrations</div>
-  ${notif('watch','Apple Health sync','Sleep and activity data updated','Today')}
-  <div class="group-label">Product & Account</div>
-  ${notif('sparkles','New feature available','Experiments are now in Patterns','3 days ago')}`;
-
-// Inbox
-$('notif-inbox').innerHTML = `
-  <div style="display:flex;gap:4px;margin-bottom:12px">
-    <span class="chip coral" style="cursor:pointer">All</span>
-    <span class="chip" style="background:var(--sand-light);color:var(--text-muted);cursor:pointer">Unread</span>
-    <span class="chip" style="background:var(--sand-light);color:var(--text-muted);cursor:pointer">Archived</span>
-  </div>
-  <div class="time-group">Today</div>
-  ${notif('alertTri','Unusual symptom pattern','Review with your doctor','10:30 AM',"",{unread:true,urgent:true,bg:'#FEE2E2',color:'#DC2626'})}
-  ${notif('trendUp','Pattern confidence changed','Late meals signal at 28%','11:20 AM',"nav('patterns');openPattern('late-meals')",{unread:true,bg:'#FEF3C7',color:'#92400E'})}
-  ${notif('thermom','Log symptoms','Strengthen today\'s signal','2:30 PM',"nav('track');openSheet('symptom')",{bg:'var(--coral-glow)',color:'var(--coral)'})}
-  <div class="time-group">Yesterday</div>
-  ${notif('poop','Morning bowel check-in','Log your morning attempt','8:00 AM')}
-  ${notif('wind','Guided breathing session','Complete your calming routine','1:00 PM')}`;
-
-// Settings
-$('notif-settings').innerHTML = `<div class="card-title">Notification Settings</div><div class="mt-3 space-y">
-  ${row('bell','Notification Types','Choose which notifications you receive')}
-  ${row('msgCircle','Channels','Push, email, and in-app preferences')}
-  ${row('clock','Frequency','How often you want to be notified')}
-  ${row('moon','Quiet Hours','Set do-not-disturb periods')}
-  </div>`;
-
-</script>
 </body>
 </html>
