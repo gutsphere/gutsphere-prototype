@@ -255,7 +255,7 @@ export default {
       focuses: ['Digestive fire (Agni)','Pitta balance','Anti-inflammatory practices','Lifestyle rhythm','Natural remedies'],
       prompts: ['What does Ayurveda say about IBD?','How can I reduce inflammation naturally?','What daily routine helps?'],
       userMsg: 'What does Ayurveda say about IBD?',
-      assistantMsg: 'In Ayurveda, inflammatory bowel conditions are typically associated with Pitta imbalance — excess heat, sharpness, and inflammation in the digestive system. Key recommendations include cooling foods (rice, ghee, coconut), avoiding hot, spicy, and fermented foods during flares, regular meal timing, and calming practices like meditation. Aloe vera juice and turmeric (with your doctor\'s approval) are traditional anti-inflammatory supports. Consistency in routine is considered essential for calming Pitta.',
+      assistantMsg: 'In Ayurveda, inflammatory bowel conditions are typically associated with Pitta imbalance — excess heat, sharpness, and inflammation in the digestive system. Key recommendations include cooling foods (rice, ghee, coconut), avoiding hot, spicy, and fermented foods during flares, regular meal timing, and calming practices like meditation. Turmeric (with your doctor\'s approval) is a traditional anti-inflammatory support. Important: Avoid aloe vera during active flares — its laxative effect can worsen diarrhea and cramping in active Crohn\'s. Shatavari or licorice root tea (with your doctor\'s guidance) are safer Ayurvedic alternatives during flares. Consistency in routine is considered essential for calming Pitta.',
       routeOuts: [['Daily routine',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log food',"nav('track');openSheet('food')"]],
     },
     pharmacy: {
@@ -451,7 +451,7 @@ export default {
     careFlare: [
       { icon: 'alertTri', name: 'Urgent flare protocol', meta: 'When to call your doctor immediately' },
       { icon: 'droplets', name: 'Hydration protocol', meta: 'Fluid and electrolyte management during flares' },
-      { icon: 'thermom', name: 'Pain management', meta: 'Safe pain relief strategies for Crohn\'s flares' },
+      { icon: 'thermom', name: 'Pain management', meta: 'Avoid NSAIDs (ibuprofen, naproxen) — they can trigger Crohn\'s flares. Use acetaminophen/paracetamol for pain relief instead.' },
     ],
 
     careRecs: [
@@ -506,6 +506,7 @@ export default {
         'Should my infusion dose or interval be adjusted given this flare?',
         'Are my CRP and calprotectin levels indicating worsening disease?',
         'Should we consider additional imaging or scope?',
+        'Should we check iron levels and screen for anemia given the blood in stool?',
       ],
       summaryNote: 'Auto-generated from your logs and patterns. 6 patterns, 30 days of data.',
     },

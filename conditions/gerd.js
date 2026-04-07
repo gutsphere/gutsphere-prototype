@@ -37,7 +37,7 @@ export default {
       title: 'Lying down after meals and nighttime reflux',
       subtitle: 'Reflux episodes are more frequent when lying down within 2 hours of eating.',
       confidence: 55,
-      chip: 'green', chipLabel: 'Moderate evidence',
+      chip: 'amber', chipLabel: 'Moderate evidence',
       bars: [40,60,80,45,75,50,85,55,70,48],
       summary: 'On nights when you lie down within 2 hours of dinner, nighttime reflux occurs in 7 out of 10 instances. Staying upright for at least 2 hours after eating significantly reduces nighttime symptoms.',
       factors: [
@@ -85,12 +85,12 @@ export default {
       chatGuide: 'nutrition',
     },
     'stress-acid': {
-      title: 'Stress and increased acid production',
+      title: 'Stress and esophageal acid sensitivity',
       subtitle: 'High-stress days may correlate with worse acid symptoms.',
       confidence: 28,
       chip: 'amber', chipLabel: 'Low confidence',
       bars: [20,45,60,30,55,35,50,25],
-      summary: 'On days you rate stress above 6/10, acid symptoms appear somewhat more frequently and with greater intensity. The relationship is early and may be mediated by eating habits that change under stress.',
+      summary: 'On days you rate stress above 6/10, acid symptoms appear somewhat more frequently and with greater intensity. Stress increases esophageal sensitivity to acid (visceral hyperalgesia) and may affect lower esophageal sphincter tone, rather than directly increasing acid production. The relationship is early and may also be mediated by eating habits that change under stress.',
       factors: [
         ['brain','Stress rating','Early signal','#F59E0B','28%','#FEF3C7'],
         ['utensils','Stress-related eating','Contributing','var(--text-hint)','20%','var(--sand-light)'],
@@ -194,7 +194,7 @@ export default {
       focuses: ['Daily routines','Guided exercises','Flare support','Habit building','Self-management'],
       prompts: ['What should I focus on today?','Help me with my routine','What\'s my next best step?','I\'m having a flare'],
       userMsg: 'I\'m having a flare',
-      assistantMsg: 'I\'m sorry you\'re dealing with a flare. Let\'s start with what you can do right now. Stay upright — avoid lying down. Drink a small glass of alkaline water. If you haven\'t taken your PPI today, check your timing. Avoid any acidic or spicy foods for the rest of the day. Log this episode so we can track whether flare days cluster with specific triggers.',
+      assistantMsg: 'I\'m sorry you\'re dealing with a flare. Let\'s start with what you can do right now. Stay upright — avoid lying down. If you have antacids (calcium carbonate), take one for immediate relief. Sip water and avoid any acidic or spicy foods for the rest of the day. If you haven\'t taken your PPI today, check your timing. Log this episode so we can track whether flare days cluster with specific triggers.',
       routeOuts: [['Flare support',"nav('care');setSegment('care','self');setSegment('self','flare')"],['Log symptoms',"nav('track');openSheet('symptom')"]],
     },
     clinicalnav: {
@@ -242,7 +242,7 @@ export default {
       focuses: ['Gut-brain axis','Stress-symptom links','Nervous system regulation','Cognitive patterns','Emotional wellbeing'],
       prompts: ['How does stress affect my acid reflux?','Help me understand the gut-brain connection','What calming techniques help?','Is anxiety making this worse?'],
       userMsg: 'How does stress affect my acid reflux?',
-      assistantMsg: 'Stress can worsen GERD through multiple pathways. It increases stomach acid production, heightens esophageal sensitivity to acid, and can change eating behaviours (eating faster, choosing comfort foods that may be triggers). Your data shows a 28% confidence link between high-stress days and worse acid symptoms. Diaphragmatic breathing is particularly helpful for GERD — it strengthens the diaphragm, which acts as a natural anti-reflux barrier.',
+      assistantMsg: 'Stress can worsen GERD through multiple pathways. It heightens esophageal sensitivity to acid (visceral hyperalgesia), may affect lower esophageal sphincter tone, and can change eating behaviours (eating faster, choosing comfort foods that may be triggers). Your data shows a 28% confidence link between high-stress days and worse acid symptoms. Diaphragmatic breathing is particularly helpful for GERD — it strengthens the diaphragm, which acts as a natural anti-reflux barrier.',
       routeOuts: [['Breathing exercise',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log stress',"nav('track');openSheet('mental')"]],
     },
     functional: {
@@ -250,7 +250,7 @@ export default {
       focuses: ['Root-cause thinking','Systems perspective','Lifestyle factors','Holistic context','Integrative approach'],
       prompts: ['What root causes should I explore?','How do my systems connect?','What lifestyle factors matter?','What am I missing?'],
       userMsg: 'What root causes should I explore for my GERD?',
-      assistantMsg: 'Looking at your full picture — acid reflux, food triggers, stress, and meal timing — there are several interconnected factors. Stress increases acid production and esophageal sensitivity. Late meals reduce the protective upright period. Coffee and spicy foods directly irritate the esophageal lining. A functional approach would focus on optimising PPI timing, establishing a consistent 3-hour pre-bed fasting window, managing stress, and systematically identifying and removing trigger foods.',
+      assistantMsg: 'Looking at your full picture — acid reflux, food triggers, stress, and meal timing — there are several interconnected factors. Stress increases esophageal sensitivity to acid and may impair sphincter function. Late meals reduce the protective upright period. Coffee and spicy foods can trigger transient lower esophageal sphincter relaxations (TLESRs) and activate acid-sensitive receptors in the esophagus. A functional approach would focus on optimising PPI timing, establishing a consistent 3-hour pre-bed fasting window, managing stress, and systematically identifying and removing trigger foods.',
       routeOuts: [['View all connections',"nav('patterns');setSegment('patterns','connections')"],['Daily habits',"nav('care');setSegment('care','self');setSegment('self','habits')"]],
     },
     ayurveda: {
@@ -258,7 +258,7 @@ export default {
       focuses: ['Digestive fire (Agni)','Constitutional balance','Lifestyle rhythm','Natural remedies','Seasonal guidance'],
       prompts: ['What does Ayurveda say about acid reflux?','How can I balance my digestive fire?','What daily routine helps?'],
       userMsg: 'What does Ayurveda say about acid reflux?',
-      assistantMsg: 'In Ayurveda, acid reflux is typically associated with Pitta imbalance — excess heat and sharpness in the digestive system. Key recommendations include cooling foods (cucumber, coconut, fennel), avoiding sour and spicy tastes, eating your main meal at midday when digestive fire is strongest, and drinking room-temperature or cool water between meals. Aloe vera juice and licorice root are traditionally used to soothe the digestive tract. Avoiding eating when stressed or rushed is considered essential.',
+      assistantMsg: 'In Ayurveda, acid reflux is typically associated with Pitta imbalance — excess heat and sharpness in the digestive system. Key recommendations include cooling foods (cucumber, coconut, fennel), avoiding sour and spicy tastes, eating your main meal at midday when digestive fire is strongest, and drinking room-temperature or cool water between meals. Aloe vera juice and DGL (deglycyrrhizinated licorice) are traditionally used to soothe the digestive tract. Important: regular licorice root should be avoided as it can cause high blood pressure and electrolyte problems — DGL has the problematic compound removed. Avoiding eating when stressed or rushed is considered essential.',
       routeOuts: [['Daily routine',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log food',"nav('track');openSheet('food')"]],
     },
     pharmacy: {
@@ -266,7 +266,7 @@ export default {
       focuses: ['Medication review','Side effects','Drug interactions','Supplement guidance','Adherence support'],
       prompts: ['How should I time my PPI?','Check my interactions','Should I adjust my dosage?','What supplements might help?'],
       userMsg: 'How should I time my PPI?',
-      assistantMsg: 'PPI timing is crucial for effectiveness. Take your PPI 30 minutes before your first meal of the day — this is when the medication works best because it needs food-stimulated acid production to activate. Your data strongly supports this: days with proper PPI timing show 60% fewer acid symptoms. If you\'re on twice-daily dosing, take the second dose 30 minutes before dinner. Avoid taking PPIs with other medications that affect absorption.',
+      assistantMsg: 'PPI timing is crucial for effectiveness. Take your PPI 30 minutes before your first meal of the day — this is when the medication works best because it needs food-stimulated acid production to activate. Your data strongly supports this: days with proper PPI timing show 60% fewer acid symptoms. If you\'re on twice-daily dosing, take the second dose 30 minutes before dinner. Avoid taking PPIs with other medications that affect absorption. Note: long-term PPI use has been associated with certain risks including vitamin B12 deficiency, increased fracture risk, and C. difficile infection — discuss the planned duration and ongoing need with your doctor at your next review.',
       routeOuts: [['Log medication',"nav('track');openSheet('meds')"],['Treatment plan',"nav('care');setSegment('care','clinical')"]],
     },
   },
@@ -396,7 +396,7 @@ export default {
         ]},
         { label: 'New Signals', items: [
           ['utensils','Late dinner and morning throat symptoms','Low confidence \u00b7 needs more data',"openPattern('meal-timing-reflux')"],
-          ['brain','Stress and increased acid production','Early signal \u00b7 needs more data',"openPattern('stress-acid')"],
+          ['brain','Stress and esophageal acid sensitivity','Early signal \u00b7 needs more data',"openPattern('stress-acid')"],
         ]},
         { label: 'Strengthening', items: [
           ['trendUp','PPI response signal growing','Confidence up from 60% to 72%',"openPattern('ppi-response')"],
@@ -443,7 +443,7 @@ export default {
       { icon: 'bed', name: 'Elevated sleeping position', meta: 'Raise head of bed 6-8 inches to reduce nighttime reflux', tag: 'Recommended now' },
       { icon: 'clock', name: 'Post-meal upright period', meta: 'Stay upright 2-3 hours after eating' },
       { icon: 'pill', name: 'PPI timing reminder', meta: 'Take PPI 30 minutes before breakfast' },
-      { icon: 'droplets', name: 'Alkaline water', meta: 'Drink alkaline water between meals' },
+      { icon: 'droplets', name: 'Water between meals', meta: 'Stay hydrated between meals — some people find alkaline water helpful, but evidence is limited' },
     ],
 
     carePlans: [
@@ -452,8 +452,8 @@ export default {
     ],
 
     careFlare: [
-      { icon: 'alertTri', name: 'Acute heartburn relief', meta: 'Immediate steps for heartburn flare' },
-      { icon: 'droplets', name: 'Alkaline water and positioning', meta: 'Stay upright, sip alkaline water, avoid triggers' },
+      { icon: 'alertTri', name: 'Acute heartburn relief', meta: 'Antacids (calcium carbonate) for immediate relief, stay upright, avoid triggers' },
+      { icon: 'droplets', name: 'Hydration and positioning', meta: 'Stay upright, sip water, avoid triggers — alkaline water is optional (limited evidence)' },
       { icon: 'shield', name: 'When to escalate', meta: 'Know when self-care is no longer enough' },
     ],
 

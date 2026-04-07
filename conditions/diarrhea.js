@@ -39,7 +39,7 @@ export default {
       confidence: 40,
       chip: 'amber', chipLabel: 'Low confidence',
       bars: [25,50,70,35,65,30,55],
-      summary: 'On days when you drink fewer than 6 glasses of water or electrolyte fluids, your symptoms tend to be more severe and recovery slower. Dehydration risk increases with higher episode frequency.',
+      summary: 'On days when you drink fewer than 8 glasses of water or electrolyte fluids, your symptoms tend to be more severe and recovery slower. Dehydration risk increases with higher episode frequency.',
       factors: [
         ['droplets','Daily fluid intake','Moderate signal','#F59E0B','40%','#FEF3C7'],
         ['activity','Energy levels','Contributing','#F59E0B','28%','#FEF3C7'],
@@ -78,7 +78,7 @@ export default {
         ['droplets','Hydration level','Contributing','#F59E0B','25%','#FEF3C7'],
         ['brain','Stress level','Weak signal','var(--text-hint)','15%','var(--sand-light)'],
       ],
-      clarify: ['Eliminate dairy for 5 days and log results','Reintroduce dairy and track response','Note whether all dairy types trigger equally'],
+      clarify: ['Eliminate dairy for 2-3 weeks and log results','Reintroduce dairy and track response','Note whether all dairy types trigger equally'],
       trackAction: "nav('track');openSheet('food')",
       chatGuide: 'nutrition',
     },
@@ -189,7 +189,7 @@ export default {
       focuses: ['Daily routines','Guided exercises','Flare support','Habit building','Self-management'],
       prompts: ['What should I focus on today?','Help me with my routine','What\'s my next best step?','I\'m having a flare'],
       userMsg: 'I\'m having a flare',
-      assistantMsg: 'I\'m sorry you\'re dealing with this. Let\'s focus on what matters most right now: stay hydrated with small, frequent sips of electrolyte water or ORS. Stick to BRAT foods (banana, rice, applesauce, toast) and avoid dairy and caffeine. If you see blood, have a fever above 38.5\u00b0C, or can\'t keep fluids down for 6+ hours, that\'s a signal to seek urgent care.',
+      assistantMsg: 'I\'m sorry you\'re dealing with this. Let\'s focus on what matters most right now: stay hydrated with small, frequent sips of electrolyte water or ORS. Stick to BRAT foods (banana, rice, applesauce, toast) and avoid dairy and caffeine. If you see blood, have a fever above 38.5\u00b0C, can\'t keep fluids down for 6+ hours, or experience signs of severe dehydration such as dizziness, significantly reduced urine output, rapid heartbeat, or dry mouth, that\'s a signal to seek urgent care.',
       routeOuts: [['Flare support',"nav('care');setSegment('care','self');setSegment('self','flare')"],['Log episode',"openEntry('bm')"]],
     },
     clinicalnav: {
@@ -197,7 +197,7 @@ export default {
       focuses: ['Visit preparation','Doctor questions','Summary generation','Test preparation','Referral guidance'],
       prompts: ['Help me prepare for my results review','What questions should I ask?','Turn my patterns into a summary','What should I bring up?'],
       userMsg: 'Help me prepare for my results review',
-      assistantMsg: 'Your stool test results are due in 2 days. Based on your logs, the top things to discuss are: your chronic diarrhea pattern with morning urgency clustering, the dairy reaction signal, and whether further testing (lactobreath test, bile acid test) is warranted. I can generate a symptom diary summary and help you build a question list for the gastroenterologist.',
+      assistantMsg: 'Your stool test results are due in 2 days. Based on your logs, the top things to discuss are: your chronic diarrhea pattern with morning urgency clustering, the dairy reaction signal, and whether further testing (lactose hydrogen breath test, bile acid test) is warranted. I can generate a symptom diary summary and help you build a question list for the gastroenterologist.',
       routeOuts: [['Visit prep',"nav('care');setSegment('care','navigation');navSub('visit')"],['View summary',"nav('patterns');setSegment('patterns','trends')"]],
     },
     clinicalcare: {
@@ -213,7 +213,7 @@ export default {
       focuses: ['GI symptom interpretation','Differential considerations','Test guidance','Red flag assessment','Clinical context'],
       prompts: ['What could be causing this?','Should I be concerned?','What tests might help?','Is this pattern typical?'],
       userMsg: 'What could be causing this chronic diarrhea?',
-      assistantMsg: 'Chronic diarrhea with morning urgency and possible dairy sensitivity has several potential explanations. Common causes include lactose intolerance, bile acid malabsorption, IBS-D, or post-infectious IBS. Your stool test will help rule out infections and inflammation. If results are normal, your gastroenterologist might consider a hydrogen breath test for lactose intolerance or a SeHCAT scan for bile acid malabsorption. The morning clustering pattern is particularly relevant \u2014 it\'s common in bile acid diarrhea.',
+      assistantMsg: 'Chronic diarrhea with morning urgency and possible dairy sensitivity has several potential explanations. Common causes include lactose intolerance, bile acid malabsorption, IBS-D, or post-infectious IBS. Your stool test will help rule out infections and inflammation. If results are normal, your gastroenterologist might consider a hydrogen breath test for lactose intolerance or SeHCAT testing (available mainly in UK/Europe) or alternatively a therapeutic trial of cholestyramine, or serum C4 blood test for bile acid malabsorption. The morning clustering pattern is particularly relevant \u2014 it\'s common in bile acid diarrhea.',
       routeOuts: [['View patterns',"nav('patterns')"],['Prepare for results',"nav('care');setSegment('care','navigation');navSub('visit')"]],
     },
     nutrition: {
@@ -237,7 +237,7 @@ export default {
       focuses: ['Gut-brain axis','Stress-symptom links','Nervous system regulation','Cognitive patterns','Emotional wellbeing'],
       prompts: ['How does anxiety affect my gut?','Help me understand the gut-brain connection','What calming techniques help?','Is social anxiety making this worse?'],
       userMsg: 'Is social anxiety making my diarrhea worse?',
-      assistantMsg: 'Very likely, yes. The gut-brain axis means anxiety directly increases gut motility and sensitivity. Social anxiety is particularly impactful because the fear of not having bathroom access creates a vicious cycle \u2014 anxiety triggers urgency, which increases anxiety. Your data shows a 32% signal linking social situations to worse episodes. Cognitive behavioral techniques, exposure therapy, and gut-directed hypnotherapy have strong evidence for breaking this cycle.',
+      assistantMsg: 'It\'s plausible — your data suggests a possible link worth investigating further. The gut-brain axis means anxiety can increase gut motility and sensitivity. Social anxiety is particularly impactful because the fear of not having bathroom access creates a vicious cycle \u2014 anxiety triggers urgency, which increases anxiety. Your data shows a 32% signal linking social situations to worse episodes. Cognitive behavioral techniques, exposure therapy, and gut-directed hypnotherapy have strong evidence for breaking this cycle.',
       routeOuts: [['Breathing exercise',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log stress',"nav('track');openSheet('mental')"]],
     },
     functional: {
@@ -411,7 +411,7 @@ export default {
     ],
 
     patternExperiments: [
-      ['utensils','Dairy elimination trial','Remove all dairy for 5 days and track episodes',"nav('track');setSegment('track','continue')"],
+      ['utensils','Dairy elimination trial','Remove all dairy for 2-3 weeks and track episodes',"nav('track');setSegment('track','continue')"],
       ['pill','Probiotic trial','Add S. boulardii daily for 7 days and track response',"nav('track');setSegment('track','continue')"],
     ],
 
@@ -459,7 +459,7 @@ export default {
     ],
 
     careExperiments: [
-      ['utensils','Dairy elimination trial','Remove all dairy for 5 days and track episodes',"nav('track');setSegment('track','continue')"],
+      ['utensils','Dairy elimination trial','Remove all dairy for 2-3 weeks and track episodes',"nav('track');setSegment('track','continue')"],
       ['pill','Probiotic trial','Add S. boulardii daily for 7 days and track response',"nav('track');setSegment('track','continue')"],
       ['droplets','ORS experiment','Use ORS after every episode for 5 days and track energy',"nav('track');setSegment('track','continue')"],
     ],

@@ -22,7 +22,7 @@ export default {
       confidence: 45,
       chip: 'amber', chipLabel: 'Moderate confidence',
       bars: [35,60,40,75,30,65,50,80,35,70,45,60,75,40],
-      summary: 'On days where you consume high-FODMAP foods (garlic, onion, wheat, certain fruits), bloating and urgency episodes appear within 2\u20134 hours in roughly half of cases. The signal is moderate \u2014 not every high-FODMAP meal triggers symptoms, which suggests portion size or food combinations may also matter.',
+      summary: 'On days where you consume high-FODMAP foods (garlic, onion, wheat, certain fruits), bloating and urgency episodes appear in roughly half of cases. Symptoms can appear within 30 minutes to 24 hours depending on the FODMAP type \u2014 lactose and fructose tend to be faster, while fructans and GOS can take longer as they ferment in the colon. The signal is moderate \u2014 not every high-FODMAP meal triggers symptoms, which suggests portion size or food combinations may also matter.',
       factors: [
         ['utensils','High-FODMAP meal','Moderate signal','#F59E0B','45%','#FEF3C7'],
         ['utensils','Portion size','Contributing factor','#F59E0B','30%','#FEF3C7'],
@@ -37,7 +37,7 @@ export default {
       title: 'Work stress and IBS flare cycle',
       subtitle: 'High-stress workdays consistently precede multi-day symptom flares.',
       confidence: 62,
-      chip: 'green', chipLabel: 'Strong evidence',
+      chip: 'green', chipLabel: 'Moderate evidence',
       bars: [50,70,90,55,85,60,92,50,88,65,90,58,85,70],
       summary: 'When you rate work stress above 7/10, a symptom flare typically begins within 12\u201324 hours and lasts 2\u20133 days. The flare usually starts with urgency and diarrhea, then shifts to constipation as it resolves. This gut-brain pattern is one of the most consistent signals in your data \u2014 it appeared in 8 out of 12 high-stress episodes.',
       factors: [
@@ -87,7 +87,7 @@ export default {
       title: 'Coffee/caffeine and urgency episodes',
       subtitle: 'Coffee consumption is followed by urgency within 30 minutes on most days.',
       confidence: 52,
-      chip: 'green', chipLabel: 'Strong evidence',
+      chip: 'green', chipLabel: 'Moderate evidence',
       bars: [40,65,80,45,75,55,85,50,70,60,80,55,75,65],
       summary: 'On days where you drink coffee, urgency episodes appear within 15\u201345 minutes in 7 out of 10 instances. The effect is stronger on an empty stomach and on days where you are already in a loose-stool phase of your alternating cycle. Decaf coffee shows a weaker but still present effect, suggesting both caffeine and coffee compounds play a role.',
       factors: [
@@ -192,7 +192,7 @@ export default {
       focuses: ['Daily routines','Guided exercises','Flare support','Habit building','Self-management'],
       prompts: ['What should I focus on today?','Help me with my routine','I\'m having a flare','What\'s my next best step?'],
       userMsg: 'I\'m having a flare',
-      assistantMsg: 'I\'m sorry you\'re dealing with a flare. Let\'s focus on what helps right now. First, try peppermint oil \u2014 it can reduce cramping and urgency quickly. Then do a 5-minute gut-directed breathing exercise to calm your nervous system, which directly affects IBS symptoms. Stick to low-FODMAP, easy-to-digest foods today. Log your symptoms so we can track this flare and see if it follows your typical stress-triggered pattern.',
+      assistantMsg: 'I\'m sorry you\'re dealing with a flare. Let\'s focus on what helps right now. First, try peppermint oil \u2014 peppermint oil can help reduce cramping and urgency, though enteric-coated capsules typically take 30\u201360 minutes to take effect. Then do a 5-minute gut-directed breathing exercise to calm your nervous system, which directly affects IBS symptoms. Stick to low-FODMAP, easy-to-digest foods today. Log your symptoms so we can track this flare and see if it follows your typical stress-triggered pattern.',
       routeOuts: [['Flare support',"nav('care');setSegment('care','self');setSegment('self','flare')"],['Breathing exercise',"nav('care');setSegment('care','self');setSegment('self','habits')"]],
     },
     clinicalnav: {
@@ -248,7 +248,7 @@ export default {
       focuses: ['Root-cause thinking','Systems perspective','Lifestyle factors','Holistic context','Integrative approach'],
       prompts: ['What root causes should I explore?','How do my systems connect?','What lifestyle factors matter?','What am I missing?'],
       userMsg: 'What root causes should I explore?',
-      assistantMsg: 'Looking at your full picture \u2014 IBS-M, stress-triggered flares, FODMAP sensitivity, caffeine reactivity, and menstrual cycle influence \u2014 several systems are interconnected. Your nervous system dysregulation (stress-flare cycle) may be the central driver, with gut microbiome imbalance amplifying food sensitivities. A functional approach would prioritise nervous system regulation first (gut-directed hypnotherapy, vagal toning), then address the gut environment (targeted probiotics, FODMAP personalisation), and finally optimise supporting factors (sleep, caffeine, cycle-aware management).',
+      assistantMsg: 'Looking at your full picture \u2014 IBS-M, stress-triggered flares, FODMAP sensitivity, caffeine reactivity, and menstrual cycle influence \u2014 several systems are interconnected. Your nervous system dysregulation (stress-flare cycle) may be the central driver, with emerging evidence suggesting gut microbiome imbalance may be contributing to food sensitivities. A functional approach would prioritise nervous system regulation first (gut-directed hypnotherapy, vagal toning), then address the gut environment (targeted probiotics, FODMAP personalisation), and finally optimise supporting factors (sleep, caffeine, cycle-aware management).',
       routeOuts: [['View all connections',"nav('patterns');setSegment('patterns','connections')"],['Daily habits',"nav('care');setSegment('care','self');setSegment('self','habits')"]],
     },
     ayurveda: {
@@ -370,7 +370,7 @@ export default {
       title: 'Work stress \u2192 IBS flare cycle',
       subtitle: 'High-stress workdays consistently trigger multi-day flares starting with urgency.',
       chip: 'green',
-      chipLabel: 'Strong evidence',
+      chipLabel: 'Moderate evidence',
       bars: [50,70,90,55,85,60,92,50,88,65,90,58,85,70],
       confidence: 62,
       confidenceColor: 'var(--green)',
@@ -385,8 +385,8 @@ export default {
     patternFeed: {
       groups: [
         { label: 'Strongest Patterns', items: [
-          ['brain','Work stress \u2192 IBS flare cycle','Strong evidence \u00b7 62% confidence',"openPattern('stress-flare')"],
-          ['utensils','Caffeine \u2192 urgency episodes','Strong evidence \u00b7 52% confidence',"openPattern('caffeine-urgency')"],
+          ['brain','Work stress \u2192 IBS flare cycle','Moderate evidence \u00b7 62% confidence',"openPattern('stress-flare')"],
+          ['utensils','Caffeine \u2192 urgency episodes','Moderate evidence \u00b7 52% confidence',"openPattern('caffeine-urgency')"],
         ]},
         { label: 'Active Patterns', items: [
           ['utensils','FODMAP triggers \u2192 symptom flares','Moderate confidence \u00b7 tracking in progress',"openPattern('fodmap-triggers')"],
@@ -415,7 +415,7 @@ export default {
     ],
 
     patternExperiments: [
-      ['utensils','FODMAP reintroduction','Reintroduce one FODMAP group at a time for 3 days each',"nav('track');setSegment('track','continue')"],
+      ['utensils','FODMAP reintroduction','3 days challenge per food group, followed by 3 days washout before testing the next group',"nav('track');setSegment('track','continue')"],
       ['utensils','Caffeine elimination trial','Remove coffee for 7 days and track urgency changes',"nav('track');setSegment('track','continue')"],
     ],
 
@@ -463,7 +463,7 @@ export default {
     ],
 
     careExperiments: [
-      ['utensils','FODMAP reintroduction','Reintroduce one FODMAP group at a time for 3 days each',"nav('track');setSegment('track','continue')"],
+      ['utensils','FODMAP reintroduction','3 days challenge per food group, followed by 3 days washout before testing the next group',"nav('track');setSegment('track','continue')"],
       ['utensils','Caffeine elimination','Remove coffee for 7 days and track urgency changes',"nav('track');setSegment('track','continue')"],
       ['brain','Stress-flare interruption','Try breathing exercises at first sign of work stress for 10 days',"nav('track');setSegment('track','continue')"],
     ],

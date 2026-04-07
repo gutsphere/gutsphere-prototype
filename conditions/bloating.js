@@ -20,7 +20,7 @@ export default {
       title: 'Certain foods and bloating episodes',
       subtitle: 'Specific foods consistently precede bloating within 2–4 hours.',
       confidence: 55,
-      chip: 'green', chipLabel: 'Moderate evidence',
+      chip: 'amber', chipLabel: 'Moderate confidence',
       bars: [40,60,85,55,90,50,80,65,88,52,78,60,85,58],
       summary: 'When you eat known gas-producing foods (beans, cruciferous vegetables, onions), bloating episodes follow within 2–4 hours in roughly 7 out of 12 tracked instances. The signal is moderate and growing as you log more meals with detail.',
       factors: [
@@ -214,7 +214,7 @@ export default {
       focuses: ['GI symptom interpretation','Differential considerations','Test guidance','Red flag assessment','Clinical context'],
       prompts: ['What could be causing this?','Should I be concerned?','What tests might help?','Is this pattern typical?'],
       userMsg: 'What could be causing my bloating?',
-      assistantMsg: 'Bloating with gas and distension can have several explanations. The most common include food intolerances (lactose, fructose, FODMAPs), small intestinal bacterial overgrowth (SIBO), functional dyspepsia, or simply aerophagia (swallowing air). Your food-trigger pattern is interesting — it suggests specific food intolerances may be playing a role. A gastroenterologist might consider breath testing for SIBO or carbohydrate malabsorption.',
+      assistantMsg: 'Bloating with gas and distension can have several explanations. The most common include food intolerances (lactose, fructose, FODMAPs), small intestinal bacterial overgrowth (SIBO), celiac disease, functional dyspepsia, or simply aerophagia (swallowing air). Your food-trigger pattern is interesting — it suggests specific food intolerances may be playing a role. In a chronic bloating workup, celiac disease should always be ruled out — it is commonly missed and a simple blood test (tTG-IgA) can screen for it. A gastroenterologist might also consider breath testing for SIBO or carbohydrate malabsorption.',
       routeOuts: [['View patterns',"nav('patterns')"],['Prepare for consult',"nav('care');setSegment('care','navigation');navSub('visit')"]],
     },
     nutrition: {
@@ -254,7 +254,7 @@ export default {
       focuses: ['Digestive fire (Agni)','Constitutional balance','Lifestyle rhythm','Natural remedies','Seasonal guidance'],
       prompts: ['What does Ayurveda say about bloating?','How can I improve my digestive fire?','What daily routine helps?'],
       userMsg: 'What does Ayurveda say about bloating?',
-      assistantMsg: 'In Ayurveda, bloating is primarily associated with Vata imbalance — excess air (vayu) in the digestive system. Key recommendations include drinking warm water with meals (not cold), eating at regular times, favouring cooked foods over raw, and using digestive spices like ginger, cumin, and fennel. Eating in a calm environment without distraction is considered essential. Avoid combining too many food types in one meal, as this is seen as weakening digestive fire (Agni).',
+      assistantMsg: 'In Ayurveda, bloating is primarily associated with Vata imbalance — excess air (vayu) in the digestive system. Key recommendations include drinking warm water with meals (not cold), eating at regular times, favouring cooked foods over raw, and using digestive spices like ginger, cumin, and fennel. Eating in a calm environment without distraction is considered essential. Some traditional Ayurvedic practitioners suggest simplifying meals by not combining too many food types, as this is seen as weakening digestive fire (Agni) — note that food combining theory is a traditional practice without strong modern clinical evidence, though eating simpler meals may still help some people by making it easier to identify triggers.',
       routeOuts: [['Daily routine',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log food',"nav('track');openSheet('food')"]],
     },
     pharmacy: {
@@ -368,7 +368,7 @@ export default {
       title: 'Gas-producing foods \u2192 bloating episodes',
       subtitle: 'Specific foods consistently precede bloating within 2–4 hours.',
       chip: 'green',
-      chipLabel: 'Moderate evidence',
+      chipLabel: 'Moderate confidence',
       bars: [40,60,85,55,90,50,80,65,88,52,78,60,85,58],
       confidence: 55,
       confidenceColor: 'var(--green)',
@@ -383,7 +383,7 @@ export default {
     patternFeed: {
       groups: [
         { label: 'Strongest Patterns', items: [
-          ['utensils','Gas-producing foods \u2192 bloating','Moderate evidence \u00b7 food trigger signal',"openPattern('gas-producing-foods')"],
+          ['utensils','Gas-producing foods \u2192 bloating','Moderate confidence \u00b7 food trigger signal',"openPattern('gas-producing-foods')"],
         ]},
         { label: 'Active Patterns', items: [
           ['droplets','Carbonation \u2192 gas buildup','Moderate confidence \u00b7 10 data points',"openPattern('carbonation-effect')"],
@@ -449,13 +449,14 @@ export default {
     careFlare: [
       { icon: 'alertTri', name: 'What to do now', meta: 'Immediate bloating relief steps' },
       { icon: 'wind', name: 'Gas relief routine', meta: '5 min · Abdominal massage and positioning' },
-      { icon: 'shield', name: 'When to escalate', meta: 'Know when self-care is no longer enough' },
+      { icon: 'shield', name: 'When to escalate', meta: 'Know when self-care is no longer enough. Red flags that warrant urgent medical attention: progressive abdominal distension with pain, vomiting, inability to pass gas or stool (possible obstruction), unintended weight loss, blood in stool, or new-onset bloating after age 50' },
     ],
 
     careRecs: [
       ['utensils','Eat slowly and chew thoroughly','Reducing air swallowing may decrease gas and distension'],
       ['droplets','Reduce carbonation','Carbonated drinks consistently precede bloating episodes'],
       ['pill','Try digestive enzymes','Enzyme support may help break down trigger foods'],
+      ['pill','Consider a probiotic','Certain strains (e.g., Bifidobacterium infantis) have evidence for reducing bloating. Discuss with your dietitian'],
     ],
 
     careExperiments: [

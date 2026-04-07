@@ -5,7 +5,7 @@ export default {
     fullName: 'Taylor Kim',
     profileDesc: 'New to gut health tracking',
     stage: 'Getting started',
-    stageNote: "Here's what matters now.",
+    stageNote: "Symptoms for ~3 months. Here's how to start.",
     focus: 'General gut health',
     visitNote: 'GI appointment in 1 week',
   },
@@ -28,7 +28,7 @@ export default {
         ['utensils','Acidic foods','Uncertain','var(--text-hint)','18%','var(--sand-light)'],
         ['droplets','Hydration with meals','Weak signal','var(--text-hint)','12%','var(--sand-light)'],
       ],
-      clarify: ['Log all meals for 7 days with details','Note discomfort within 2 hours of eating','Try removing one suspect food for 5 days and compare'],
+      clarify: ['Log all meals for 7 days with details','Note discomfort within 2 hours of eating','Try removing one suspect food for 2\u20133 weeks and compare'],
       trackAction: "nav('track');openSheet('food')",
       chatGuide: 'nutrition',
     },
@@ -204,7 +204,7 @@ export default {
       focuses: ['Understanding treatment options','Tracking recommendations','Response monitoring','Follow-up planning','Care coordination'],
       prompts: ['What might my doctor suggest?','How do I track treatment?','What should I monitor?','How long until I see improvement?'],
       userMsg: 'What might my doctor suggest?',
-      assistantMsg: 'That depends on what your doctor finds, but common first steps for general gut issues include dietary adjustments, basic blood work, and sometimes a trial of probiotics or fibre supplements. The most helpful thing you can do now is bring clear data about your symptoms \u2014 your logs will give your doctor a much better starting point.',
+      assistantMsg: 'That depends on what your doctor finds. Common first steps include a thorough history, dietary review, basic blood work, and possibly further testing depending on what your doctor finds. The most helpful thing you can do now is bring clear data about your symptoms \u2014 your logs will give your doctor a much better starting point.',
       routeOuts: [['Track treatment',"nav('track');openSheet('treatment')"],['View care plan',"nav('care');setSegment('care','clinical')"]],
     },
     gastro: {
@@ -212,7 +212,7 @@ export default {
       focuses: ['GI symptom interpretation','Common conditions','When to worry','Test guidance','Clinical context'],
       prompts: ['What could be causing my symptoms?','Should I be concerned?','What tests might help?','Is this normal?'],
       userMsg: 'What could be causing my general gut discomfort?',
-      assistantMsg: 'General gut discomfort with variable symptoms can have many explanations \u2014 from dietary sensitivities and stress to conditions like IBS or food intolerances. The fact that your symptoms are variable and overlap is actually useful information. Your doctor will likely want to rule out common causes first. Your food and symptom logs will be very helpful in narrowing things down.',
+      assistantMsg: 'General gut discomfort with variable symptoms can have many explanations \u2014 from dietary factors and stress to functional or structural conditions that your doctor can evaluate. The fact that your symptoms are variable and overlap is actually useful information. Your doctor will likely want to rule out common causes first. Your food and symptom logs will be very helpful in narrowing things down.',
       routeOuts: [['View patterns',"nav('patterns')"],['Prepare for visit',"nav('care');setSegment('care','navigation');navSub('visit')"]],
     },
     nutrition: {
@@ -220,7 +220,7 @@ export default {
       focuses: ['Food-symptom connections','What to eat','Trigger identification','Meal timing basics','Starting a food diary'],
       prompts: ['Could food be causing my symptoms?','What should I eat?','How do I find my triggers?','Help me start a food diary'],
       userMsg: 'How do I find my food triggers?',
-      assistantMsg: 'The best way to find triggers is consistent food logging alongside symptom tracking. Log everything you eat with timing, then note any symptoms within 2\u20134 hours. After a week, we can start looking for connections. Common triggers include dairy, gluten, high-FODMAP foods, and acidic foods \u2014 but everyone is different, which is why your personal data matters most.',
+      assistantMsg: 'The best way to find triggers is consistent food logging alongside symptom tracking. Log everything you eat with timing, then note any symptoms within 2\u20134 hours. After a week, we can start looking for connections. Common triggers include dairy, gluten, high-FODMAP foods, and acidic foods \u2014 but everyone is different, which is why your personal data matters most. Don\'t eliminate major food groups without discussing with your doctor first \u2014 your doctor may want a clean dietary baseline for testing.',
       routeOuts: [['Log food',"nav('track');openSheet('food')"],['View food patterns',"nav('patterns');setSegment('patterns','connections')"]],
     },
     pelvic: {
@@ -445,9 +445,9 @@ export default {
     ],
 
     careFlare: [
-      { icon: 'alertTri', name: 'When to call your doctor', meta: 'Know which symptoms need immediate attention' },
+      { icon: 'alertTri', name: 'When to call your doctor', meta: 'Seek immediate attention for: unintentional weight loss, blood in stool, severe or worsening pain, fever, difficulty swallowing, or family history of GI cancers' },
       { icon: 'heart', name: 'Comfort measures', meta: 'Simple steps for general gut discomfort' },
-      { icon: 'shield', name: 'When to escalate', meta: 'Know when self-care is no longer enough' },
+      { icon: 'shield', name: 'When to escalate', meta: 'Red flags: unintentional weight loss, blood in stool, severe or worsening pain, fever, difficulty swallowing, family history of GI cancers' },
     ],
 
     careRecs: [
