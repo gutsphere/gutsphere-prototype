@@ -236,7 +236,7 @@ export default {
       focuses: ['Gut-brain axis basics','Stress-symptom links','Nervous system regulation','Building awareness','Emotional wellbeing'],
       prompts: ['How does stress affect my gut?','Is anxiety making this worse?','What calming techniques help?','Why does my gut react to stress?'],
       userMsg: 'How does stress affect my gut?',
-      assistantMsg: 'Stress has a direct, physical effect on your gut through the gut-brain axis. When you\'re stressed, your nervous system can speed up or slow down digestion, increase gut sensitivity, and trigger bloating or discomfort. Your early data suggests a connection between higher stress days and more gut symptoms. Tracking stress alongside symptoms will help clarify how strong this link is for you personally.',
+      assistantMsg: 'Research suggests stress may have a direct physical effect on your gut through the gut-brain axis. When you\'re stressed, your nervous system can speed up or slow down digestion, increase gut sensitivity, and trigger bloating or discomfort. Your early data suggests a connection between higher stress days and more gut symptoms. Tracking stress alongside symptoms will help clarify how strong this link is for you personally.',
       routeOuts: [['Log stress',"nav('track');openSheet('mental')"],['Breathing exercise',"nav('care');setSegment('care','self');setSegment('self','habits')"]],
     },
     functional: {
@@ -252,7 +252,7 @@ export default {
       focuses: ['Digestive fire (Agni)','Constitutional balance','Lifestyle rhythm','Natural remedies','Seasonal guidance'],
       prompts: ['What does Ayurveda say about gut health?','How can I improve my digestion?','What daily routine helps?'],
       userMsg: 'What does Ayurveda say about gut health?',
-      assistantMsg: 'In Ayurveda, strong digestion (Agni) is considered the foundation of health. General gut discomfort often signals weakened Agni, which can result from irregular eating, cold or processed foods, and stress. Key recommendations include eating your main meal at midday when digestion is strongest, drinking warm water throughout the day, and establishing consistent meal times. A regular daily routine (Dinacharya) is considered one of the most powerful tools for gut health.',
+      assistantMsg: 'In Ayurveda, strong digestion (Agni) is considered the foundation of health. In Ayurvedic thinking, general gut discomfort is sometimes seen as a sign of weakened Agni, which can result from irregular eating, cold or processed foods, and stress. Traditional suggestions you might explore include eating your main meal at midday when digestion is strongest, drinking warm water throughout the day, and establishing consistent meal times. A regular daily routine (Dinacharya) is traditionally regarded as particularly supportive for gut health.',
       routeOuts: [['Daily routine',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log hydration',"nav('track');openSheet('hydration')"]],
     },
     pharmacy: {
@@ -260,7 +260,7 @@ export default {
       focuses: ['Medication awareness','Supplement basics','Side effect context','What to tell your doctor','Over-the-counter options'],
       prompts: ['Could medication be causing this?','What supplements might help?','What should I tell my doctor about medications?','Are over-the-counter options safe?'],
       userMsg: 'Could medication be causing this?',
-      assistantMsg: 'It\'s worth considering. Many common medications can affect gut function \u2014 antibiotics, pain relievers (NSAIDs), iron supplements, and some antidepressants are frequent culprits. Make a list of everything you take, including supplements and over-the-counter products, and bring it to your GI appointment. Even medications you\'ve taken for a long time can contribute to gut symptoms.',
+      assistantMsg: 'It\'s worth considering. Many common medications can affect gut function \u2014 antibiotics, pain relievers (NSAIDs), iron supplements, and some antidepressants are frequent culprits. You might consider making a list of everything you take, including supplements and over-the-counter products, to bring to your GI appointment. Even medications you\'ve taken for a long time can contribute to gut symptoms.',
       routeOuts: [['Log medication',"nav('track');openSheet('meds')"],['Visit prep',"nav('care');setSegment('care','navigation');navSub('visit')"]],
     },
   },

@@ -166,7 +166,7 @@ export default {
       focuses: ['Symptom interpretation','Next best step','Visit preparation','Pattern clarification','Routing to the right guide'],
       prompts: ['What should I log next?','Explain this pattern','Help me prepare for my visit','What should I do now?'],
       userMsg: 'What should I log next?',
-      assistantMsg: 'Based on your recent logs, the most useful thing right now would be to log symptoms after your meals today. You have a late-meal pattern forming but it needs more data points to reach useful confidence. After logging, check Pattern to see if the signal strengthens.',
+      assistantMsg: 'Based on your recent logs, the most useful thing right now would be to log symptoms after your meals today. Your data shows a late-meal pattern forming but it needs more data points to reach useful confidence. After logging, check Pattern to see if the signal strengthens.',
       routeOuts: [['Track symptoms',"nav('track');openSheet('symptom')"],['View patterns',"nav('patterns')"]],
     },
     track: {
@@ -190,7 +190,7 @@ export default {
       focuses: ['Daily routines','Guided exercises','Flare support','Habit building','Self-management'],
       prompts: ['What should I focus on today?','Help me with my routine','What\'s my next best step?','I\'m having a bad day'],
       userMsg: 'I\'m having a bad day',
-      assistantMsg: 'I\'m sorry you\'re struggling. Let\'s start with what you can do right now. A 5-minute breathing exercise can help calm your nervous system, which directly affects gut motility. After that, log how you\'re feeling so we can track whether these flare days cluster with anything specific.',
+      assistantMsg: 'I\'m sorry you\'re struggling. Let\'s start with what you can do right now. A 5-minute breathing exercise can help calm your nervous system, which research suggests can influence gut motility. After that, log how you\'re feeling so we can track whether these flare days cluster with anything specific.',
       routeOuts: [['Flare support',"nav('care');setSegment('care','self');setSegment('self','flare')"],['Breathing exercise',"nav('care');setSegment('care','self');setSegment('self','habits')"]],
     },
     clinicalnav: {
@@ -222,7 +222,7 @@ export default {
       focuses: ['Food-symptom connections','Meal timing','Dietary strategies','Trigger identification','Nutritional support'],
       prompts: ['Are there foods I should avoid?','Help me with meal timing','Review my food-symptom patterns','What diet changes might help?'],
       userMsg: 'Help me with meal timing',
-      assistantMsg: 'Your data shows a clear signal: symptoms are worse on days you eat dinner after 8 PM. This is common — late meals can slow gastric motility and worsen morning constipation. Try moving dinner to before 7 PM for the next week and log the results. Also, eating your largest meal earlier in the day may help your system process food more effectively.',
+      assistantMsg: 'Your data shows a clear signal: symptoms are worse on days you eat dinner after 8 PM. This is common — late meals may slow gastric motility and contribute to morning constipation. You might consider moving dinner to before 7 PM for the next week and log the results. Also, eating your largest meal earlier in the day may help your system process food more effectively.',
       routeOuts: [['Log food',"nav('track');openSheet('food')"],['View food patterns',"nav('patterns');setSegment('patterns','connections')"]],
     },
     pelvic: {
@@ -230,7 +230,7 @@ export default {
       focuses: ['Pelvic floor function','Evacuation support','Straining reduction','Coordination exercises','Motility support'],
       prompts: ['Help with straining','What pelvic floor exercises help?','Why can\'t I fully evacuate?','Is my posture affecting this?'],
       userMsg: 'Why can\'t I fully evacuate even with a strong urge?',
-      assistantMsg: 'Strong urge with incomplete evacuation often points to pelvic floor dyssynergia — where your pelvic floor muscles tighten instead of relaxing when you try to go. This is very common and treatable. Diaphragmatic breathing on the toilet, proper positioning (feet elevated, lean forward), and pelvic floor relaxation exercises can all help. If it persists, biofeedback therapy is highly effective.',
+      assistantMsg: 'Strong urge with incomplete evacuation can sometimes be associated with pelvic floor dyssynergia — where your pelvic floor muscles tighten instead of relaxing when you try to go. This is a well-recognized pattern that many people find manageable with the right support. Diaphragmatic breathing on the toilet, proper positioning (feet elevated, lean forward), and pelvic floor relaxation exercises may help. If it persists, biofeedback therapy is often recommended and may be effective.',
       routeOuts: [['Pelvic floor exercises',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log bowel movement',"openEntry('bm')"]],
     },
     psychology: {
@@ -238,7 +238,7 @@ export default {
       focuses: ['Gut-brain axis','Stress-symptom links','Nervous system regulation','Cognitive patterns','Emotional wellbeing'],
       prompts: ['How does stress affect my gut?','Help me understand the gut-brain connection','What calming techniques help?','Is anxiety making this worse?'],
       userMsg: 'How does stress affect my gut?',
-      assistantMsg: 'Stress directly affects gut motility through the gut-brain axis. When you\'re stressed, your nervous system shifts into fight-or-flight mode, which can slow digestion, increase sensitivity to pain, and worsen constipation. Your data shows higher symptom variability on high-stress days. Regular nervous system calming — even 5 minutes of diaphragmatic breathing — can meaningfully improve gut function over time.',
+      assistantMsg: 'Research suggests stress may directly influence gut motility through the gut-brain axis. When you\'re stressed, your nervous system shifts into fight-or-flight mode, which can slow digestion, increase sensitivity to pain, and worsen constipation. Your data shows higher symptom variability on high-stress days. Regular nervous system calming — even 5 minutes of diaphragmatic breathing — may help support gut function over time.',
       routeOuts: [['Breathing exercise',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log stress',"nav('track');openSheet('mental')"]],
     },
     functional: {
@@ -254,7 +254,7 @@ export default {
       focuses: ['Digestive fire (Agni)','Constitutional balance','Lifestyle rhythm','Natural remedies','Seasonal guidance'],
       prompts: ['What does Ayurveda say about constipation?','How can I improve my digestive fire?','What daily routine helps?'],
       userMsg: 'What does Ayurveda say about constipation?',
-      assistantMsg: 'In Ayurveda, constipation is typically associated with Vata imbalance — dryness, irregularity, and cold qualities in the digestive system. Key recommendations include warm water first thing in the morning, regular meal timing (your late dinners would be seen as Vata-aggravating), warm cooked foods over raw, and self-massage with warm oil. Consistency in routine is considered one of the most important factors for Vata-type constipation.',
+      assistantMsg: 'In Ayurveda, In Ayurvedic tradition, constipation is often viewed through the lens of Vata imbalance — dryness, irregularity, and cold qualities in the digestive system. Traditional suggestions you might explore include warm water first thing in the morning, regular meal timing (your late dinners would be seen as Vata-aggravating), warm cooked foods over raw, and self-massage with warm oil. Consistency in routine is traditionally regarded as particularly important for Vata-type constipation.',
       routeOuts: [['Morning routine',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log hydration',"nav('track');openSheet('hydration')"]],
     },
     pharmacy: {
@@ -262,7 +262,7 @@ export default {
       focuses: ['Medication review','Side effects','Drug interactions','Supplement guidance','Adherence support'],
       prompts: ['Could this be a side effect?','Check my interactions','Should I adjust timing?','What supplements might help?'],
       userMsg: 'Could this be a side effect?',
-      assistantMsg: 'Several common medications can cause or worsen constipation — including certain antacids, iron supplements, and some antidepressants. If you\'ve recently started or changed any medication, that\'s worth flagging with your doctor. Log your medication timing alongside symptoms so we can look for temporal correlations.',
+      assistantMsg: 'Several common medications may contribute to or worsen constipation — including certain antacids, iron supplements, and some antidepressants. If you\'ve recently started or changed any medication, that\'s worth flagging with your doctor. Log your medication timing alongside symptoms so we can look for temporal correlations.',
       routeOuts: [['Log medication',"nav('track');openSheet('meds')"],['Treatment plan',"nav('care');setSegment('care','clinical')"]],
     },
   },
@@ -531,7 +531,7 @@ export default {
           { icon: 'thermom', title: 'Log symptoms', sub: "Strengthen today's signal before dinner", time: '2:30 PM', action: "nav('track');openSheet('symptom')", unread: true },
         ]},
         { group: 'Medication & Supplements', items: [
-          { icon: 'pill', title: 'Evening medication', sub: 'Take your evening dose', time: '7:00 PM', action: "openSheet('meds')" },
+          { icon: 'pill', title: 'Evening medication', sub: 'Evening dose reminder', time: '7:00 PM', action: "openSheet('meds')" },
         ]},
         { group: 'Visits & Tests Due', items: [
           { icon: 'calendar', title: 'GI visit in 3 days', sub: 'Continue your prep \u2014 3 of 4 steps complete', time: 'Today', action: "nav('care');setSegment('care','navigation');navSub('visit')", unread: true, urgent: true },

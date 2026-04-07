@@ -52,11 +52,11 @@ export default {
     },
     'alternating-bowel': {
       title: 'Diarrhea/constipation alternation pattern',
-      subtitle: 'Your bowel habits alternate in roughly 3\u20135 day cycles between loose and hard stools.',
+      subtitle: 'Your data suggests your bowel habits may alternate in roughly 3\u20135 day cycles between loose and hard stools.',
       confidence: 38,
       chip: 'amber', chipLabel: 'Moderate confidence',
       bars: [25,55,70,30,65,45,80,35,60,50,75,40,55,65],
-      summary: 'Your bowel logs show a cyclical pattern: 2\u20133 days of loose/urgent stools followed by 2\u20133 days of harder, less frequent stools. This alternating pattern is characteristic of IBS-M. The trigger for each swing is not yet clear \u2014 it may be diet, stress, or an internal rhythm.',
+      summary: 'Your bowel logs show a cyclical pattern: 2\u20133 days of loose/urgent stools followed by 2\u20133 days of harder, less frequent stools. This alternating pattern is commonly seen in IBS-M. The trigger for each swing is not yet clear \u2014 it may be diet, stress, or an internal rhythm.',
       factors: [
         ['poop','Bowel type cycling','Moderate signal','#F59E0B','38%','#FEF3C7'],
         ['brain','Stress episodes','May trigger swings','#F59E0B','30%','#FEF3C7'],
@@ -73,7 +73,7 @@ export default {
       confidence: 30,
       chip: 'amber', chipLabel: 'Low confidence',
       bars: [20,45,35,60,25,55,40,70,30,50,45,35,55,40],
-      summary: 'On nights where you sleep fewer than 5 hours, the next day shows increased urgency, abdominal pain, and more frequent bowel movements. The signal is still building \u2014 you have 6 data points so far, with 4 showing this pattern.',
+      summary: 'On nights where you sleep fewer than 5 hours, the next day shows increased urgency, abdominal pain, and more frequent bowel movements. The signal is still building \u2014 your logs include 6 data points so far, with 4 showing this pattern.',
       factors: [
         ['moon','Sleep duration','Early signal','#F59E0B','30%','#FEF3C7'],
         ['brain','Pre-sleep anxiety','Contributing','#F59E0B','25%','#FEF3C7'],
@@ -168,7 +168,7 @@ export default {
       focuses: ['Symptom interpretation','Next best step','Visit preparation','Pattern clarification','Routing to the right guide'],
       prompts: ['Why do my symptoms keep changing?','What should I log next?','Help me prepare for my visit','What should I do during a flare?'],
       userMsg: 'Why do my symptoms keep changing?',
-      assistantMsg: 'The alternating pattern you\'re experiencing \u2014 swinging between diarrhea and constipation \u2014 is characteristic of IBS-M (mixed type). Your data shows these swings happen in roughly 3\u20135 day cycles. The biggest trigger appears to be work stress, which kicks off a flare that starts with urgency and loose stools, then shifts to constipation as it winds down. Tracking your stress levels and bowel type daily will help us predict and potentially shorten these cycles.',
+      assistantMsg: 'The alternating pattern showing in your data \u2014 swinging between diarrhea and constipation \u2014 is commonly associated with IBS-M (mixed type). Your data shows these swings happen in roughly 3\u20135 day cycles. The biggest trigger appears to be work stress, which kicks off a flare that starts with urgency and loose stools, then shifts to constipation as it winds down. Tracking your stress levels and bowel type daily will help us predict and potentially shorten these cycles.',
       routeOuts: [['View alternating pattern',"nav('patterns');openPattern('alternating-bowel')"],['Log stress',"nav('track');openSheet('mental')"]],
     },
     track: {
@@ -192,7 +192,7 @@ export default {
       focuses: ['Daily routines','Guided exercises','Flare support','Habit building','Self-management'],
       prompts: ['What should I focus on today?','Help me with my routine','I\'m having a flare','What\'s my next best step?'],
       userMsg: 'I\'m having a flare',
-      assistantMsg: 'I\'m sorry you\'re dealing with a flare. Let\'s focus on what helps right now. First, try peppermint oil \u2014 peppermint oil can help reduce cramping and urgency, though enteric-coated capsules typically take 30\u201360 minutes to take effect. Then do a 5-minute gut-directed breathing exercise to calm your nervous system, which directly affects IBS symptoms. Stick to low-FODMAP, easy-to-digest foods today. Log your symptoms so we can track this flare and see if it follows your typical stress-triggered pattern.',
+      assistantMsg: 'I\'m sorry you\'re dealing with a flare. Let\'s focus on what helps right now. You might consider peppermint oil \u2014 peppermint oil can help reduce cramping and urgency, though enteric-coated capsules typically take 30\u201360 minutes to take effect. You might also try a 5-minute gut-directed breathing exercise, which may help calm your nervous system and has been associated with reduced IBS symptoms. Consider sticking to low-FODMAP, easy-to-digest foods today. Log your symptoms so we can track this flare and see if it follows your typical stress-triggered pattern.',
       routeOuts: [['Flare support',"nav('care');setSegment('care','self');setSegment('self','flare')"],['Breathing exercise',"nav('care');setSegment('care','self');setSegment('self','habits')"]],
     },
     clinicalnav: {
@@ -216,7 +216,7 @@ export default {
       focuses: ['IBS symptom interpretation','Differential considerations','Test guidance','Red flag assessment','Clinical context'],
       prompts: ['Is IBS-M common?','Should I be concerned about these symptoms?','What tests might help?','Is this pattern typical for IBS?'],
       userMsg: 'Is IBS-M common?',
-      assistantMsg: 'Yes, IBS-M (mixed type) affects roughly a third of IBS patients. The alternating pattern you\'re experiencing \u2014 cycling between diarrhea and constipation \u2014 is well-recognised. It can be the most challenging subtype to manage because treatments that help one phase may worsen the other. The good news is that identifying your specific triggers (like the stress-flare connection in your data) allows for more targeted management rather than one-size-fits-all approaches.',
+      assistantMsg: 'Yes, IBS-M (mixed type) affects roughly a third of IBS patients. The alternating pattern in your data \u2014 cycling between diarrhea and constipation \u2014 is well-recognised. It can be the most challenging subtype to manage because treatments that help one phase may worsen the other. The good news is that identifying your specific triggers (like the stress-flare connection in your data) allows for more targeted management rather than one-size-fits-all approaches.',
       routeOuts: [['View patterns',"nav('patterns')"],['Prepare for visit',"nav('care');setSegment('care','navigation');navSub('visit')"]],
     },
     nutrition: {
@@ -232,7 +232,7 @@ export default {
       focuses: ['Pelvic floor function','Cramping support','Bowel regularity','Coordination exercises','Motility support'],
       prompts: ['Help with cramping during flares','What exercises help IBS?','Why does urgency feel so intense?','Can pelvic exercises help IBS-M?'],
       userMsg: 'Why does urgency feel so intense?',
-      assistantMsg: 'In IBS, the gut is hypersensitive \u2014 normal contractions feel more intense, and the threshold for urgency is lower. This visceral hypersensitivity means your brain amplifies signals from your gut. Pelvic floor exercises can help you gain more control over the urge-to-go response. Deep breathing during urgency episodes activates the parasympathetic nervous system and can reduce the intensity. Over time, gut-directed techniques can actually lower your sensitivity threshold.',
+      assistantMsg: 'In IBS, the gut can become hypersensitive \u2014 normal contractions may feel more intense, and the threshold for urgency is lower. This visceral hypersensitivity means the brain may amplify signals from the gut. Pelvic floor exercises may help you gain more control over the urge-to-go response. Deep breathing during urgency episodes activates the parasympathetic nervous system and can reduce the intensity. Over time, gut-directed techniques may help modulate sensitivity over time.',
       routeOuts: [['Pelvic floor exercises',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log bowel movement',"openEntry('bm')"]],
     },
     psychology: {
@@ -240,7 +240,7 @@ export default {
       focuses: ['Gut-brain axis in IBS','Stress-flare cycle','Nervous system regulation','Cognitive patterns','Emotional wellbeing'],
       prompts: ['How does stress trigger IBS flares?','Help me understand the gut-brain connection','What calming techniques help IBS?','Is anxiety making my IBS worse?'],
       userMsg: 'How does stress trigger IBS flares?',
-      assistantMsg: 'In IBS, the gut-brain axis is heightened \u2014 your gut is essentially a second brain that responds powerfully to stress. When work stress spikes, your nervous system releases cortisol and activates the fight-or-flight response, which directly disrupts gut motility and increases visceral sensitivity. Your data shows this clearly: 8 out of 12 high-stress episodes triggered multi-day flares. Gut-directed hypnotherapy is one of the most evidence-based treatments for breaking this cycle \u2014 it literally retrains how your brain communicates with your gut.',
+      assistantMsg: 'In IBS, the gut-brain axis is heightened \u2014 the gut is sometimes described as a second brain, and it can respond to stress. When work stress spikes, your nervous system releases cortisol and activates the fight-or-flight response, which directly disrupts gut motility and increases visceral sensitivity. Your data shows this clearly: 8 out of 12 high-stress episodes triggered multi-day flares. Gut-directed hypnotherapy is one of the most evidence-based treatments for breaking this cycle \u2014 it aims to help retrain how the brain communicates with the gut.',
       routeOuts: [['View stress-flare pattern',"nav('patterns');openPattern('stress-flare')"],['Log stress',"nav('track');openSheet('mental')"]],
     },
     functional: {
@@ -248,7 +248,7 @@ export default {
       focuses: ['Root-cause thinking','Systems perspective','Lifestyle factors','Holistic context','Integrative approach'],
       prompts: ['What root causes should I explore?','How do my systems connect?','What lifestyle factors matter?','What am I missing?'],
       userMsg: 'What root causes should I explore?',
-      assistantMsg: 'Looking at your full picture \u2014 IBS-M, stress-triggered flares, FODMAP sensitivity, caffeine reactivity, and menstrual cycle influence \u2014 several systems are interconnected. Your nervous system dysregulation (stress-flare cycle) may be the central driver, with emerging evidence suggesting gut microbiome imbalance may be contributing to food sensitivities. A functional approach would prioritise nervous system regulation first (gut-directed hypnotherapy, vagal toning), then address the gut environment (targeted probiotics, FODMAP personalisation), and finally optimise supporting factors (sleep, caffeine, cycle-aware management).',
+      assistantMsg: 'Looking at your full picture \u2014 IBS-M, stress-triggered flares, FODMAP sensitivity, caffeine reactivity, and menstrual cycle influence \u2014 several systems are interconnected. The stress-flare cycle in your data suggests nervous system regulation may be a central factor, with emerging evidence suggesting gut microbiome imbalance may be contributing to food sensitivities. A functional approach would prioritise nervous system regulation first (gut-directed hypnotherapy, vagal toning), then address the gut environment (targeted probiotics, FODMAP personalisation), and finally optimise supporting factors (sleep, caffeine, cycle-aware management).',
       routeOuts: [['View all connections',"nav('patterns');setSegment('patterns','connections')"],['Daily habits',"nav('care');setSegment('care','self');setSegment('self','habits')"]],
     },
     ayurveda: {
@@ -256,7 +256,7 @@ export default {
       focuses: ['Digestive fire (Agni)','Constitutional balance','Lifestyle rhythm','Natural remedies','Seasonal guidance'],
       prompts: ['What does Ayurveda say about IBS?','How can I balance my digestion?','What daily routine helps IBS?'],
       userMsg: 'What does Ayurveda say about IBS?',
-      assistantMsg: 'In Ayurveda, IBS-M reflects an imbalance between Vata (causing constipation, gas, anxiety) and Pitta (causing diarrhea, urgency, inflammation). The alternating pattern suggests your Agni (digestive fire) is variable \u2014 sometimes too weak, sometimes too reactive. Key recommendations include eating warm, well-cooked meals at regular times, avoiding raw and cold foods during flares, drinking warm ginger or fennel tea to stabilise digestion, and establishing a consistent daily routine. Your stress-symptom connection aligns with the Ayurvedic understanding of mind-gut interconnection.',
+      assistantMsg: 'In Ayurveda, IBS-M reflects an imbalance between Vata (causing constipation, gas, anxiety) and Pitta (causing diarrhea, urgency, inflammation). The alternating pattern may suggest variable Agni (digestive fire) from an Ayurvedic perspective \u2014 sometimes too weak, sometimes too reactive. Key recommendations include eating warm, well-cooked meals at regular times, avoiding raw and cold foods during flares, drinking warm ginger or fennel tea to stabilise digestion, and establishing a consistent daily routine. Your stress-symptom connection aligns with the Ayurvedic understanding of mind-gut interconnection.',
       routeOuts: [['Morning routine',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log food',"nav('track');openSheet('food')"]],
     },
     pharmacy: {
@@ -264,7 +264,7 @@ export default {
       focuses: ['IBS medication review','Side effects','Drug interactions','Supplement guidance','Adherence support'],
       prompts: ['What medications help IBS-M?','Could this be a side effect?','What about peppermint oil?','Should I try probiotics?'],
       userMsg: 'What about peppermint oil?',
-      assistantMsg: 'Peppermint oil is one of the best-studied natural treatments for IBS. It works as an antispasmodic \u2014 relaxing the smooth muscle in your gut, which reduces cramping, bloating, and urgency. Enteric-coated capsules are recommended so the oil reaches your intestines rather than dissolving in your stomach. Take it 30\u201360 minutes before meals for best effect. Your data suggests it could be especially helpful before coffee or high-FODMAP meals, which are your main urgency triggers.',
+      assistantMsg: 'Peppermint oil is one of the best-studied natural treatments for IBS. It works as an antispasmodic \u2014 it may help relax the smooth muscle in the gut, which can reduce cramping, bloating, and urgency. Enteric-coated capsules are recommended so the oil reaches your intestines rather than dissolving in your stomach. It is typically taken 30\u201360 minutes before meals \u2014 discuss timing with your healthcare provider. Your data suggests it could be especially helpful before coffee or high-FODMAP meals, which your data suggests may be associated with your urgency episodes.',
       routeOuts: [['Log medication',"nav('track');openSheet('meds')"],['Treatment plan',"nav('care');setSegment('care','clinical')"]],
     },
   },
@@ -439,7 +439,7 @@ export default {
     // Care screen
     careHabits: [
       { icon: 'wind', name: 'Gut-directed hypnotherapy', meta: '15 min \u00b7 Retrain gut-brain communication', tag: 'Recommended now' },
-      { icon: 'pill', name: 'Peppermint oil timing', meta: 'Take 30 min before meals for IBS cramping' },
+      { icon: 'pill', name: 'Peppermint oil timing', meta: 'Typically taken 30 min before meals \u2014 discuss with your provider' },
       { icon: 'utensils', name: 'FODMAP-friendly meals', meta: 'Low-FODMAP meal planning and prep' },
       { icon: 'moon', name: 'Sleep support routine', meta: 'Wind-down guidance for IBS-related sleep disruption' },
     ],
@@ -452,7 +452,7 @@ export default {
 
     careFlare: [
       { icon: 'alertTri', name: 'IBS flare protocol', meta: 'Immediate steps for urgency, pain, and bloating' },
-      { icon: 'wind', name: 'Gut-directed breathing', meta: '5 min \u00b7 Calm your nervous system and reduce cramping' },
+      { icon: 'wind', name: 'Gut-directed breathing', meta: '5 min \u00b7 May help calm your nervous system and reduce cramping' },
       { icon: 'shield', name: 'When to escalate', meta: 'Know when IBS symptoms need medical attention' },
     ],
 

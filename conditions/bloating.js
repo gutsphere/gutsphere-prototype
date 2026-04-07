@@ -214,7 +214,7 @@ export default {
       focuses: ['GI symptom interpretation','Differential considerations','Test guidance','Red flag assessment','Clinical context'],
       prompts: ['What could be causing this?','Should I be concerned?','What tests might help?','Is this pattern typical?'],
       userMsg: 'What could be causing my bloating?',
-      assistantMsg: 'Bloating with gas and distension can have several explanations. The most common include food intolerances (lactose, fructose, FODMAPs), small intestinal bacterial overgrowth (SIBO), celiac disease, functional dyspepsia, or simply aerophagia (swallowing air). Your food-trigger pattern is interesting — it suggests specific food intolerances may be playing a role. In a chronic bloating workup, celiac disease should always be ruled out — it is commonly missed and a simple blood test (tTG-IgA) can screen for it. A gastroenterologist might also consider breath testing for SIBO or carbohydrate malabsorption.',
+      assistantMsg: 'Bloating with gas and distension can have several explanations. The most common include food intolerances (lactose, fructose, FODMAPs), small intestinal bacterial overgrowth (SIBO), celiac disease, functional dyspepsia, or simply aerophagia (swallowing air). Your food-trigger pattern is interesting — it suggests specific food intolerances may be playing a role. In a chronic bloating workup, clinicians often consider ruling out celiac disease — a blood test (tTG-IgA) is commonly used to screen for it — your clinician can advise whether this is appropriate. A gastroenterologist might also consider breath testing for SIBO or carbohydrate malabsorption.',
       routeOuts: [['View patterns',"nav('patterns')"],['Prepare for consult',"nav('care');setSegment('care','navigation');navSub('visit')"]],
     },
     nutrition: {
@@ -230,7 +230,7 @@ export default {
       focuses: ['Abdominal mechanics','Distension management','Diaphragmatic support','Coordination exercises','Motility support'],
       prompts: ['Help with distension','What exercises help with bloating?','Is my posture affecting this?','How can I reduce gas pain?'],
       userMsg: 'How can I reduce abdominal distension?',
-      assistantMsg: 'Abdominal distension often involves both gas production and how your abdominal wall responds to it. Diaphragmatic breathing can help relax the abdominal wall and reduce the sensation of tightness. Gentle abdominal massage in a clockwise direction follows the path of your colon and can help move trapped gas. Proper posture — avoiding slouching after meals — also helps your digestive tract process food more efficiently.',
+      assistantMsg: 'Abdominal distension often involves both gas production and how your abdominal wall responds to it. Diaphragmatic breathing may help relax the abdominal wall and reduce the sensation of tightness. Gentle abdominal massage in a clockwise direction follows the path of your colon and can help move trapped gas. Proper posture — avoiding slouching after meals — may also support more efficient digestion.',
       routeOuts: [['Abdominal exercises',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log symptoms',"openSheet('symptom')"]],
     },
     psychology: {
@@ -238,7 +238,7 @@ export default {
       focuses: ['Gut-brain axis','Stress-symptom links','Nervous system regulation','Cognitive patterns','Emotional wellbeing'],
       prompts: ['How does stress affect my bloating?','Help me understand the gut-brain connection','What calming techniques help?','Is anxiety making this worse?'],
       userMsg: 'How does stress affect my bloating?',
-      assistantMsg: 'Stress directly affects gut function through the gut-brain axis. When you\'re stressed, your nervous system can alter gut motility, increase gas production, and heighten visceral sensitivity — making you feel bloating more intensely even at normal gas volumes. Your data shows a weak but emerging signal linking high-stress days to worse bloating. Regular nervous system calming — even 5 minutes of diaphragmatic breathing before meals — can meaningfully reduce bloating over time.',
+      assistantMsg: 'Stress can affect gut function through the gut-brain axis. When you\'re stressed, the nervous system can alter gut motility, increase gas production, and heighten visceral sensitivity — which may make bloating feel more intense even at normal gas volumes. Your data shows a weak but emerging signal linking high-stress days to worse bloating. Regular nervous system calming — even 5 minutes of diaphragmatic breathing before meals — may help reduce bloating over time.',
       routeOuts: [['Breathing exercise',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log stress',"nav('track');openSheet('mental')"]],
     },
     functional: {
@@ -455,7 +455,7 @@ export default {
     careRecs: [
       ['utensils','Eat slowly and chew thoroughly','Reducing air swallowing may decrease gas and distension'],
       ['droplets','Reduce carbonation','Carbonated drinks consistently precede bloating episodes'],
-      ['pill','Try digestive enzymes','Enzyme support may help break down trigger foods'],
+      ['pill','Consider discussing digestive enzymes with your provider','Enzyme support may help break down trigger foods'],
       ['pill','Consider a probiotic','Certain strains (e.g., Bifidobacterium infantis) have evidence for reducing bloating. Discuss with your dietitian'],
     ],
 

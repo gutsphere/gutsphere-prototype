@@ -73,7 +73,7 @@ export default {
       confidence: 35,
       chip: 'amber', chipLabel: 'Low confidence',
       bars: [25,45,60,30,70,40,55,35],
-      summary: 'On weeks where you report sustained high stress (above 6/10 for 3+ days), flare episodes appear more likely to begin. The signal is still developing and needs more consistent stress logging to confirm.',
+      summary: 'On weeks where you report sustained high stress (above 6/10 for 3+ days), your data shows a possible association with flare onset. The signal is still developing and needs more consistent stress logging to confirm.',
       factors: [
         ['brain','Sustained stress','Early signal','#F59E0B','35%','#FEF3C7'],
         ['moon','Poor sleep during stress','Contributing','#F59E0B','28%','#FEF3C7'],
@@ -167,7 +167,7 @@ export default {
       focuses: ['Flare assessment','Next best step','Infusion preparation','Pattern clarification','Routing to the right guide'],
       prompts: ['What should I log next?','Am I flaring?','Help me prepare for my infusion','What should I do now?'],
       userMsg: 'Am I flaring?',
-      assistantMsg: 'Based on your recent logs, your bowel frequency has increased to 4x today with urgency at 9/10 and blood present. This looks consistent with the early phase of a flare based on your previous patterns. I\'d recommend logging symptoms closely over the next 48 hours, staying on your low-residue diet, and flagging this at your infusion appointment in 4 days.',
+      assistantMsg: 'Based on your recent logs, your bowel frequency has increased to 4x today with urgency at 9/10 and blood present. Your recent data shows similarities to patterns seen before previous flares. You might consider logging symptoms closely over the next 48 hours, staying on your low-residue diet, and flagging this at your infusion appointment in 4 days.',
       routeOuts: [['Log symptoms',"nav('track');openSheet('symptom')"],['View flare pattern',"nav('patterns');openPattern('flare-remission')"]],
     },
     track: {
@@ -175,7 +175,7 @@ export default {
       focuses: ['What to log next','Flare tracking','Signal gaps','Logging priority','Building evidence'],
       prompts: ['What should I log right now?','Help me track my flare','What signals am I missing?','Which logs matter most?'],
       userMsg: 'What signals am I missing?',
-      assistantMsg: 'You\'re tracking bowel movements and food well, which is critical during a possible flare. The gap right now is fatigue and energy levels — your data suggests fatigue may be an early flare indicator, but you haven\'t logged energy consistently. Try rating your energy daily for the next week, especially leading into your infusion.',
+      assistantMsg: 'You\'re tracking bowel movements and food well, which is critical during a possible flare. The gap right now is fatigue and energy levels — your data suggests fatigue may be an early flare indicator, but you haven\'t logged energy consistently. Consider rating your energy daily for the next week, especially leading into your infusion.',
       routeOuts: [['Log energy',"nav('track');openSheet('movement')"],['Log symptoms',"nav('track');openSheet('symptom')"]],
     },
     patterns: {
@@ -183,7 +183,7 @@ export default {
       focuses: ['Flare cycle interpretation','Signal strength','Treatment response','Confidence levels','Data relationships'],
       prompts: ['What does my recent data show?','Am I entering a flare?','Which patterns are strengthening?','How is my treatment working?'],
       userMsg: 'Am I entering a flare?',
-      assistantMsg: 'Your last 3 days show rising bowel frequency, increased urgency, and blood — all signals that aligned with previous flare onsets. Your flare-remission pattern is at 70% confidence. Fatigue was also elevated 2 days ago, which preceded your last flare. The data suggests this may be the beginning of a flare episode.',
+      assistantMsg: 'Your last 3 days show rising bowel frequency, increased urgency, and blood — all signals that aligned with previous flare onsets. Your flare-remission pattern is at 70% confidence. Fatigue was also elevated 2 days ago, which preceded your last flare. Your data shows patterns similar to those seen before previous flare episodes.',
       routeOuts: [['View flare pattern',"nav('patterns');openPattern('flare-remission')"],['Log symptoms',"nav('track');openSheet('symptom')"]],
     },
     selfcare: {
@@ -191,7 +191,7 @@ export default {
       focuses: ['Flare self-care','Daily routines','Stress management','Habit building','Pain management'],
       prompts: ['What should I focus on today?','Help me manage this flare','What\'s my next best step?','I\'m having a bad day'],
       userMsg: 'I\'m having a bad day',
-      assistantMsg: 'I\'m sorry you\'re struggling. During a possible flare, the most important things are: stay hydrated with clear fluids and bone broth, stick to your low-residue diet, and rest when you can. A gentle stress check-in can also help — stress can amplify inflammation. Let\'s log how you\'re feeling so we can track this flare\'s severity for your infusion appointment.',
+      assistantMsg: 'I\'m sorry you\'re struggling. During a possible flare, the most important things are: consider staying hydrated with clear fluids and bone broth, continuing your low-residue diet, and resting when you can. A gentle stress check-in can also help — stress may amplify inflammation. Let\'s log how you\'re feeling so we can track this flare\'s severity for your infusion appointment.',
       routeOuts: [['Flare support',"nav('care');setSegment('care','self');setSegment('self','flare')"],['Log symptoms',"nav('track');openSheet('symptom')"]],
     },
     clinicalnav: {
@@ -215,7 +215,7 @@ export default {
       focuses: ['Crohn\'s disease management','Flare assessment','Biologic optimisation','Surgical considerations','Extraintestinal manifestations'],
       prompts: ['Is this a flare?','Should I be concerned about these symptoms?','What about surgery?','Are my joint pains related?'],
       userMsg: 'Are my joint pains related to my Crohn\'s?',
-      assistantMsg: 'Joint pain is one of the most common extraintestinal manifestations of Crohn\'s disease, affecting up to 30% of patients. Peripheral arthritis (large joints like knees and ankles) often flares alongside bowel symptoms, while axial arthritis can be independent. Your joint symptoms appearing alongside increased bowel symptoms supports the connection. Mention this at your infusion appointment — managing inflammation often improves joint symptoms too.',
+      assistantMsg: 'Joint pain is reported as one of the more common extraintestinal features associated with Crohn\'s disease, affecting up to 30% of patients. Peripheral arthritis (large joints like knees and ankles) may flare alongside bowel symptoms, while axial arthritis can be independent. Your data showing joint symptoms alongside increased bowel symptoms is consistent with this association. Mention this at your infusion appointment — managing inflammation may also help with joint symptoms.',
       routeOuts: [['Log symptoms',"nav('track');openSheet('symptom')"],['Prepare for infusion',"nav('care');setSegment('care','navigation');navSub('visit')"]],
     },
     nutrition: {
@@ -223,7 +223,7 @@ export default {
       focuses: ['Flare nutrition','Food tolerance mapping','Low-residue guidance','Nutritional deficiencies','Remission diet expansion'],
       prompts: ['What should I eat during a flare?','Help me with food reintroduction','What foods should I avoid right now?','Am I getting enough nutrients?'],
       userMsg: 'What should I eat during a flare?',
-      assistantMsg: 'During a flare, your priority is reducing gut irritation while maintaining nutrition. Stick to low-residue, easily digestible foods: white rice, lean protein (chicken, fish), bone broth, bananas, and well-cooked vegetables. Avoid raw vegetables, whole grains, dairy, spicy foods, and high-fibre items until symptoms improve. Small, frequent meals are better than large ones. Your current lunch of rice, chicken, and bone broth is a good example.',
+      assistantMsg: 'During a flare, a common focus during flares is reducing gut irritation while maintaining nutrition. You might consider low-residue, easily digestible foods: white rice, lean protein (chicken, fish), bone broth, bananas, and well-cooked vegetables. Raw vegetables, whole grains, dairy, spicy foods, and high-fibre items are commonly reduced during flares. Consider discussing your specific tolerances with your care team. Small, frequent meals are better than large ones. Your current lunch of rice, chicken, and bone broth is a good example.',
       routeOuts: [['Log food',"nav('track');openSheet('food')"],['View food patterns',"nav('patterns');openPattern('diet-tolerance')"]],
     },
     pelvic: {
@@ -231,7 +231,7 @@ export default {
       focuses: ['Urgency management','Pelvic floor support','Evacuation mechanics','Incontinence prevention','Post-surgical rehabilitation'],
       prompts: ['Help with urgency','What exercises help with bowel control?','How can I manage urgency in public?','Is my pelvic floor affected?'],
       userMsg: 'How can I manage the urgency?',
-      assistantMsg: 'Urgency is one of the most challenging IBD symptoms. A few strategies can help: pelvic floor contractions (quick squeezes) can buy you time when urgency hits. Diaphragmatic breathing activates your parasympathetic nervous system, which can calm the urge. Planning bathroom access when you\'re out reduces anxiety, which itself can worsen urgency. Long-term, pelvic floor physiotherapy can improve your control significantly.',
+      assistantMsg: 'Urgency is one of the most challenging IBD symptoms. A few strategies can help: pelvic floor contractions (quick squeezes) may help buy time when urgency hits. Diaphragmatic breathing activates your parasympathetic nervous system, which may calm the urge. Planning bathroom access when you\'re out reduces anxiety, which itself can worsen urgency. Long-term, pelvic floor physiotherapy may help improve control.',
       routeOuts: [['Pelvic floor exercises',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log bowel movement',"openEntry('bm')"]],
     },
     psychology: {
@@ -239,7 +239,7 @@ export default {
       focuses: ['Gut-brain axis in IBD','Stress-flare connection','Living with chronic illness','Anxiety management','Mental health support'],
       prompts: ['How does stress affect my Crohn\'s?','Help me cope with flare anxiety','Is my mental health making this worse?','How do I manage the uncertainty?'],
       userMsg: 'How does stress affect my Crohn\'s?',
-      assistantMsg: 'Stress doesn\'t cause Crohn\'s disease, but it can trigger flares and worsen symptoms through the gut-brain axis. Chronic stress increases inflammatory cytokines, affects gut barrier function, and can alter your microbiome. Your data shows a signal between sustained high-stress periods and flare onset. Regular stress management — even brief daily check-ins and breathing exercises — can meaningfully reduce flare risk and improve quality of life.',
+      assistantMsg: 'Stress doesn\'t cause Crohn\'s disease, but it may trigger flares and worsen symptoms through the gut-brain axis. Research suggests chronic stress may increase inflammatory cytokines, affects gut barrier function, and can alter your microbiome. Your data shows a signal between sustained high-stress periods and flare onset. Regular stress management — even brief daily check-ins and breathing exercises — may help reduce flare risk and improve quality of life.',
       routeOuts: [['Stress check-in',"nav('track');openSheet('mental')"],['Breathing exercise',"nav('care');setSegment('care','self');setSegment('self','habits')"]],
     },
     functional: {
@@ -255,7 +255,7 @@ export default {
       focuses: ['Digestive fire (Agni)','Pitta balance','Anti-inflammatory practices','Lifestyle rhythm','Natural remedies'],
       prompts: ['What does Ayurveda say about IBD?','How can I reduce inflammation naturally?','What daily routine helps?'],
       userMsg: 'What does Ayurveda say about IBD?',
-      assistantMsg: 'In Ayurveda, inflammatory bowel conditions are typically associated with Pitta imbalance — excess heat, sharpness, and inflammation in the digestive system. Key recommendations include cooling foods (rice, ghee, coconut), avoiding hot, spicy, and fermented foods during flares, regular meal timing, and calming practices like meditation. Turmeric (with your doctor\'s approval) is a traditional anti-inflammatory support. Important: Avoid aloe vera during active flares — its laxative effect can worsen diarrhea and cramping in active Crohn\'s. Shatavari or licorice root tea (with your doctor\'s guidance) are safer Ayurvedic alternatives during flares. Consistency in routine is considered essential for calming Pitta.',
+      assistantMsg: 'In Ayurveda, inflammatory bowel conditions are typically associated with Pitta imbalance — excess heat, sharpness, and inflammation in the digestive system. Key recommendations include cooling foods (rice, ghee, coconut), avoiding hot, spicy, and fermented foods during flares, regular meal timing, and calming practices like meditation. Turmeric (with your doctor\'s approval) is a traditional anti-inflammatory support. Important: Aloe vera is generally not recommended during active flares — its laxative effect can worsen diarrhea and cramping in active Crohn\'s. Shatavari or licorice root tea (with your doctor\'s guidance) are safer Ayurvedic alternatives during flares. Consistency in routine is considered essential for calming Pitta.',
       routeOuts: [['Daily routine',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log food',"nav('track');openSheet('food')"]],
     },
     pharmacy: {
@@ -451,7 +451,7 @@ export default {
     careFlare: [
       { icon: 'alertTri', name: 'Urgent flare protocol', meta: 'When to call your doctor immediately' },
       { icon: 'droplets', name: 'Hydration protocol', meta: 'Fluid and electrolyte management during flares' },
-      { icon: 'thermom', name: 'Pain management', meta: 'Avoid NSAIDs (ibuprofen, naproxen) — they can trigger Crohn\'s flares. Use acetaminophen/paracetamol for pain relief instead.' },
+      { icon: 'thermom', name: 'Pain management', meta: 'NSAIDs (ibuprofen, naproxen) have been associated with Crohn\'s flares. Acetaminophen/paracetamol is often considered a safer alternative — discuss pain management with your doctor.' },
     ],
 
     careRecs: [

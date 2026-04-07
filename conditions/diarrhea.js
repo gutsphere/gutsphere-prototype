@@ -72,7 +72,7 @@ export default {
       confidence: 45,
       chip: 'amber', chipLabel: 'Moderate confidence',
       bars: [35,60,75,40,70,45,65,50],
-      summary: 'On days you consume dairy products, your episode count tends to be higher and stools are more watery. This signal is growing but needs more controlled elimination data to confirm lactose intolerance as a factor.',
+      summary: 'On days you consume dairy products, your episode count tends to be higher and stools are more watery. This signal is growing but needs more controlled elimination data to clarify whether dairy is a consistent trigger in your data.',
       factors: [
         ['utensils','Dairy consumption','Moderate signal','#F59E0B','45%','#FEF3C7'],
         ['droplets','Hydration level','Contributing','#F59E0B','25%','#FEF3C7'],
@@ -189,7 +189,7 @@ export default {
       focuses: ['Daily routines','Guided exercises','Flare support','Habit building','Self-management'],
       prompts: ['What should I focus on today?','Help me with my routine','What\'s my next best step?','I\'m having a flare'],
       userMsg: 'I\'m having a flare',
-      assistantMsg: 'I\'m sorry you\'re dealing with this. Let\'s focus on what matters most right now: stay hydrated with small, frequent sips of electrolyte water or ORS. Stick to BRAT foods (banana, rice, applesauce, toast) and avoid dairy and caffeine. If you see blood, have a fever above 38.5\u00b0C, can\'t keep fluids down for 6+ hours, or experience signs of severe dehydration such as dizziness, significantly reduced urine output, rapid heartbeat, or dry mouth, that\'s a signal to seek urgent care.',
+      assistantMsg: 'I\'m sorry you\'re dealing with this. Let\'s focus on what matters most right now: stay hydrated with small, frequent sips of electrolyte water or ORS. You might consider BRAT foods (banana, rice, applesauce, toast) and reducing dairy and caffeine intake. If you see blood, have a fever above 38.5\u00b0C, can\'t keep fluids down for 6+ hours, or experience signs of severe dehydration such as dizziness, significantly reduced urine output, rapid heartbeat, or dry mouth, these are generally considered reasons to contact a healthcare provider urgently.',
       routeOuts: [['Flare support',"nav('care');setSegment('care','self');setSegment('self','flare')"],['Log episode',"openEntry('bm')"]],
     },
     clinicalnav: {
@@ -221,7 +221,7 @@ export default {
       focuses: ['Food-symptom connections','Meal timing','Dietary strategies','Trigger identification','Nutritional support'],
       prompts: ['Are there foods I should avoid?','Help me with hydration','Review my food-symptom patterns','What diet changes might help?'],
       userMsg: 'Help me with hydration',
-      assistantMsg: 'With frequent diarrhea, hydration is critical. Aim for at least 8 glasses of fluid daily, but prioritise electrolyte-rich options \u2014 plain water alone doesn\'t replace lost sodium and potassium. ORS (oral rehydration solution) is ideal after each episode. Coconut water and diluted broth are good alternatives. Avoid caffeine and alcohol as they worsen fluid loss. Sip small amounts frequently rather than large volumes at once.',
+      assistantMsg: 'With frequent diarrhea, staying hydrated may be especially important. You might consider aiming for around 8 glasses of fluid daily, but prioritise electrolyte-rich options \u2014 plain water alone doesn\'t replace lost sodium and potassium. ORS (oral rehydration solution) is ideal after each episode. Coconut water and diluted broth are good alternatives. You might consider reducing caffeine and alcohol, as they may increase fluid loss. Sipping small amounts frequently rather than large volumes at once is sometimes recommended.',
       routeOuts: [['Log hydration',"nav('track');openSheet('hydration')"],['View food patterns',"nav('patterns');setSegment('patterns','connections')"]],
     },
     pelvic: {
@@ -229,7 +229,7 @@ export default {
       focuses: ['Pelvic floor function','Evacuation support','Urgency management','Coordination exercises','Motility support'],
       prompts: ['Help with urgency control','What pelvic floor exercises help?','Can I improve bowel control?','Is my pelvic floor involved?'],
       userMsg: 'Can I improve bowel control during urgency?',
-      assistantMsg: 'Urgency and difficulty controlling bowel movements can involve pelvic floor muscle coordination. Kegel exercises and pelvic floor strengthening can help improve control during urgency episodes. The "urge wave" technique \u2014 tightening your pelvic floor, breathing deeply, and waiting for the wave to pass \u2014 can help you reach a bathroom without accidents. If incontinence is a concern, biofeedback therapy can be very effective.',
+      assistantMsg: 'Urgency and difficulty controlling bowel movements can involve pelvic floor muscle coordination. Kegel exercises and pelvic floor strengthening may help improve control during urgency episodes. The "urge wave" technique \u2014 tightening your pelvic floor, breathing deeply, and waiting for the wave to pass \u2014 can help you reach a bathroom without accidents. If incontinence is a concern, biofeedback therapy is sometimes recommended and may be effective.',
       routeOuts: [['Pelvic floor exercises',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log bowel movement',"openEntry('bm')"]],
     },
     psychology: {
@@ -237,7 +237,7 @@ export default {
       focuses: ['Gut-brain axis','Stress-symptom links','Nervous system regulation','Cognitive patterns','Emotional wellbeing'],
       prompts: ['How does anxiety affect my gut?','Help me understand the gut-brain connection','What calming techniques help?','Is social anxiety making this worse?'],
       userMsg: 'Is social anxiety making my diarrhea worse?',
-      assistantMsg: 'It\'s plausible — your data suggests a possible link worth investigating further. The gut-brain axis means anxiety can increase gut motility and sensitivity. Social anxiety is particularly impactful because the fear of not having bathroom access creates a vicious cycle \u2014 anxiety triggers urgency, which increases anxiety. Your data shows a 32% signal linking social situations to worse episodes. Cognitive behavioral techniques, exposure therapy, and gut-directed hypnotherapy have strong evidence for breaking this cycle.',
+      assistantMsg: 'It\'s plausible — your data suggests a possible link worth investigating further. The gut-brain axis suggests anxiety may increase gut motility and sensitivity. Social anxiety is particularly impactful because the fear of not having bathroom access creates a vicious cycle \u2014 anxiety may trigger urgency, which in turn may increase anxiety. Your data shows a 32% signal linking social situations to worse episodes. Cognitive behavioral techniques, exposure therapy, and gut-directed hypnotherapy are approaches some people find helpful — consider discussing these with your provider.',
       routeOuts: [['Breathing exercise',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log stress',"nav('track');openSheet('mental')"]],
     },
     functional: {
@@ -253,7 +253,7 @@ export default {
       focuses: ['Digestive fire (Agni)','Constitutional balance','Lifestyle rhythm','Natural remedies','Seasonal guidance'],
       prompts: ['What does Ayurveda say about diarrhea?','How can I balance my digestion?','What daily routine helps?'],
       userMsg: 'What does Ayurveda say about diarrhea?',
-      assistantMsg: 'In Ayurveda, chronic diarrhea is often associated with weakened Agni (digestive fire) and Pitta imbalance \u2014 excess heat and liquidity in the digestive system. Key recommendations include cooling and binding foods (rice, banana, pomegranate), avoiding spicy, oily, and fermented foods, and drinking warm cumin-coriander-fennel tea to calm the digestive tract. Regular meal timing is considered essential \u2014 irregular eating weakens Agni further. Room-temperature water is preferred over cold.',
+      assistantMsg: 'In Ayurveda, chronic diarrhea is often associated with weakened Agni (digestive fire) and Pitta imbalance \u2014 excess heat and liquidity in the digestive system. Traditional suggestions you might explore include cooling and binding foods (rice, banana, pomegranate), avoiding spicy, oily, and fermented foods, and drinking warm cumin-coriander-fennel tea to calm the digestive tract. Regular meal timing is generally seen as important in this tradition \u2014 irregular eating weakens Agni further. Room-temperature water is preferred over cold.',
       routeOuts: [['Morning routine',"nav('care');setSegment('care','self');setSegment('self','habits')"],['Log hydration',"nav('track');openSheet('hydration')"]],
     },
     pharmacy: {
@@ -261,7 +261,7 @@ export default {
       focuses: ['Medication review','Side effects','Drug interactions','Supplement guidance','Adherence support'],
       prompts: ['Could this be a side effect?','Check my interactions','Should I adjust timing?','What supplements might help?'],
       userMsg: 'What supplements might help with diarrhea?',
-      assistantMsg: 'Probiotics (particularly Saccharomyces boulardii) have evidence for reducing diarrhea frequency. Electrolyte supplements or ORS packets are essential for replacing lost minerals. If bile acid malabsorption is suspected, your doctor may consider cholestyramine. Avoid taking multiple supplements without discussing with your gastroenterologist, as some can worsen symptoms. Always take probiotics at least 2 hours apart from any antibiotics.',
+      assistantMsg: 'Probiotics (particularly Saccharomyces boulardii) have evidence for reducing diarrhea frequency. Electrolyte supplements or ORS packets may help for replacing lost minerals. If bile acid malabsorption is suspected, your doctor may consider cholestyramine. Consider discussing any supplement combinations with your gastroenterologist, as some can worsen symptoms. Probiotics are generally recommended to be taken at least 2 hours apart from antibiotics — your pharmacist can confirm timing.',
       routeOuts: [['Log medication',"nav('track');openSheet('meds')"],['Treatment plan',"nav('care');setSegment('care','clinical')"]],
     },
   },
@@ -453,8 +453,8 @@ export default {
     ],
 
     careRecs: [
-      ['droplets','Increase electrolytes','Frequent episodes deplete sodium and potassium rapidly'],
-      ['utensils','Avoid dairy temporarily','Your data suggests dairy may be increasing episode frequency'],
+      ['droplets','Increase electrolytes','Frequent episodes may deplete sodium and potassium'],
+      ['utensils','Consider reducing dairy temporarily','Your data suggests dairy may be increasing episode frequency'],
       ['poop','Track frequency precisely','Exact episode counts and timing will strengthen your patterns'],
     ],
 
@@ -530,7 +530,7 @@ export default {
           { icon: 'droplets', title: 'Log hydration', sub: 'Track fluid intake after your last episode', time: '10:30 AM', action: "nav('track');openSheet('hydration')", unread: true },
         ]},
         { group: 'Medication & Supplements', items: [
-          { icon: 'pill', title: 'Electrolyte reminder', sub: 'Take ORS after your next episode', time: '11:00 AM', action: "openSheet('meds')" },
+          { icon: 'pill', title: 'Electrolyte reminder', sub: 'Consider ORS after your next episode', time: '11:00 AM', action: "openSheet('meds')" },
         ]},
         { group: 'Visits & Tests Due', items: [
           { icon: 'calendar', title: 'Stool test results in 2 days', sub: 'Continue your prep \u2014 2 of 4 steps complete', time: 'Today', action: "nav('care');setSegment('care','navigation');navSub('visit')", unread: true, urgent: true },
